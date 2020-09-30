@@ -5,7 +5,7 @@ from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 
 
-DEV_DB = 'postgresql://insouser:inso4116@localhost/FindAndEat'
+DEV_DB = 'postgresql://faeuser:inso4116@localhost/FindAndEat'
 app = Flask(__name__)
 app.secret_key = "inso_secret_key"
 

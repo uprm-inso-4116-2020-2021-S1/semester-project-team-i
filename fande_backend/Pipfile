@@ -8,7 +8,9 @@ verify_ssl = true
 [packages]
 flask = "*"
 flask_cors = "*"
-flask_sqlalchemy = "*"
+flask-sqlalchemy = "*"
+bcrypt = "*"
+psycopg2-binary = "*"
 
 
 [requires]
