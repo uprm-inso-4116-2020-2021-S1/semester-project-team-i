@@ -6,4 +6,4 @@ class Dish(db.Model):
     description = db.Column(db.String(100), nullable=False)
     price = db.Column(db.Float(precision=2))
     rating = db.Column(db.Integer)
-    # TODO: add ingredients and category as enums
+    # TODO: add ingredients and category as enums.
