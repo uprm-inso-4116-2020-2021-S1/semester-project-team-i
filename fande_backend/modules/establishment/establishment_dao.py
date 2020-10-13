@@ -1,5 +1,5 @@
 from config import db
-from dao.mixin import DaoOperations, OutputMixin
+from helpers.mixin import DaoOperations, OutputMixin
 
 
 class Establishment(DaoOperations, OutputMixin, db.Model):

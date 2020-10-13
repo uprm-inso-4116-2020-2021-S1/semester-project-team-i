@@ -1,7 +1,7 @@
 import datetime
 
 from config import db
-from dao.mixin import OutputMixin, DaoOperations
+from helpers.mixin import OutputMixin, DaoOperations
 
 
 class UpVote(DaoOperations, OutputMixin, db.Model):

@@ -1,7 +1,7 @@
 import datetime
 
 from config import db
-from dao.mixin import DaoOperations, OutputMixin
+from helpers.mixin import DaoOperations, OutputMixin
 
 
 class Review(DaoOperations, OutputMixin, db.Model):
