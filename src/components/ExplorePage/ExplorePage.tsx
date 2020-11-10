@@ -1,8 +1,9 @@
 import React from 'react';
 import './ExplorePage.css';
-import firstPlace from './assets/firstPlace.png';
-import secondPlace from './assets/secondPlace.png';
-import thirdPlace from './assets/thirdPlace.png';
+import firstPlace from '../../assets/firstPlace.png';
+import secondPlace from '../../assets/secondPlace.png';
+import thirdPlace from '../../assets/thirdPlace.png';
+
 
 interface TrendingItemProps {
     imgSrc: string;

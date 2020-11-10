@@ -1,38 +1,53 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+.navbar {
+    position: absolute;
+    width: 100%;
+    height: 79px;
+    left: 0px;
+    top: -1px;
+
+
+    background: rgb(255, 153, 0);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.title {
+    position: absolute;
+    width: 194px;
+    height: 56px;
+    left: 44px;
+    top: 10px;
+
+    font-family: Roboto Condensed;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 48px;
+    line-height: 56px;
+
+    color: #FFFFFF;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.explore {
+    position: absolute;
+    width: 93px;
+    height: 95px;
+    right: 5%;
+    top: 3px;
+
+    background: url(assets/exploreIMG.png);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.profile {
+    position: absolute;
+    width: 93px;
+    height: 95px;
+    right: 0.5%;
+    top: 3px;
+
+    background: url(assets/profileIMG.png);
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+body {
+    background: #000000;
+    height: 100%;
 }

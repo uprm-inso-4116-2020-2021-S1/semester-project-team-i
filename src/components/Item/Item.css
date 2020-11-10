@@ -23,7 +23,7 @@
   background-position: center !important;
   background-repeat: no-repeat !important;
   background-size: cover !important;
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("assets/waffles.jpg");
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../../assets/waffles.jpg");
   
 
  /* para ocupar toda la pantalla */
@@ -44,7 +44,7 @@
     background-position: center !important;
   background-repeat: no-repeat !important;
   background-size: cover !important;
-  background: url(assets/waffles.jpg);
+  background: url(../../assets/waffles.jpg);
 }
 
 .wrapper {
@@ -59,7 +59,7 @@
 }
 
 .profilePic{
-  background-image: url( assets/waffles.jpg);
+  background-image: url(../../assets/waffles.jpg);
   background-size:cover;
   background-position:center;
     border-radius: 50%;

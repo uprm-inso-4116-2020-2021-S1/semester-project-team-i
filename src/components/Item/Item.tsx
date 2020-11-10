@@ -1,8 +1,8 @@
 
 import React from 'react';
 import './Item.css';
-import left from './assets/left.png'; // gives image path
-import right from './assets/right.png'; // gives image path
+import left from '../../assets/left.png'; // gives image path
+import right from '../../assets/right.png'; // gives image path
 
 
 export const Item = () => {
