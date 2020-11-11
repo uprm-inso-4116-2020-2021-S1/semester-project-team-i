@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
+
+
+.white {
+    height: 50%;
+    background: white;
+    text-align: center;
+}
+.divider {
+    width: 50px;
+}
+.orange {
+    height: 50%;
+    background: rgb(255, 153, 0);
+    text-align: center;
+}
+
+.restPic {
+    position: relative;
+    top: 180px;
+    left: 200px;
+    width: 350px;
+    height: 350px;
+  
+    background-size: cover !important;
+    background-position: right !important;
+
+    background: url(../../assets/waffles.jpg);
+    border-radius: 200px;
+}
+
+.handle {
+    width: 619px;
+    height: 113px;
+    margin-top: 180px;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 96px;
+    line-height: 112px;
+    /* identical to box height */
+    color: #000000;
+}
+
+.details {
+    width: 420px;
+    height: 135px;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 42px;
+
+    color: #000000;
+}
