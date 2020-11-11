@@ -5,6 +5,8 @@ from helpers.mixin import OutputMixin, DaoOperations
 
 
 class UpVote(DaoOperations, OutputMixin, db.Model):
+    __tablename__ = 'up_vote'
+
     RELATIONSHIPS_TO_DICT = True
 
     vid = db.Column(db.Integer, primary_key=True)
