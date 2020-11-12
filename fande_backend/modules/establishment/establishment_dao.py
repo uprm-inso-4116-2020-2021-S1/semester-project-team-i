@@ -25,10 +25,7 @@ class Establishment(DaoOperations, OutputMixin, db.Model):
         self.name = kwargs['name']
         self.description = kwargs.get('description', None)
         self.phone = kwargs['phone']
-        self.extension = kwargs.get('extension', None)
         self.location = kwargs['location']
-        self.country = kwargs['country']
-        self.town = kwargs['town']
         self.openTime = kwargs['openTime']
         self.closeTime = kwargs['closeTime']
         self.user_id = kwargs['user_id']

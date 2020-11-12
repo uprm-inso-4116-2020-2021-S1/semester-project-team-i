@@ -21,7 +21,7 @@ class UserController:
 
     @staticmethod
     def get_user_by_id(uid):
-        if id:
+        if uid:
             try:
                 user = User.get_user_by_id(uid)
                 if not user:
