@@ -36,7 +36,7 @@ class User(DaoOperations, OutputMixin, db.Model):
         return User.query.all()
 
     @staticmethod
-    def get_by_id(user_id):
+    def get_user_by_id(user_id):
         return User.query.filter_by(uid=user_id).first()
 
     @staticmethod

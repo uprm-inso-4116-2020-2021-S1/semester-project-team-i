@@ -23,7 +23,7 @@ class UserController:
     def get_user_by_id(uid):
         if id:
             try:
-                user = User.get_by_id(uid)
+                user = User.get_user_by_id(uid)
                 if not user:
                     return jsonify(message="User Not Found"), 404
                 result = {
@@ -62,7 +62,7 @@ class UserController:
         valid_params = verify_params(json, User.USER_REQUIRED_PARAMETERS)
         if uid and valid_params:
             try:
-                user_to_update = User.get_by_id(uid)
+                user_to_update = User.get_user_by_id(uid)
                 if user_to_update:
                     for key, value in valid_params.items():
                         if key == "password":
@@ -88,7 +88,7 @@ class UserController:
     def delete_user(uid):
         if uid:
             try:
-                user_to_delete = User.get_by_id(uid)
+                user_to_delete = User.get_user_by_id(uid)
                 if user_to_delete:
                     user_to_delete.delete()
                     return jsonify(message="Success!"), 200
