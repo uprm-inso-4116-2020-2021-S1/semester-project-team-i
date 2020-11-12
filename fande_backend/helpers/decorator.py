@@ -3,6 +3,7 @@ import functools
 from flask import jsonify
 
 
+# TODO: validate function
 def verify_params(params, required_params):
     """
     Verify the validity of submitted parameter.

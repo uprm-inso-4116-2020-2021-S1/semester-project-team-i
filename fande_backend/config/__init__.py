@@ -14,5 +14,7 @@ if 'DATABASE_URL' in environ:
 else:
     app.config['SQLALCHEMY_DATABASE_URI'] = DEV_DB
 
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
 db = SQLAlchemy(app)
 CORS(app)

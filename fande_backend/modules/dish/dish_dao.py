@@ -1,5 +1,14 @@
+import enum
+
 from config import db
 from helpers.mixin import DaoOperations, OutputMixin
+
+
+class DishType(enum):
+    appetizer = "Appetizer"
+    entree = "Entree"
+    dessert = "Dessert"
+    drink = "Drink"
 
 
 class Dish(DaoOperations, OutputMixin, db.Model):
@@ -7,9 +16,22 @@ class Dish(DaoOperations, OutputMixin, db.Model):
 
     did = db.Column(db.Integer, primary_key=True)
     description = db.Column(db.String(100), nullable=False)
-    price = db.Column(db.Float(precision=2))
+    price = db.Column(db.Float(precision=2), nullable=False)
     rating = db.Column(db.Integer)
-    # TODO: add ingredients and category as enums
-    upVotes = db.relationship('UpVote', backref=db.backref('dish', lazy='subquery'), lazy=True)
-    reviews = db.relationship('Review', backref=db.backref('dish', lazy='subquery'), lazy=True)
+    image_url = db.Column(db.String(250))
+    category = db.Column(db.String(50))     # int? | Category table
+    name = db.Column(db.String(50), nullable=False)
+    type = db.Column(db.Enum(DishType), nullable=False)
     mid = db.Column(db.Integer, db.ForeignKey('menu.mid'), nullable=False)
+    # TODO: add ingredients and category as enums
+    # upVotes = db.relationship('UpVote', backref=db.backref('dish', lazy='subquery'), lazy=True)
+    # reviews = db.relationship('Review', backref=db.backref('dish', lazy='subquery'), lazy=True)
+
+    def __init__(self, **kwargs):
+        super(Dish, self).__init__(**kwargs)
+        self.description = kwargs['description']
+        self.price = kwargs['price']
+        # self.rating = kwargs['rating']
+        # self.image_url = kwargs['image_url']
+        self.name = kwargs['name']
+        self.type = kwargs['type']
