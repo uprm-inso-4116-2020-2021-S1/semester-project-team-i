@@ -9,12 +9,12 @@ class User(DaoOperations, OutputMixin, db.Model):
     # __tablename__ = "users"
 
     RELATIONSHIPS_TO_DICT = True
-    USER_REQUIRED_PARAMETERS = {'username', 'password', 'firstName', 'lastName', 'isVerified'}
+    USER_REQUIRED_PARAMETERS = ['username', 'password', 'firstName', 'lastName', 'isVerified', 'email', ]
 
     uid = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(30), unique=True, nullable=False)
     password = db.Column(db.String(100), nullable=False)
-    email = db.Column(db.String(50), unique=True, nullable=False)
+    email = db.Column(db.String(50), nullable=False)
     isVerified = db.Column(db.Boolean, default=False)
     firstName = db.Column(db.String(20), nullable=False)
     lastName = db.Column(db.String(20), nullable=False)
@@ -34,6 +34,10 @@ class User(DaoOperations, OutputMixin, db.Model):
     @staticmethod
     def get_all_users():
         return User.query.all()
+
+    @staticmethod
+    def get_by_id(user_id):
+        return User.query.filter_by(uid=user_id).first()
 
     @staticmethod
     def verify_username(username):

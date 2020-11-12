@@ -21,11 +21,11 @@ class Dish(DaoOperations, OutputMixin, db.Model):
     image_url = db.Column(db.String(250))
     category = db.Column(db.String(50))     # int? | Category table
     name = db.Column(db.String(50), nullable=False)
-    type = db.Column(db.Enum(DishType), nullable=False)
+    type = db.Column(db.String(20), nullable=False)
     mid = db.Column(db.Integer, db.ForeignKey('menu.mid'), nullable=False)
-    # TODO: add ingredients and category as enums
     # upVotes = db.relationship('UpVote', backref=db.backref('dish', lazy='subquery'), lazy=True)
     # reviews = db.relationship('Review', backref=db.backref('dish', lazy='subquery'), lazy=True)
+    # menu = db.relationship('Menu')
 
     def __init__(self, **kwargs):
         super(Dish, self).__init__(**kwargs)

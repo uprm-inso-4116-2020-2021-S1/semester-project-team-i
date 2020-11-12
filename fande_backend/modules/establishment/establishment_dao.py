@@ -4,19 +4,18 @@ from helpers.mixin import DaoOperations, OutputMixin
 
 class Establishment(DaoOperations, OutputMixin, db.Model):
     RELATIONSHIPS_TO_DICT = True
-    ESTABLISHMENT_REQUIRED_PARAMS = ['name', 'phone', 'location', 'country',
-                                     'town', 'openTime', 'closeTime', 'user_id']
+    ESTABLISHMENT_REQUIRED_PARAMS = ['name', 'phone', 'location', 'openTime', 'closeTime', 'user_id',
+                                     'openFromDay', 'openToDay', ]
 
     eid = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(30), nullable=False)
     description = db.Column(db.String(50))
     phone = db.Column(db.String(12), nullable=False)
-    extension = db.Column(db.String(4))
-    location = db.Column(db.String(20), nullable=False)
-    country = db.Column(db.String(20), nullable=False)      # consider using enum
-    town = db.Column(db.String(20), nullable=False)         # consider using enum
+    location = db.Column(db.String(50), nullable=False)
     openTime = db.Column(db.Time(timezone=True), nullable=False)
     closeTime = db.Column(db.Time(timezone=True), nullable=False)
+    openFromDay = db.Column(db.String(10), nullable=False)
+    openToDay = db.Column(db.String(10), nullable=False)
     # mid = db.Column(db.Integer, db.ForeignKey('menu.mid'), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.uid'), nullable=False)
     user = db.relationship('User', backref='establishments', lazy=True)
@@ -33,6 +32,8 @@ class Establishment(DaoOperations, OutputMixin, db.Model):
         self.openTime = kwargs['openTime']
         self.closeTime = kwargs['closeTime']
         self.user_id = kwargs['user_id']
+        self.openFromDay = kwargs['openFromDay']
+        self.openToDay = kwargs['openToDay']
 
     @staticmethod
     def get_all_establishments():

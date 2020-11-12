@@ -19,7 +19,7 @@ class EstablishmentController:
         return jsonify(result), 200
 
     @staticmethod
-    def get_establishment_by_id(id):
+    def get_establishment_by_id(eid):
         pass
 
     @staticmethod
@@ -40,9 +40,9 @@ class EstablishmentController:
             return jsonify(message="Bad Request!"), 400
 
     @staticmethod
-    def update_establishment(id, json):
+    def update_establishment(eid, json):
         pass
 
     @staticmethod
-    def delete_establishment(id):
+    def delete_establishment(eid):
         pass
