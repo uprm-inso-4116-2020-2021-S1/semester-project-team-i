@@ -1,8 +1,9 @@
-from flask import Flask
 from flask import request, jsonify
 
 from config import app
+from modules.dish.dish_controller import DishController
 from modules.establishment.establishment_controller import EstablishmentController
+from modules.menu.menu_controller import MenuController
 from modules.user.user_controller import UserController
 
 
@@ -51,6 +52,50 @@ def get_put_or_delete_establishment(id):
         return EstablishmentController.update_establishment(id, request.json)
     elif request.method == 'DELETE':
         return EstablishmentController.delete_establishment(id)
+    else:
+        return jsonify(message="Method not allowed."), 405
+
+
+@app.route('/menus', methods=['GET', 'POST'])
+def get_all_or_create_menus():
+    if request.method == 'GET':
+        return MenuController.get_all_menus()
+    elif request.method == 'POST':
+        return MenuController.create_menu(request.json)
+    else:
+        return jsonify(message="Method not allowed."), 405
+
+
+@app.route('/menus/<int:id>', methods=['GET', 'PUT', 'DELETE'])
+def get_update_or_delete_menu(id):
+    if request.method == 'GET':
+        return MenuController.get_menu_by_id(id)
+    elif request.method == 'PUT':
+        return MenuController.update_menu(id, request.json)
+    elif request.method == 'DELETE':
+        return MenuController.delete_menu(id)
+    else:
+        return jsonify(message="Method not allowed."), 405
+
+
+@app.route('/dishes', methods=['GET', 'POST'])
+def get_all_or_create_dishes():
+    if request.method == 'GET':
+        return DishController.get_all_dishes()
+    elif request.method == 'POST':
+        return DishController.create_dish(request.json)
+    else:
+        return jsonify(message="Method not allowed."), 405
+
+
+@app.route('/dishes/<int:id>', methods=['GET', 'PUT', 'DELETE'])
+def get_update_or_delete_dish(id):
+    if request.method == 'GET':
+        return DishController.get_dish_by_id(id)
+    elif request.method == 'PUT':
+        return DishController.update_dish(id, request.json)
+    elif request.method == 'DELETE':
+        return DishController.delete_dish(id)
     else:
         return jsonify(message="Method not allowed."), 405
 
