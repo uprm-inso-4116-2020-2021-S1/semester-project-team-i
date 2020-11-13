@@ -11,9 +11,6 @@ from helpers.mixin import DaoOperations, OutputMixin
 #     four = "Drink"
 
 
-
-
-
 class Dish(DaoOperations, OutputMixin, db.Model):
     RELATIONSHIPS_TO_DICT = True
     DISH_REQUIRED_PARAMS = ['description', 'price', 'category', 'name',
