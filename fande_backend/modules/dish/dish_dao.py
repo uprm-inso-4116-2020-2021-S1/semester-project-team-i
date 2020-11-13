@@ -1,14 +1,14 @@
-import enum
+# import enum
 
 from config import db
 from helpers.mixin import DaoOperations, OutputMixin
 
 
-class DishType(enum):
-    one = "Appetizer"
-    two = "Entree"
-    three = "Dessert"
-    four = "Drink"
+# class DishType(enum):
+#     one = "Appetizer"
+#     two = "Entree"
+#     three = "Dessert"
+#     four = "Drink"
 
 
 class Dish(DaoOperations, OutputMixin, db.Model):
@@ -38,6 +38,7 @@ class Dish(DaoOperations, OutputMixin, db.Model):
         self.name = kwargs['name']
         self.type = kwargs['type']
         self.menu_id = kwargs['menu_id']
+        self.category = kwargs['category']
 
     @staticmethod
     def get_all_dishes():
