@@ -50,3 +50,12 @@ class Dish(DaoOperations, OutputMixin, db.Model):
     @staticmethod
     def get_dish_by_id(dish_id):
         return Dish.query.filter_by(did=dish_id).first()
+
+
+    @staticmethod
+    def get_all_dish_by_type(dish_type):
+        return Dish.query.filter_by(type=dish_type)
+
+    @staticmethod
+    def get_all_dish_by_category(dish_category):
+        return Dish.query.filter_by(category=dish_category)
