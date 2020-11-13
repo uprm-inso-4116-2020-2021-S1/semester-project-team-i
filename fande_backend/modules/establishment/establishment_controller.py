@@ -24,7 +24,7 @@ class EstablishmentController:
             try:
                 establishment = Establishment.get_establishment_by_id(eid)
                 if not establishment:
-                    return jsonify(message="User Not Found"), 404
+                    return jsonify(message="Establishment Not Found"), 404
                 result = {
                     'message': 'Success!',
                     'user': establishment.to_dict(),

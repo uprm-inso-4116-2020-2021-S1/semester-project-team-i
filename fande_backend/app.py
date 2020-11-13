@@ -2,6 +2,7 @@ from flask import request, jsonify
 
 from config import app
 from modules.establishment.establishment_controller import EstablishmentController
+from modules.menu.menu_controller import MenuController
 from modules.user.user_controller import UserController
 
 
@@ -50,6 +51,28 @@ def get_put_or_delete_establishment(id):
         return EstablishmentController.update_establishment(id, request.json)
     elif request.method == 'DELETE':
         return EstablishmentController.delete_establishment(id)
+    else:
+        return jsonify(message="Method not allowed."), 405
+
+
+@app.route('/menus', methods=['GET', 'POST'])
+def get_all_or_create_menus():
+    if request.method == 'GET':
+        return MenuController.get_all_menus()
+    elif request.method == 'POST':
+        return MenuController.create_menu(request.json)
+    else:
+        return jsonify(message="Method not allowed."), 405
+
+
+@app.route('/menus/<int:id>', methods=['GET', 'PUT', 'DELETE'])
+def get_update_or_delete_menu(id):
+    if request.method == 'GET':
+        return MenuController.get_menu_by_id(id)
+    elif request.method == 'PUT':
+        return MenuController.update_menu(id, request.json)
+    elif request.method == 'DELETE':
+        return MenuController.delete_menu(id)
     else:
         return jsonify(message="Method not allowed."), 405
 

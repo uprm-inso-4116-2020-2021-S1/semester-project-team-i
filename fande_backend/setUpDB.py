@@ -1,6 +1,6 @@
 from config import db
 
-# from modules.menu.menu_dao import Menu
+from modules.menu.menu_dao import Menu
 # from modules.dish.dish_dao import Dish
 from modules.establishment.establishment_dao import Establishment
 from modules.user.user_dao import User
