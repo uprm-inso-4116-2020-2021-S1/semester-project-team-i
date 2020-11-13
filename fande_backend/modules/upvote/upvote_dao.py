@@ -14,12 +14,12 @@ class UpVote(DaoOperations, OutputMixin, db.Model):
     uid = db.Column(db.Integer, db.ForeignKey('users.uid'), nullable=False)
     did = db.Column(db.Integer, db.ForeignKey('dish.did'), nullable=False)
 
-    # def __init__(self, **kwargs):
-    #     super(UpVote, self).__init__(**kwargs)
-    #     self.timestamp = kwargs.get('timestamp', datetime.datetime.utcnow())
-    #     self.did = kwargs['did']
-    #     self.uid = kwargs['uid']
+    def __init__(self, **kwargs):
+        super(UpVote, self).__init__(**kwargs)
+        self.timestamp = kwargs.get('timestamp', datetime.datetime.utcnow())
+        self.did = kwargs['did']
+        self.uid = kwargs['uid']
 
-    # @staticmethod
-    # def get_all_UpVotes():
-    #     return UpVote.query.all()
+    @staticmethod
+    def get_all_upvotes():
+        return UpVote.query.all()

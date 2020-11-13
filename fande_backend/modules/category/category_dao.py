@@ -58,8 +58,7 @@ from helpers.mixin import OutputMixin, DaoOperations
 
 class Category(DaoOperations, OutputMixin, db.Model):
     cid = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(50), nullable = False)
-
+    name = db.Column(db.String(50), nullable=False)
 
     def __init__(self, **kwargs):
         super(Category, self).__init__(**kwargs)
@@ -68,3 +67,7 @@ class Category(DaoOperations, OutputMixin, db.Model):
     @staticmethod
     def get_all_categories():
         return Category.query.all()
+
+    @staticmethod
+    def get_category_by_id(category_id):
+        return Category.query.filter_by(cid=category_id).first()
