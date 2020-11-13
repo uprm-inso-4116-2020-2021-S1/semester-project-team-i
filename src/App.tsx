@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import { ExplorePage } from './components/ExplorePage/ExplorePage';
 import { Item } from './components/Item/Item';
+import {CreateDish} from './components/CreateDish/CreateDish'; 
 import { Link } from 'react-router-dom';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { LandingPage } from './components/LandingPage/LandingPage';
@@ -21,7 +22,8 @@ function App() {
         <Switch>
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/explore" component={ExplorePage} />
-          <Route exact path="/profile" component={Item} />
+          {/* <Route exact path="/profile" component={Item} /> */}
+          <Route exact path="/profile" component={CreateDish} />
           <Route exact path="/register" component={Register}/>
           <Route exact path="/login" component={Login}/>
         </Switch>

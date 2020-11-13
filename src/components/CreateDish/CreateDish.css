@@ -2,11 +2,13 @@
 
 .child{
     
-    width: 100%;
-    height: 100%;
+    width: 50%;
+    height: 50%;
     margin: 5px;
     text-align: center;  
-    background-color: white;
+    /* background-color: white; */
+    background: none;
+    /* opacity: 0; */
     border-radius: 50px;
 
 }
@@ -30,22 +32,6 @@
   height: 100vh;
 }
 
-.first {
-    width: 50%;
-    height: 100%;
-    float:left; /* add this */
-}
-
-.second {
-    float: rigth; /* add this */
-    height: 100%;
-    overflow: hidden; /* if you don't want #second to wrap below #first */
-
-    background-position: center !important;
-  background-repeat: no-repeat !important;
-  background-size: cover !important;
-  background: url(../../assets/waffles.jpg);
-}
 
 .wrapper {
     width: 100%;
@@ -59,13 +45,15 @@
 }
 
 .profilePic{
-  background-image: url(../../assets/waffles.jpg);
+  background-image: url(../../assets/camara.png);
   background-size:cover;
   background-position:center;
     border-radius: 50%;
-    width: 10%;
-    height: 100%;
+    width: 25%;
+    height: 150px;
     min-width: 85px;
+    padding: 1em;
+  
 }
 
 table.cabeza{
@@ -92,32 +80,95 @@ td.headCell{
     text-align: left;
 }
 
-table.bigTable{
-    width: 60%;
-    height: 60%;
-    /* background-color: red; */
+.celda{
+  position: relative;
+left : 1%;
+top: 1%;
 }
 
-.arrow{
-    width: 100%;
-    height: 25%;
-}
 
-/* .font {
+.boton{
+    background-color: orange;
+    width: 25%;
+    height: 100%;
+    border-radius: 5px;
+
+    padding: 0;
+border: none;
+outline: none;
+/* background: none; */
+    
+/* font */
     font-family: Roboto;
-    font-style: normal;
+    font-style: bold;
     font-weight: 900;
-font-size: 25px;
-    line-height: 84px;
-
-    color: #000000;
-} */
-
-button{
-    background-color: Transparent;
-    background-repeat:no-repeat;
-    border: none;
-    cursor:pointer;
-    overflow: hidden;
-    outline:none;
+    font-size: 25px;
+    color: white;
+    
 }
+
+.boton:hover{
+  /* background-color: orangered; */
+  opacity: 0.5;
+}
+
+.camara{
+  width: 25%;
+  height: 25%;
+  border: none;
+outline: none;
+border-radius: 50%;
+
+}
+
+.imagen{
+  width: 100%;
+  height: 100%;
+}
+
+.espacio{
+  padding-left: 5%;
+}
+
+.cancelbtn{
+  background-color: orange;
+  width: 50%;
+  height: 100%;
+  border-radius: 5px;
+
+  padding: 0;
+border: none;
+outline: none;
+
+position: relative;
+left : 40%;
+top: 40%;
+/* background: none; */
+  
+/* font */
+  font-family: Roboto;
+  font-style: bold;
+  font-weight: 900;
+  font-size: 25px;
+  color: white;
+}
+
+.cancelbtn:hover{
+  /* background-color: orangered; */
+  opacity: 0.5;
+}
+
+.row{
+  width: 100%;
+  background-color: red;
+}
+.tabla{
+  width: 100%;
+  background-color: purple;
+}
+
+.cell{
+  width: 100%;
+  background-color: seagreen;
+}
+
