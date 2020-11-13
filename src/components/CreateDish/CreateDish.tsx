@@ -132,20 +132,20 @@ const changeType = (event: React.ChangeEvent<HTMLInputElement>) => {
           <DialogContent>
           <form className={classes.root} noValidate autoComplete="off">
           
-            <table >
+            <table className="tabla">
               <tr >
 
-        <td >
+      
             <TextField
               autoFocus
               margin="dense"
               id="name"
               label="Name"
               type="email"
-              fullWidth
-              
+             
+              style={{ width:"100%" }}
             />
-            </td>
+           
       </tr>
       <tr>
             <TextField
@@ -154,7 +154,8 @@ const changeType = (event: React.ChangeEvent<HTMLInputElement>) => {
               id="name"
               label="Price"
               type="email"
-              fullWidth
+              
+              style={{ width:"100%" }}
             />
             </tr>
             <tr>
@@ -166,7 +167,8 @@ const changeType = (event: React.ChangeEvent<HTMLInputElement>) => {
           value={type}
           onChange={changeType}
           helperText="Select type of dish"
-          fullWidth
+          style={{ width:"100%" }}
+          
         >
            {types.map((option) => (
             <MenuItem key={option.value} value={option.value}>
@@ -184,7 +186,7 @@ const changeType = (event: React.ChangeEvent<HTMLInputElement>) => {
           value={category}
           onChange={changeCategory}
           helperText="Select category of dish"
-          fullWidth
+          style={{ width:"100%" }}
         >
            {categories.map((option) => (
             <MenuItem key={option.value} value={option.value}>
@@ -201,7 +203,7 @@ const changeType = (event: React.ChangeEvent<HTMLInputElement>) => {
               id="name"
               label="Description"
               type="email"
-              fullWidth
+              style={{ width:"100%" }}
             />
             </tr>
                 </table>

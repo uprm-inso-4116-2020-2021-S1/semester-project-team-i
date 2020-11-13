@@ -158,17 +158,8 @@ top: 40%;
   opacity: 0.5;
 }
 
-.row{
-  width: 100%;
-  background-color: red;
-}
 .tabla{
-  width: 100%;
-  background-color: purple;
+  width: 98%;
 }
 
-.cell{
-  width: 100%;
-  background-color: seagreen;
-}
 
