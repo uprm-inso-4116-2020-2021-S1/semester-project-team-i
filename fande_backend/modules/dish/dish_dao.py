@@ -48,7 +48,7 @@ class Dish(DaoOperations, OutputMixin, db.Model):
     def get_dish_by_id(dish_id):
         return Dish.query.filter_by(did=dish_id).first()
 
-
+# new queries
     @staticmethod
     def get_all_dish_by_type(dish_type):
         return Dish.query.filter_by(type=dish_type)
