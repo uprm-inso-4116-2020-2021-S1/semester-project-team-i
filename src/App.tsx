@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { LandingPage } from './components/LandingPage/LandingPage';
 import Register from './components/Register/Register';
 import Login from './components/Login/Login';
+import Restaurant from './components/Restaurant/Restaurant';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route exact path="/profile" component={CreateDish} />
           <Route exact path="/register" component={Register}/>
           <Route exact path="/login" component={Login}/>
+          <Route exact path="/restaurant/:name" component={Restaurant}/>
         </Switch>
       </Router>
 
