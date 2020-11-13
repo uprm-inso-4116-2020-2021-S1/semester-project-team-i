@@ -21,7 +21,7 @@ def get_all_or_create_users():
 
 
 @app.route('/users/<int:id>', methods=['GET', 'PUT', 'DELETE'])
-def get_or_update_or_delete_user(id):
+def get_update_or_delete_user(id):
     if request.method == 'GET':
         return UserController.get_user_by_id(id)
     elif request.method == 'PUT':
@@ -38,6 +38,18 @@ def get_all_or_create_establishments():
         return EstablishmentController.get_all_establishments()
     elif request.method == 'POST':
         return EstablishmentController.create_establishment(request.json)
+    else:
+        return jsonify(message="Method not allowed."), 405
+
+
+@app.route('/establishments/<int:id>', methods=['GET', 'PUT', 'DELETE'])
+def get_put_or_delete_establishment(id):
+    if request.method == 'GET':
+        return EstablishmentController.get_establishment_by_id(id)
+    elif request.method == 'PUT':
+        return EstablishmentController.update_establishment(id, request.json)
+    elif request.method == 'DELETE':
+        return EstablishmentController.delete_establishment(id)
     else:
         return jsonify(message="Method not allowed."), 405
 

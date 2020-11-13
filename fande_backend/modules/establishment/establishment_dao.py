@@ -12,8 +12,8 @@ class Establishment(DaoOperations, OutputMixin, db.Model):
     description = db.Column(db.String(50))
     phone = db.Column(db.String(12), nullable=False)
     location = db.Column(db.String(50), nullable=False)
-    openTime = db.Column(db.Time(timezone=True), nullable=False)
-    closeTime = db.Column(db.Time(timezone=True), nullable=False)
+    openTime = db.Column(db.String(10), nullable=False)    # db.TIme(timezone=True)
+    closeTime = db.Column(db.String(10), nullable=False)
     openFromDay = db.Column(db.String(10), nullable=False)
     openToDay = db.Column(db.String(10), nullable=False)
     # mid = db.Column(db.Integer, db.ForeignKey('menu.mid'), nullable=False)
@@ -35,3 +35,8 @@ class Establishment(DaoOperations, OutputMixin, db.Model):
     @staticmethod
     def get_all_establishments():
         return Establishment.query.all()
+
+    @staticmethod
+    def get_establishment_by_id(e_id):
+        return Establishment.query.filter_by(eid=e_id).first()
+
