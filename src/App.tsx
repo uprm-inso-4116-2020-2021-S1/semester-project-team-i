@@ -9,6 +9,7 @@ import { LandingPage } from './components/LandingPage/LandingPage';
 import Register from './components/Register/Register';
 import Login from './components/Login/Login';
 import Restaurant from './components/Restaurant/Restaurant';
+import RestManager from './components/RestManager/RestManager';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route exact path="/register" component={Register}/>
           <Route exact path="/login" component={Login}/>
           <Route exact path="/restaurant/:name" component={Restaurant}/>
+          <Route exact path="/restManager" component={RestManager}/>
         </Switch>
       </Router>
 
