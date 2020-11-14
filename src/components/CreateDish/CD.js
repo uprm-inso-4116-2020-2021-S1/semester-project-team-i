@@ -1,8 +1,5 @@
 import React, { useState } from "react";
-import { render } from "react-dom";
 import { storage } from "../firebase";
-
-import cam from '../../assets/camara.png'; // gives image path
 import './CD.css';
 
 export default function ReactFirebaseFileUpload() {
@@ -54,7 +51,7 @@ export default function ReactFirebaseFileUpload() {
         <tr>
           <td className="centro" >
 
-            <img className="foto" src={url || "https://upload.wikimedia.org/wikipedia/commons/4/42/Photo-camera-in-circular-outlined-interface-button.svg"} alt="firebase-image" />
+            <img className="foto" alt="firebase" src={url || "https://upload.wikimedia.org/wikipedia/commons/4/42/Photo-camera-in-circular-outlined-interface-button.svg"} />
 
           </td>
           <td className="tamano">

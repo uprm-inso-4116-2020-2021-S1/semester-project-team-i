@@ -138,7 +138,7 @@ export default class Restaurant extends React.Component<RestaurantProps, Restaur
                     {!this.state.showMenuList &&
                         <div className="orange">
 
-                            <Link to="/profile">
+                            <Link to="/item">
                                 <img alt="plate1" style={{ margin: "50px" }} src={plate1}></img>
                             </Link>
                             <img alt="plate2" style={{ margin: "50px" }} src={plate2}></img>

@@ -1,33 +1,30 @@
-import React, { useState } from 'react';
-import Button from '@material-ui/core/Button';
+import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
 import './CreateDish.css';
-import cam from '../../assets/camara.png'; // gives image path
 import MenuItem from '@material-ui/core/MenuItem';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import ReactFirebaseFileUpload from './CD.js';
 
 
-export const CreateDish = () => {
-  // lo de la foto
+interface CreateDishProps {
+  establishmentId: number;
+}
 
+export const CreateDish = (props: CreateDishProps) => {
 
-  //lo de la foto
-
-  const categories = [
+  const types = [
     {
-      value: 'apetizer',
-      label: 'apetizer',
+      value: 'appetizer',
+      label: 'appetizer',
     },
     {
       value: 'entree',
-      label: 'entre',
+      label: 'entree',
     },
     {
       value: 'dessert',
@@ -39,7 +36,7 @@ export const CreateDish = () => {
     },
   ];
 
-  const types = [
+  const categories = [
     {
       value: 'Mexican',
       label: 'Mexican',
@@ -98,12 +95,11 @@ export const CreateDish = () => {
   // cajitas de select
 
   return (
-    <div className="container">
-      <div className="child">
-
+    <div>
+      <div>
 
         <button className="boton" onClick={handleClickOpen}>
-          Open form dialog
+          + Add Dish
       </button>
 
         <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
@@ -125,31 +121,7 @@ export const CreateDish = () => {
 
           </table>
 
-          {/* <input type="file" onChange={handleChange} />
-      <button onClick={handleUpload}>Upload</button> */}
-
           <ReactFirebaseFileUpload />
-
-
-          {/* <div className="contenedor">
-      <div className="wrap">
-       
-        <label className="btn" >Upload File</label>
-        
-        <input id="upload" type="file" /> 
-        <img src={cam} className="imagen"/>
-       
-        
-        </div>
-      </div> */}
-
-          {/* boton de camara */}
-          {/* <div className="espacio">
-            <button className="camara">
-              <img src={cam} className="imagen" />
-            </button>
-          </div> */}
-          {/* boton de camara */}
 
           <DialogContent>
             <form className={classes.root} noValidate autoComplete="off">
@@ -237,7 +209,7 @@ export const CreateDish = () => {
 
 
 
-            <button className="boton" onClick={handleClose} color="primary">
+            <button className="botonDone" onClick={handleClose} color="primary">
               Done
           </button>
 

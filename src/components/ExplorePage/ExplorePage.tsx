@@ -48,7 +48,7 @@ const ThePost = (props: SuggestedPosts) => {
         <div className = "thePostConatainer">
             <table>
                 <tr>
-                    <td><button id = "profileBTN"><a href="#"><img id = "profilePhoto" src={props.imgProfile} alt={props.alt}  /></a></button></td>
+                    <td><button id = "profileBTN"><a href={`/restaurant/${props.username}`}><img id = "profilePhoto" src={props.imgProfile} alt={props.alt}  /></a></button></td>
                     <td style = {{height: '30px'}}><h4>{props.username}</h4></td>
                 </tr>
                 <tr>

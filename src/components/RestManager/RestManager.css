@@ -1,12 +1,10 @@
 
 
 .managerTitle {
-    width: 619px;
+    width: 87%;
     height: 113px;
-    left: 10%;
     bottom: 20%;
+    left: 100px;
 
     font-size: 80px;
-    margin-left: 100px;
-
 }

@@ -34,7 +34,7 @@ export const Login: React.FC<LoginProps> = ({ onSubmit }) => {
                 </div>
                 <div className="fieldName">Password </div>
                 <div>
-                  <TextField name="password" style={{ width:"70%" }} onChange={handleChange} onBlur={handleBlur}></TextField>
+                  <TextField name="password" type="password" style={{ width:"70%" }} onChange={handleChange} onBlur={handleBlur}></TextField>
                 </div>
               <Button type="submit" className="submitButton"> Sign In!</Button>
               {/* <pre>{JSON.stringify(values, null, 2)}</pre> */}

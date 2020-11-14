@@ -34,7 +34,7 @@ const onSubmit = (values: RegisterData) => {
 export const setLoggedInUser = (uid: number) => {
   localStorage.setItem('loggedInUser', uid.toString());
   console.log(uid);
-  if(uid != -1){
+  if(uid !== -1){
     history.push('/explore');
   }
 }
@@ -70,7 +70,7 @@ export const Register: React.FC = () => {
                 </div>
                 <div className="fieldName">Password </div>
                 <div>
-                  <TextField name="password" style={{ width:"70%" }} onChange={handleChange} onBlur={handleBlur}></TextField>
+                  <TextField name="password" type="password" style={{ width:"70%" }} onChange={handleChange} onBlur={handleBlur}></TextField>
                 </div>
               <Button type="submit" className="submitButton"> Create Account!</Button>
               {/* <pre>{JSON.stringify(values, null, 2)}</pre> */}
