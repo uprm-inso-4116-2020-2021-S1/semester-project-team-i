@@ -1,0 +1,90 @@
+.contenedor {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+  }
+  
+  input[type="file"] {
+ 
+    background-color: orange;
+    width: 67%;
+    height: 100%;
+    border-radius: 5px;
+    
+
+    padding: 0;
+border: none;
+outline: none;
+    
+
+    font-family: Roboto;
+    font-style: bold;
+    font-weight: 900;
+    font-size: 100%;
+    color: white;
+  }
+
+  input:hover{
+    /* background-color: orangered; */
+    opacity: 0.5;
+  }
+  
+  .wrap {
+    position: relative;
+  }
+  
+  .btn {
+    background-color: orange;
+    width: 25%;
+    height: 100%;
+    border-radius: 5px;
+
+    padding: 0;
+border: none;
+outline: none;
+    
+/* font */
+    font-family: Roboto;
+    font-style: bold;
+    font-weight: 900;
+    font-size: 100%;
+    color: white;
+  }
+
+  .btn:hover{
+    /* background-color: orangered; */
+    opacity: 0.5;
+  }
+
+  .foto{
+
+      width:100%;
+      outline: none;
+border-radius: 50%;
+padding: 0;
+border: none;
+outline: none;
+background-size:cover; 
+/* background-position:center;
+  }
+  .tamano{
+      width: 60%;
+      /* text-align:right; */
+      vertical-align:bottom
+  }
+
+  .square{
+    background: 50% 50% no-repeat; /* 50% 50% centers image in div */
+    width: 50%;
+    height: 100%;
+  }
+
+ 
+
+  .posicion{
+    position: relative;
+    left : 2%;
+    /* top: 2%; */
+    width: 100%;
+  }
