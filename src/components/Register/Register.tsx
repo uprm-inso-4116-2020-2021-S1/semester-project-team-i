@@ -3,6 +3,8 @@ import './Register.css';
 import { Button, TextField } from '@material-ui/core';
 import { Form, Formik } from 'formik';
 import { Link } from 'react-router-dom';
+import { User, UserService } from '../../services/UserService';
+import { useHistory } from "react-router-dom";
 
 interface RegisterData {
   firstName: string;
@@ -11,11 +13,35 @@ interface RegisterData {
   password: string;
 }
 
-interface RegisterProps {
-  onSubmit: (values: RegisterData) => void;
+// interface RegisterProps {
+//   onSubmit: (values: RegisterData) => void;
+// }
+let history;
+
+const onSubmit = (values: RegisterData) => {
+
+ const newUser: User = {
+    username: values.email,
+    password: values.password,
+    email: values.email,
+    firstName: values.firstName,
+    lastName: values.lastName
+  }
+
+  UserService.createUser(newUser);
 }
 
-export const Register: React.FC<RegisterProps> = ({ onSubmit }) => {
+export const setLoggedInUser = (uid: number) => {
+  localStorage.setItem('loggedInUser', uid.toString());
+  console.log(uid);
+  if(uid != -1){
+    history.push('/explore');
+  }
+}
+
+export const Register: React.FC = () => {
+
+  history = useHistory();
 
   return (
     <div className="pancakePic">
