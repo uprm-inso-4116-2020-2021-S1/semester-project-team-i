@@ -20,3 +20,8 @@ class Menu(DaoOperations, OutputMixin, db.Model):
     def get_menu_by_id(menu_id):
         return Menu.query.filter_by(mid=menu_id).first()
 
+#    #verifies if the menu has a particular dish
+#     @staticmethod
+#     def verify_dish_in_menu(dish_name):
+#         obj = Menu.query.filter(Menu.dishes == dish_name).first()
+#         return True if obj else False

@@ -42,3 +42,29 @@ class Establishment(DaoOperations, OutputMixin, db.Model):
     def get_establishment_by_id(e_id):
         return Establishment.query.filter_by(eid=e_id).first()
 
+    # @staticmethod
+    # def get_establishments_by_location(e_location):
+    #     return Establishment.query.filter_by(location=e_location)
+
+    # @staticmethod
+    # def get_establishment_by_name(e_name):
+    #     return Establishment.query.filter_by(name=e_name).first()
+    # #no estoy completamente seguro pero creo que estos proximos pueden ser useful
+    # @staticmethod
+    # def get_establishment_by_open_time(e_open_time):
+    #     return Establishment.query.filter_by(openTime=e_open_time)
+
+    # @staticmethod
+    # def get_establishment_phone(e_id):
+    #     return Establishment.query.filter_by(eid=e_id).first().phone
+
+    # @staticmethod
+    # def get_establishment_location(e_id):
+    #     return Establishment.query.filter_by(eid=e_id).first().location
+
+    # #no estoy seguro de que este funcione pero creo que si
+    # @staticmethod
+    # def get_horario(e_name):
+    #     obj = Establishment.query.filter_by(name=e_name).first
+    #     result = [obj.openFromDay, obj.openToDay,obj.openTime, obj.closeTime]
+    #     return result

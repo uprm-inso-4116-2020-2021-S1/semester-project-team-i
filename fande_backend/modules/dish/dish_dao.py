@@ -14,14 +14,15 @@ from helpers.mixin import DaoOperations, OutputMixin
 class Dish(DaoOperations, OutputMixin, db.Model):
     RELATIONSHIPS_TO_DICT = True
     DISH_REQUIRED_PARAMS = ['description', 'price', 'category', 'name',
-                            'type', 'menu_id']
+                            'type', 'menu_id', 'category_id']
 
     did = db.Column(db.Integer, primary_key=True)
     description = db.Column(db.String(100), nullable=False)
     price = db.Column(db.Float(precision=2), nullable=False)
     rating = db.Column(db.Integer)
     image_url = db.Column(db.String(250))
-    category = db.Column(db.String(50), nullable=False)     # int? | Category table
+    category_id = db.Column(db.Integer, db.ForeignKey('category.cid'), nullable=False)
+    category = db.relationship('Category', backref='dishes', lazy=True)     # int? | Category table
     name = db.Column(db.String(50), nullable=False)
     type = db.Column(db.String(20), nullable=False)
     menu_id = db.Column(db.Integer, db.ForeignKey('menu.mid'), nullable=False)
@@ -38,7 +39,7 @@ class Dish(DaoOperations, OutputMixin, db.Model):
         self.name = kwargs['name']
         self.type = kwargs['type']
         self.menu_id = kwargs['menu_id']
-        self.category = kwargs['category']
+        self.category_id = kwargs['category_id']
 
     @staticmethod
     def get_all_dishes():
@@ -47,3 +48,12 @@ class Dish(DaoOperations, OutputMixin, db.Model):
     @staticmethod
     def get_dish_by_id(dish_id):
         return Dish.query.filter_by(did=dish_id).first()
+
+    # new queries
+    @staticmethod
+    def get_all_dish_by_type(dish_type):
+        return Dish.query.filter_by(type=dish_type)
+
+    @staticmethod
+    def get_all_dish_by_category(dish_category):
+        return Dish.query.filter_by(category=dish_category)
