@@ -1,0 +1,61 @@
+.contenedor {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+  }
+  
+  input[type="file"] {
+    /* position: absolute;
+    z-index: -1;
+    top: 10px;
+    left: 8px;
+    font-size: 17px; */
+    background-color: orange;
+    width: 67%;
+    height: 100%;
+    border-radius: 5px;
+
+    padding: 0;
+border: none;
+outline: none;
+    
+/* font */
+    font-family: Roboto;
+    font-style: bold;
+    font-weight: 900;
+    font-size: 25px;
+    color: white;
+  }
+  
+  .wrap {
+    position: relative;
+  }
+  
+  .btn {
+    background-color: orange;
+    width: 25%;
+    height: 100%;
+    border-radius: 5px;
+
+    padding: 0;
+border: none;
+outline: none;
+    
+/* font */
+    font-family: Roboto;
+    font-style: bold;
+    font-weight: 900;
+    font-size: 25px;
+    color: white;
+  }
+
+  .foto{
+      width:100%;
+  }
+
+  .posicion{
+    position: relative;
+    left : 2%;
+    /* top: 2%; */
+  }
