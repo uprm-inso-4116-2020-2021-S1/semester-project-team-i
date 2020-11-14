@@ -14,7 +14,7 @@ class EstablishmentController:
             result_list.append(establishment.to_dict())
         result = {
             "message": "Success!",
-            "users": result_list,
+            "establishments": result_list,
         }
         return jsonify(result), 200
 
@@ -27,7 +27,7 @@ class EstablishmentController:
                     return jsonify(message="Establishment Not Found"), 404
                 result = {
                     'message': 'Success!',
-                    'user': establishment.to_dict(),
+                    'establishment': establishment.to_dict(),
                 }
                 return jsonify(result), 200
             except Exception as err:
@@ -44,7 +44,7 @@ class EstablishmentController:
                 created_establishment = new_establishment.create()
                 result = {
                     "message": "Success!",
-                    "user": created_establishment.to_dict(),
+                    "establishment": created_establishment.to_dict(),
                 }
                 return jsonify(result), 201
             except Exception as err:
