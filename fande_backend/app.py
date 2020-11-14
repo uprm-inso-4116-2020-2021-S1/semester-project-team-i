@@ -13,6 +13,20 @@ def hello_world():
     return 'Hello World!'
 
 
+@app.route('/login', methods='POST')
+def login():
+    if request.method == 'POST':
+        return UserController.login(request.json)
+    return jsonify(message="Method not allowed."), 405
+
+
+@app.route('/logout', methods='GET')
+def logout():
+    if request.method == 'GET':
+        return UserController.logout()
+    return jsonify(message="Method not allowed."), 405
+
+
 @app.route('/users', methods=['GET', 'POST'])
 def get_all_or_create_users():
     if request.method == 'GET':
