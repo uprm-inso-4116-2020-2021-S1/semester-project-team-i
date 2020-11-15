@@ -18,16 +18,16 @@
     justify-content: center; 
     align-items: center;     
     /* height: 300px; */
-  align-items: center;
+    align-items: center;
 
-  background-position: center !important;
-  background-repeat: no-repeat !important;
-  background-size: cover !important;
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../../assets/waffles.jpg");
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../../assets/waffles.jpg");
   
 
- /* para ocupar toda la pantalla */
-  height: 100vh;
+    /* para ocupar toda la pantalla */
+    height: 100vh;
 }
 
 .first {
@@ -42,9 +42,9 @@
     overflow: hidden; /* if you don't want #second to wrap below #first */
 
     background-position: center !important;
-  background-repeat: no-repeat !important;
-  background-size: cover !important;
-  background: url(../../assets/waffles.jpg);
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    background: url(../../assets/waffles.jpg);
 }
 
 .wrapper {
@@ -59,9 +59,9 @@
 }
 
 .profilePic{
-  background-image: url(../../assets/waffles.jpg);
-  background-size:cover;
-  background-position:center;
+    background-image: url(../../assets/waffles.jpg);
+    background-size:cover;
+    background-position:center;
     border-radius: 50%;
     width: 10%;
     height: 100%;
@@ -70,9 +70,7 @@
 
 table.cabeza{
     width:100%;
-    border-collapse:collapse;
-    
-    
+    border-collapse:collapse;    
 }
 
 td.headCell{
