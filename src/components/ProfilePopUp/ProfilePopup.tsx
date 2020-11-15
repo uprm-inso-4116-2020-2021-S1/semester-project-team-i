@@ -1,9 +1,9 @@
 import React from 'react';
+
 /*import Modal from 'react-modal'; try implement modal for popup profile*/ 
-
-import { Route, RouteComponentProps } from 'react-router';
-
 import './ProfilePopup.css';
+import EditProfile from '../EditProfile/EditProfile';
+import { Route, RouteComponentProps } from 'react-router';
 
 
 interface ProfPopup extends RouteComponentProps<{ 
@@ -28,6 +28,7 @@ export const ProfilePopup = (props: ProfPopup) =>{
                                 <div className= "text"> @wafflerapr
                                     </div>
                         </div>
+                        
                         <button className ="boxButton" onClick={handleClickOpen}>
                                 Edit Profile</button>
                         <button className ="boxButton" onClick={handleClickOpen}>

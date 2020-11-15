@@ -10,6 +10,7 @@ import Login from './components/Login/Login';
 import Restaurant from './components/Restaurant/Restaurant';
 import RestManager from './components/RestManager/RestManager';
 import ProfilePopup from './components/ProfilePopUp/ProfilePopup';
+import { EditProfile } from './components/EditProfile/EditProfile';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route exact path="/restaurant/:name" component={Restaurant}/>
           <Route exact path="/restManager" component={RestManager}/>
           <Route exact path = "/profpop" component = {ProfilePopup}/>
+          <Route exact path = "/edit" component = {EditProfile}/>
         </Switch>
       </Router>
 
