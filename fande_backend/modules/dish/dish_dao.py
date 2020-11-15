@@ -19,8 +19,8 @@ class Dish(DaoOperations, OutputMixin, db.Model):
     did = db.Column(db.Integer, primary_key=True)
     description = db.Column(db.String(100), nullable=False)
     price = db.Column(db.Float(precision=2), nullable=False)
-    rating = db.Column(db.Integer)
-    image_url = db.Column(db.String(250))
+    rating = db.Column(db.Integer, default=0)
+    image_url = db.Column(db.String(250), default='')
     category_id = db.Column(db.Integer, db.ForeignKey('category.cid'), nullable=False)
     category = db.relationship('Category', backref='dishes', lazy=True)     # int? | Category table
     name = db.Column(db.String(50), nullable=False)
@@ -61,5 +61,5 @@ class Dish(DaoOperations, OutputMixin, db.Model):
         return Dish.query.filter_by(category=dish_category)
 
     @staticmethod
-    def get_all_dishes_by_establishment_id():
-        pass
+    def get_all_dishes_by_establishment(eid):
+        return Dish.query.filter_by(establishment_id=eid)
