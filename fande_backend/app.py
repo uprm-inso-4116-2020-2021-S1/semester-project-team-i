@@ -71,26 +71,26 @@ def get_put_or_delete_establishment(id):
         return jsonify(message="Method not allowed."), 405
 
 
-@app.route('/menus', methods=['GET', 'POST'])
-def get_all_or_create_menus():
-    if request.method == 'GET':
-        return MenuController.get_all_menus()
-    elif request.method == 'POST':
-        return MenuController.create_menu(request.json)
-    else:
-        return jsonify(message="Method not allowed."), 405
-
-
-@app.route('/menus/<int:id>', methods=['GET', 'PUT', 'DELETE'])
-def get_update_or_delete_menu(id):
-    if request.method == 'GET':
-        return MenuController.get_menu_by_id(id)
-    elif request.method == 'PUT':
-        return MenuController.update_menu(id, request.json)
-    elif request.method == 'DELETE':
-        return MenuController.delete_menu(id)
-    else:
-        return jsonify(message="Method not allowed."), 405
+# @app.route('/menus', methods=['GET', 'POST'])
+# def get_all_or_create_menus():
+#     if request.method == 'GET':
+#         return MenuController.get_all_menus()
+#     elif request.method == 'POST':
+#         return MenuController.create_menu(request.json)
+#     else:
+#         return jsonify(message="Method not allowed."), 405
+#
+#
+# @app.route('/menus/<int:id>', methods=['GET', 'PUT', 'DELETE'])
+# def get_update_or_delete_menu(id):
+#     if request.method == 'GET':
+#         return MenuController.get_menu_by_id(id)
+#     elif request.method == 'PUT':
+#         return MenuController.update_menu(id, request.json)
+#     elif request.method == 'DELETE':
+#         return MenuController.delete_menu(id)
+#     else:
+#         return jsonify(message="Method not allowed."), 405
 
 
 @app.route('/dishes', methods=['GET', 'POST'])

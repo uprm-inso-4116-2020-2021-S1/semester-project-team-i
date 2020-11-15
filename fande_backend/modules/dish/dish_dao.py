@@ -14,7 +14,7 @@ from helpers.mixin import DaoOperations, OutputMixin
 class Dish(DaoOperations, OutputMixin, db.Model):
     RELATIONSHIPS_TO_DICT = True
     DISH_REQUIRED_PARAMS = ['description', 'price', 'category', 'name',
-                            'type', 'menu_id', 'category_id']
+                            'type', 'establishment_id', 'category_id']
 
     did = db.Column(db.Integer, primary_key=True)
     description = db.Column(db.String(100), nullable=False)
@@ -25,8 +25,10 @@ class Dish(DaoOperations, OutputMixin, db.Model):
     category = db.relationship('Category', backref='dishes', lazy=True)     # int? | Category table
     name = db.Column(db.String(50), nullable=False)
     type = db.Column(db.String(20), nullable=False)
-    menu_id = db.Column(db.Integer, db.ForeignKey('menu.mid'), nullable=False)
-    menu = db.relationship('Menu', backref='dishes', lazy=True)
+    # menu_id = db.Column(db.Integer, db.ForeignKey('menu.mid'), nullable=False)
+    # menu = db.relationship('Menu', backref='dishes', lazy=True)
+    establishment_id = db.Column(db.Integer, db.ForeignKey('establishment.eid'), nullable=False)
+    establishment = db.relationship('Establishment', backref='dishes', lazy=True)
     # upVotes = db.relationship('UpVote', backref=db.backref('dish', lazy='subquery'), lazy=True)
     # reviews = db.relationship('Review', backref=db.backref('dish', lazy='subquery'), lazy=True)
 
@@ -38,7 +40,7 @@ class Dish(DaoOperations, OutputMixin, db.Model):
         self.rating = kwargs.get('rating', None)
         self.name = kwargs['name']
         self.type = kwargs['type']
-        self.menu_id = kwargs['menu_id']
+        self.establishment_id = kwargs['establishment_id']
         self.category_id = kwargs['category_id']
 
     @staticmethod
@@ -57,3 +59,7 @@ class Dish(DaoOperations, OutputMixin, db.Model):
     @staticmethod
     def get_all_dish_by_category(dish_category):
         return Dish.query.filter_by(category=dish_category)
+
+    @staticmethod
+    def get_all_dishes_by_establishment_id():
+        pass
