@@ -3,6 +3,7 @@ import './App.css';
 import { ExplorePage } from './components/ExplorePage/ExplorePage';
 import { Item } from './components/Item/Item';
 import {CreateDish} from './components/CreateDish/CreateDish'; 
+import {CreateRestaurant} from './components/CreateRestaurant/CreateRestaurant'; 
 import { Link } from 'react-router-dom';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { LandingPage } from './components/LandingPage/LandingPage';
@@ -25,6 +26,7 @@ function App() {
           <Route exact path="/explore" component={ExplorePage} />
           <Route exact path="/item" component={Item} />
           <Route exact path="/createDish" component={CreateDish} />
+          <Route exact path="/createRestaurant" component={CreateRestaurant} />
           <Route exact path="/register" component={Register}/>
           <Route exact path="/login" component={Login}/>
           <Route exact path="/restaurant/:name" component={Restaurant}/>
