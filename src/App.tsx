@@ -9,7 +9,7 @@ import Register from './components/Register/Register';
 import Login from './components/Login/Login';
 import Restaurant from './components/Restaurant/Restaurant';
 import RestManager from './components/RestManager/RestManager';
-import {ProfilePopup} from './components/ProfilePopUp/ProfilePopup';
+import {Profile} from './components/ProfilePopUp/ProfilePopup';
 
 
 function App() {
@@ -30,7 +30,7 @@ function App() {
           <Route exact path="/login" component={Login}/>
           <Route exact path="/restaurant/:name" component={Restaurant}/>
           <Route exact path="/restManager" component={RestManager}/>
-          <Route exact path = "/profpop" component = {ProfilePopup}/>
+          <Route exact path = "/profpop" component = {Profile}/>
 
         </Switch>
       </Router>

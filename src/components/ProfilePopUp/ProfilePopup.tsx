@@ -3,16 +3,28 @@ import React from 'react';
 /*import Modal from 'react-modal'; try implement modal for popup profile*/ 
 import './ProfilePopup.css';
 import { Link } from 'react-router-dom';
+import { RouteComponentProps } from 'react-router';
+import { Button, TextField } from '@material-ui/core';
+import { Form, Formik } from 'formik';
 
 
 
+interface ProfData {
+    username: string;
+    name: string;
+    password: string;
+  }
 
 interface ProfPopup {
+    onSubmit: (values: ProfData) => void;
+
     showEditProfile: boolean;
     linktoRestManager:boolean;
 }
+    
 
-export const ProfilePopup = (props: ProfPopup) =>{
+
+export const Profile : React.FC<ProfPopup> = ({ onSubmit }) => {
 
     const [open, setOpen] = React.useState(false);
     const [showEditProfile, setShowEditProfile] = React.useState(false);
@@ -40,11 +52,12 @@ export const ProfilePopup = (props: ProfPopup) =>{
             <div >
                 <div className="rectanglePopup" >
                         <div className = "ppButton">
-                            <button className="profPic" onClick={handleClickOpen}>
-
-                            </button>
-                                <div className= "text"> @wafflerapr
+                        <Link to="/restaurant/@Wafflerapr">
+                            <button className ="profPic" onClick={handleClickOpen}>
+                                </button>
+                                <div className= "text"> @Wafflerapr
                                     </div>
+                        </Link>
                         </div>
                         <button className ="boxButton" onClick={openShowEdit}>
                                 Edit Profile</button>
@@ -72,6 +85,31 @@ export const ProfilePopup = (props: ProfPopup) =>{
                             <button className = "txt" onClick = {handleClickOpen}>
                                     Change Profile Photo
                             </button>
+                            <div className = "rec">
+                            <Formik
+                                initialValues={{ username: "", name:"", password: "" }}
+                                onSubmit={values => {
+                                    onSubmit(values);
+                                }}
+                                >
+                                {({ values, handleChange, handleBlur }) => (
+                                    <Form style={{ color: "white" }}>
+                                        <div className="fieldName">Username </div>
+                                        <div>
+                                        <TextField name="username" style={{ width:"70%" }} onChange={handleChange} onBlur={handleBlur}></TextField>
+                                        </div>
+                                        <div className="fieldName">Name</div>
+                                        <div>
+                                        <TextField name="name" style={{ width:"70%" }} onChange={handleChange} onBlur={handleBlur}></TextField>
+                                        </div>
+                                        <div className="fieldName">Password </div>
+                                        <div>
+                                        <TextField name="password" type="password" style={{ width:"70%" }} onChange={handleChange} onBlur={handleBlur}></TextField>
+                                        </div>
+                                    </Form>
+                                )}
+                                </Formik>
+                                </div>
                             <button className = "saveb" onClick = {closeShowEdit}>
                                     Save Changes
                             </button>
@@ -96,4 +134,4 @@ export const ProfilePopup = (props: ProfPopup) =>{
             </div>
         )
     }
-    export default ProfilePopup;
+    export default Profile;
