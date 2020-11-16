@@ -12,12 +12,15 @@ import { Link } from 'react-router-dom';
 import Menu from '../Menu/Menu';
 import img1 from '../../assets/plate1.png';
 
-interface RestaurantProps extends RouteComponentProps<{ name: string }> {
+
+interface RestaurantProps extends RouteComponentProps<{ 
+    name: string }> {
 
 }
 
 interface RestaurantStates {
     showMenuList: boolean;
+
 }
 
 export interface Dish {
@@ -92,6 +95,7 @@ export default class Restaurant extends React.Component<RestaurantProps, Restaur
         this.state = {
             showMenuList: false
         }
+
     }
 
 
