@@ -9,7 +9,7 @@ import Register from './components/Register/Register';
 import Login from './components/Login/Login';
 import Restaurant from './components/Restaurant/Restaurant';
 import RestManager from './components/RestManager/RestManager';
-import ProfilePopup from './components/ProfilePopUp/ProfilePopup';
+import {ProfilePopup} from './components/ProfilePopUp/ProfilePopup';
 
 
 function App() {
