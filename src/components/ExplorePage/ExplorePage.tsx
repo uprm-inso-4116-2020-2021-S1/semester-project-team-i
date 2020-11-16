@@ -81,6 +81,7 @@ export const ExplorePage = () => {
     const upvoteCountTemp = "1,000";
 
     return (
+        <body>
        <div className = "containerWholeTrend">
 
         <div className = "containerWholeTrend">
@@ -170,7 +171,7 @@ export const ExplorePage = () => {
         
         </div>
 
-
+        </body>
     )
 
 };

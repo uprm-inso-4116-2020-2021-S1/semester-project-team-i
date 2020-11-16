@@ -81,48 +81,48 @@ td.headCell{
 }
 
 .celda{
-  position: relative;
+    position: relative;
     left : 1%;
     top: 1%;
 }
 
 
 .boton{
-  background-color: orange;
-  width: 200px;
-  height: 70px;
-  border-radius: 5px;
+    background-color: orange;
+    width: 200px;
+    height: 70px;
+    border-radius: 5px;
 
-  padding: 0;
-  border: none;
-  outline: none;
-/* background: none; */
-    
-/* font */
-  font-family: Roboto;
-  font-style: bold;
-  font-weight: 900;
-  font-size: 25px;
-  color: white;
+    padding: 0;
+    border: none;
+    outline: none;
+    /* background: none; */
+        
+    /* font */
+    font-family: Roboto;
+    font-style: bold;
+    font-weight: 900;
+    font-size: 25px;
+    color: white;
     
 }
 
 .botonDone {
-  background-color: orange;
-  width: 120px;
-  height: 40px;
-  border-radius: 5px;
+    background-color: orange;
+    width: 120px;
+    height: 40px;
+    border-radius: 5px;
 
-  padding: 0;
-  border: none;
-  outline: none;
-    
-/* font */
-  font-family: Roboto;
-  font-style: bold;
-  font-weight: 900;
-  font-size: 20px;
-  color: white;
+    padding: 0;
+    border: none;
+    outline: none;
+        
+    /* font */
+    font-family: Roboto;
+    font-style: bold;
+    font-weight: 900;
+    font-size: 20px;
+    color: white;
 }
 
 .boton:hover{
@@ -131,14 +131,14 @@ td.headCell{
 }
 
 .camara{
-  width: 25%;
-  height: 25%;
+    width: 25%;
+    height: 25%;
   
-outline: none;
-border-radius: 50%;
-padding: 0;
-border: none;
-outline: none;
+    outline: none;
+    border-radius: 50%;
+    padding: 0;
+    border: none;
+    outline: none;
 
 }
 
@@ -152,26 +152,26 @@ outline: none;
 }
 
 .cancelbtn{
-  background-color: orange;
-  width: 60%;
-  height: 100%;
-  border-radius: 5px;
+    background-color: orange;
+    width: 75px;
+    height: 100%;
+    border-radius: 5px;
 
-  padding: 0;
-border: none;
-outline: none;
+    padding: 0;
+    border: none;
+    outline: none;
 
-position: relative;
-left : 30%;
-top: 40%;
+    position: relative;
+    left : 30%;
+    top: 40%;
 /* background: none; */
   
 /* font */
-  font-family: Roboto;
-  font-style: bold;
-  font-weight: 900;
-  font-size: 100%;
-  color: white;
+    font-family: Roboto;
+    font-style: bold;
+    font-weight: 900;
+    font-size: 100%;
+    color: white;
 }
 
 .cancelbtn:hover{

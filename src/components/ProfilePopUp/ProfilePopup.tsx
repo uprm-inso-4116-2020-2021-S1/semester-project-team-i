@@ -1,11 +1,10 @@
 import React from 'react';
 
-/*import Modal from 'react-modal'; try implement modal for popup profile*/ 
 import './ProfilePopup.css';
 import { Link } from 'react-router-dom';
-import { RouteComponentProps } from 'react-router';
-import { Button, TextField } from '@material-ui/core';
+import { TextField } from '@material-ui/core';
 import { Form, Formik } from 'formik';
+//import ReactFirebaseFileUpload from '../CreateDish/CD.js';
 
 
 
@@ -17,7 +16,7 @@ interface ProfData {
 
 interface ProfPopup {
     onSubmit: (values: ProfData) => void;
-
+    onEdit: (values: ProfData) => void;
     showEditProfile: boolean;
     linktoRestManager:boolean;
 }
@@ -110,9 +109,13 @@ export const Profile : React.FC<ProfPopup> = ({ onSubmit }) => {
                                 )}
                                 </Formik>
                                 </div>
+
                             <button className = "saveb" onClick = {closeShowEdit}>
                                     Save Changes
                             </button>
+                            <button className = "close" onClick = {closeShowEdit}>
+                            </button>
+                            
                         </div>
                         </div>
                         </div>
@@ -126,6 +129,12 @@ export const Profile : React.FC<ProfPopup> = ({ onSubmit }) => {
                                 </button>
 
                             </Link>
+                        </div>
+
+                    }
+                    {open && 
+                    <div>
+
                         </div>
 
                     }

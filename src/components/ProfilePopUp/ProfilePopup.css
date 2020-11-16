@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
 
 .rectanglePopup{
-    position: fixed;
+    position: absolute;
     width: 450px;
     height: 550px;
     left: 75%;
@@ -48,7 +48,7 @@
     position: absolute;
     width: 650px;
     height: 300px;
-    left: 10%;
+    left: 13%;
     top: 45%;
 }
 .ppButton {
@@ -93,7 +93,7 @@
     background-position: center !important;
 
     background: #000000;
-    opacity: 0.75;
+    opacity: 0.99;
 }
 
 .profEdit {
@@ -175,5 +175,57 @@
     line-height: 42px;
 
     color: #000000;
+
+}
+.close{
+    position: absolute;
+    width: 80px;
+    height: 74px;
+    left: 87%;
+    top: 5%;
+
+
+    background-size: cover !important;
+    background-position: center !important;
+
+
+    background: url(../../assets/closeIcon.png);
+}
+
+.editbutton{
+    position: absolute;
+    width: 90px;
+    height: 30px;
+    left: 75%;
+    top: 50%;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 24px;
+    line-height: 42px;
+    background-size: cover !important;
+    background: transparent;
+
+    color: #000000;
+}
+
+.editbutton1{
+    position: absolute;
+    width: 90px;
+    height: 30px;
+    left: 75%;
+    top: 55%;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 24px;
+    line-height: 42px;
+    background-size: cover !important;
+    background: transparent;
+
+    color: #000000;
+
 
 }

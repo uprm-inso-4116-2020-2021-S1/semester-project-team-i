@@ -2,6 +2,7 @@
 
 
 .white {
+
     height: 50%;
     background: white;
     text-align: center;
@@ -69,18 +70,5 @@
     width: 100%;
 }
 
-.editb{
-    position: absolute;
-    width: 400px;
-    height: 60px;
-    left: 10%;
-    top: 49%;
 
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 900;
-    font-size: 24px;
-    line-height: 42px;
 
-    color: #000000;
-}

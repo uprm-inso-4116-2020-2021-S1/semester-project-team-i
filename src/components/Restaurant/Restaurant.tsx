@@ -125,13 +125,13 @@ export default class Restaurant extends React.Component<RestaurantProps, Restaur
                                 </div>
                             </td>
                             <td>
-                                <div style={{ marginBottom: "20px", marginTop: "40px" }}>
+                                <div style={{ marginBottom: "20px", marginTop: "40px", marginLeft: "100px" }}>
                                     <img alt="facebook" src={facebook}></img>
                                 </div>
-                                <div style={{ marginBottom: "20px" }}>
+                                <div style={{ marginBottom: "20px",  marginLeft: "100px"  }}>
                                     <img alt="instagram" src={instagram}></img>
                                 </div>
-                                <div>
+                                <div style={{ marginBottom: "20px",  marginLeft: "100px"  }}>
                                     <img alt="twitter" src={twitter}></img>
                                 </div>
                             </td>
