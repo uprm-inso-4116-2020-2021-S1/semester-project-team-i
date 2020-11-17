@@ -12,3 +12,7 @@ db.drop_all()
 db.create_all()
 
 # TODO: populate database
+
+
+# if __name__ == '__main__':
+#     create_categories()

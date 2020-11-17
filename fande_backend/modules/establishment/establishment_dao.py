@@ -41,6 +41,10 @@ class Establishment(DaoOperations, OutputMixin, db.Model):
     def get_establishment_by_id(e_id):
         return Establishment.query.filter_by(eid=e_id).first()
 
+    @staticmethod
+    def get_establishment_by_user_id(uid):
+        return Establishment.query.filter_by(user_id=uid)
+
     # @staticmethod
     # def get_establishments_by_location(e_location):
     #     return Establishment.query.filter_by(location=e_location)
