@@ -16,7 +16,7 @@ interface ProfData {
 
 interface ProfPopup {
     onSubmit: (values: ProfData) => void;
-    onEdit: (values: ProfData) => void;
+
     showEditProfile: boolean;
     linktoRestManager:boolean;
 }
@@ -75,7 +75,8 @@ export const Profile : React.FC<ProfPopup> = ({ onSubmit }) => {
                 <div>
 
                     {showEditProfile &&
-                        <div> 
+                        <div> <style>
+                            
                             <div className = "background">
 
                             <div className = "rectangleE">
@@ -108,6 +109,7 @@ export const Profile : React.FC<ProfPopup> = ({ onSubmit }) => {
                                     </Form>
                                 )}
                                 </Formik>
+                                
                                 </div>
 
                             <button className = "saveb" onClick = {closeShowEdit}>
@@ -118,6 +120,7 @@ export const Profile : React.FC<ProfPopup> = ({ onSubmit }) => {
                             
                         </div>
                         </div>
+                        </style>
                         </div>
                     }
 
@@ -132,13 +135,7 @@ export const Profile : React.FC<ProfPopup> = ({ onSubmit }) => {
                         </div>
 
                     }
-                    {open && 
-                    <div>
 
-                        </div>
-
-                    }
-                    
                 </div>
             </div>
         )
