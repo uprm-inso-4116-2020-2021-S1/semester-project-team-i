@@ -94,6 +94,11 @@ def get_put_or_delete_establishment(id):
 
 @app.route('/dishes', methods=['GET', 'POST'])
 def get_all_or_create_dishes():
+    '''
+    top rated dishes: /dishes?topRated=true&limit=5     (default limit = 100)
+    top rated dishes by establishment: /dishes?eid=4    (default limit = 3)
+    :return: list of dishes
+    '''
     if request.method == 'GET':
         return DishController.get_all_dishes() if not request.args else DishController.get_all_dishes(request.args)
     elif request.method == 'POST':

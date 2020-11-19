@@ -70,5 +70,5 @@ class Dish(DaoOperations, OutputMixin, db.Model):
             order_by(Dish.rating.desc()).limit(n)
 
     @staticmethod
-    def get_top_dishes(n=3):
+    def get_top_dishes(n=100):
         return Dish.query.order_by(Dish.rating.desc()).limit(n)

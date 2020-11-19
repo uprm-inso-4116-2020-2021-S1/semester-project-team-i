@@ -10,7 +10,7 @@ class DishController:
     def get_all_dishes(params=None):
         dishes = Dish.get_all_dishes()
         if params:
-            establishment_id = params.get('establishment_id', None)
+            establishment_id = params.get('eid', None)
             limit = params.get('limit', None)
             top_rated = params.get('topRated', None)
             if establishment_id and limit:
