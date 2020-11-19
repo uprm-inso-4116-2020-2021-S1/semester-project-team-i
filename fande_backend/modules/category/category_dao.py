@@ -55,10 +55,19 @@ from helpers.mixin import OutputMixin, DaoOperations
 #     VEGETARIAN = "Vegetarian"
 #     VEGAN = "Vegan"
 
+CATEGORIES = [
+    'Chicken', 'Red meat', 'Fish', 'Lamb', 'Pork', 'Crustacean', 'Sushi', 'Pasta', 'Noodles', 'Burgers',
+    'Sandwiches', 'Pizza', 'Pasta', 'Taco', 'Kebab', 'Wraps', 'Soup', 'Fried food', 'Curry', 'Stew', 'BBQ',
+    'Bread', 'Cheese', 'Doughnut', 'Muffin', 'Cake', 'Pie', 'Cookies', 'Pastries', 'Pretzel', 'Cheese cake',
+    'Ice cream', 'American', 'Vietnamese', 'Korean', 'Spanish', 'Thai', 'Arabic', 'Ethiopian', 'Indian',
+    'Turkish', 'Italian', 'Chinese', 'Japanese', 'Mexican', 'Criollo', 'Legumes', 'Vegetarian', 'Vegan',
+]
+
 
 class Category(DaoOperations, OutputMixin, db.Model):
     RELATIONSHIPS_TO_DICT = True
     CATEGORY_REQUIRED_PARAMS = ['name']
+
     cid = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False)
 
@@ -73,3 +82,11 @@ class Category(DaoOperations, OutputMixin, db.Model):
     @staticmethod
     def get_category_by_id(category_id):
         return Category.query.filter_by(cid=category_id).first()
+
+
+def create_categories():
+    for category in CATEGORIES:
+        obj = Category(**{'name': category})
+        db.session.add(obj)
+    db.session.flush()
+    db.session.commit()
