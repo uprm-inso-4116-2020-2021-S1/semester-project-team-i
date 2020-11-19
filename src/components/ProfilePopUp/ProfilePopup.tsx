@@ -16,7 +16,6 @@ interface ProfData {
 
 interface ProfPopup {
     onSubmit: (values: ProfData) => void;
-
     showEditProfile: boolean;
     linktoRestManager:boolean;
 }
@@ -61,7 +60,7 @@ export const Profile : React.FC<ProfPopup> = ({ onSubmit }) => {
                         <button className ="boxButton" onClick={openShowEdit}>
                                 Edit Profile</button>
                         <Link to="/restManager">
-                            <button className ="boxButton" onClick={openlinktoRestManager}>
+                            <button className ="boxButton" >
                                 Manage Rest.
                                 </button>
                         </Link>
@@ -75,7 +74,7 @@ export const Profile : React.FC<ProfPopup> = ({ onSubmit }) => {
                 <div>
 
                     {showEditProfile &&
-                        <div> <style>
+                        <div>
                             
                             <div className = "background">
 
@@ -118,22 +117,9 @@ export const Profile : React.FC<ProfPopup> = ({ onSubmit }) => {
                             <button className = "close" onClick = {closeShowEdit}>
                             </button>
                             
+                            </div>
                         </div>
                         </div>
-                        </style>
-                        </div>
-                    }
-
-                    {linktoRestManager &&
-                        <div>
-                            <Link to="/restManager">
-                            <button className ="boxButton" onClick={openlinktoRestManager}>
-                                Manage Rest.
-                                </button>
-
-                            </Link>
-                        </div>
-
                     }
 
                 </div>
