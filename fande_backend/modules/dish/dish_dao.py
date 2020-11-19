@@ -65,10 +65,10 @@ class Dish(DaoOperations, OutputMixin, db.Model):
         return Dish.query.filter_by(establishment_id=eid)
 
     @staticmethod
-    def get_top_dishes_by_establishment(eid, n):
+    def get_top_dishes_by_establishment(eid, n=3):
         return Dish.query.filter_by(establishment_id=eid).\
             order_by(Dish.rating.desc()).limit(n)
 
     @staticmethod
-    def get_top_dishes(n):
+    def get_top_dishes(n=3):
         return Dish.query.order_by(Dish.rating.desc()).limit(n)

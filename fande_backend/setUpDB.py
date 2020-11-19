@@ -11,6 +11,4 @@ from modules.user.user_dao import User
 db.drop_all()
 db.create_all()
 
-# TODO: populate database
-
 create_categories()

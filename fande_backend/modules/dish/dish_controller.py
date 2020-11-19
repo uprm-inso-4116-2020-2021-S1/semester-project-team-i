@@ -7,8 +7,16 @@ from modules.dish.dish_dao import Dish
 class DishController:
     @staticmethod
     @error_validation(method='GET')
-    def get_all_dishes():
+    def get_all_dishes(params=None):
         dishes = Dish.get_all_dishes()
+        if params:
+            establishment_id = params.get('establishment_id', None)
+            limit = params.get('limit', None)
+            top_rated = params.get('topRated', None)
+            if establishment_id and limit:
+                dishes = Dish.get_top_dishes_by_establishment(int(establishment_id), int(limit))
+            elif top_rated and limit:
+                dishes = Dish.get_top_dishes(int(limit))
         result_list = [dish.to_dict() for dish in dishes]
         result = {
             'message': 'Success!',

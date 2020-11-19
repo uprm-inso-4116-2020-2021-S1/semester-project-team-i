@@ -12,14 +12,14 @@ def index():
     return 'Welcome to Find & Eat API'
 
 
-@app.route('/login', methods='POST')
+@app.route('/login', methods=['POST'])
 def login():
     if request.method == 'POST':
         return UserController.login(request.json)
     return jsonify(message="Method not allowed."), 405
 
 
-@app.route('/logout', methods='GET')
+@app.route('/logout', methods=['GET'])
 def logout():
     if request.method == 'GET':
         return UserController.logout()
@@ -95,7 +95,7 @@ def get_put_or_delete_establishment(id):
 @app.route('/dishes', methods=['GET', 'POST'])
 def get_all_or_create_dishes():
     if request.method == 'GET':
-        return DishController.get_all_dishes()
+        return DishController.get_all_dishes() if not request.args else DishController.get_all_dishes(request.args)
     elif request.method == 'POST':
         return DishController.create_dish(request.json)
     else:
