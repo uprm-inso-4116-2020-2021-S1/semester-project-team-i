@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
 
 .rectanglePopup{
-    position: fixed;
+    position: static;
     width: 450px;
     height: 550px;
 
@@ -13,6 +13,22 @@
     background: #eeeeee96;
     border-radius: 80px;
 }
+
+.profile {
+    position: relative;
+    width: 70px;
+    height: 70px;
+    float: right;
+    top: 10%;
+    /* right: 0.5%;
+    top: 3px; */
+
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    background: url(../../assets/profileIMG.png);
+}
+
 
 .profPic {
     position: relative;
@@ -47,10 +63,10 @@
 }
 .rec{
     position: absolute;
-    width: 650px;
-    height: 300px;
+    width: 550px;
+    height: 200px;
     left: 13%;
-    top: 45%;
+    top: 85%;
 }
 .ppButton {
     position: relative;
@@ -87,7 +103,7 @@
 
 .background{
     position: absolute;
-    width: 100%;
+    width: 80%;
     height: 100%;
 
     top: 78px;
@@ -98,9 +114,9 @@
 }
 
 .profEdit {
-    position: absolute;
-    width: 1128px;
-    height: 740px;
+    position: fixed;
+    width: 1128px !important;
+    height: 740px !important;
     left: 156px;
     top: 169px;
     
@@ -110,9 +126,9 @@
   
 
   .rectangleE{
-    position: absolute;
+    position: fixed;
     width: 860px;
-    height: 781px;
+    height: 800px;
     right: 25%;
     left: 25%;
     top: 10%;
@@ -130,11 +146,12 @@
 }
 
 .saveb{
-    position: absolute;
-    width: 600px;
+    /* position: fixed; */
+    width: 500px;
     height: 60px;
-    left:15%;
-    top: 80%;
+    /* left:30%;
+    right: 30%; */
+    top: 10%;
 
     margin: 10px !important;
     font-family: Roboto;
@@ -151,11 +168,11 @@
 }
 
 .profPicb {
-    position: absolute;
+    /* position: absolute; */
     width: 250px;
     height: 250px;
-    left: 35%;
-    top: 2%;
+    /* left: 35%;
+    top: 2%; */
 
     background-size: cover !important;
     background-position: center !important;
@@ -166,12 +183,12 @@
 }
 
 .txt{
-    position: absolute;
+    /* position: absolute;
+   
+    left: 30%;
+    top: 35%; */
     width: 383px;
     height: 60px;
-    left: 30%;
-    top: 35%;
-
     font-family: Roboto;
     font-style: normal;
     font-weight: 900;

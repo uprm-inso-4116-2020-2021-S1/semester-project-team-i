@@ -2,38 +2,59 @@ import React from 'react';
 
 import './ProfilePopup.css';
 import { Link } from 'react-router-dom';
-import { TextField } from '@material-ui/core';
+import { Dialog, DialogActions, DialogContent, TextField } from '@material-ui/core';
 import { Form, Formik } from 'formik';
-//import ReactFirebaseFileUpload from '../CreateDish/CD.js';
-
+import { User, UserService } from '../../services/UserService';
 
 
 interface ProfData {
     username: string;
     name: string;
     password: string;
-  }
-
-interface ProfPopup {
-    onSubmit: (values: ProfData) => void;
-    showEditProfile: boolean;
-    linktoRestManager:boolean;
 }
-    
+
+// interface ProfPopup {
+//     onSubmit: (values: ProfData) => void;
+//     showEditProfile: boolean;
+//     linktoRestManager: boolean;
+// }
+
+const onSubmit = (values: ProfData) => {
+
+    const loggedInUID = localStorage.getItem('loggedInUser');
+    let editedUser: User = {
+        uid: loggedInUID as unknown as number,
+        firstName: '',
+        lastName: '',
+        password: '',
+        email: ''
+    }
+
+    UserService.getUserById(loggedInUID as unknown as number, editedUser);
+
+    editedUser.username = values.username;
+    editedUser.firstName = values.name;
+    editedUser.password = values.password;
+
+    const uid = editedUser.uid as number;
+
+    UserService.editUserById(uid, editedUser);
+}
 
 
-export const Profile : React.FC<ProfPopup> = ({ onSubmit }) => {
+export const Profile: React.FC = () => {
 
-    const [open, setOpen] = React.useState(false);
+    const [openFirst, setOpenFirst] = React.useState(false);
     const [showEditProfile, setShowEditProfile] = React.useState(false);
-    const [linktoRestManager, setlinktoRestManager] =  React.useState(false);
+    const [linktoRestManager, setlinktoRestManager] = React.useState(false);
 
-    function handleClickOpen() {
-        setOpen(true);
+    function handleClickOpenFirst() {
+        setOpenFirst(true);
     }
-    function handleClose(){
-        setOpen(false);
+    function handleCloseFirst() {
+        setOpenFirst(false);
     }
+
     function openShowEdit() {
         setShowEditProfile(true);
     }
@@ -41,89 +62,104 @@ export const Profile : React.FC<ProfPopup> = ({ onSubmit }) => {
         setShowEditProfile(false);
     }
 
-    function openlinktoRestManager(){
+    function openlinktoRestManager() {
         setlinktoRestManager(true);
+        handleCloseFirst();
     }
 
 
-        return (
-            <div >
-                <div className="rectanglePopup" >
-                        <div className = "ppButton">
-                        <Link to="/restaurant/@Wafflerapr">
-                            <button className ="profPic" onClick={handleClickOpen}>
+    return (
+        <div>
+            <button className="profile" onClick={handleClickOpenFirst}>
+            </button>
+            <Dialog open={openFirst} onClose={handleCloseFirst} aria-labelledby="form-dialog-title">
+                <DialogContent>
+                    <div className="rectanglePopup">
+                        <table className="ppButton">
+                            <Link to="/restaurant/@Wafflerapr">
+                                <button className="profPic" onClick={() => { }}>
                                 </button>
-                                <div className= "text"> @Wafflerapr
+                                <div className="text"> @Wafflerapr
                                     </div>
-                        </Link>
-                        </div>
-                        <button className ="boxButton" onClick={openShowEdit}>
-                                Edit Profile</button>
-                        <Link to="/restManager">
-                            <button className ="boxButton" >
-                                Manage Rest.
-                                </button>
-                        </Link>
-                        <Link to="/">
-                            <button className ="boxButton" onClick={openlinktoRestManager}>
-                                Log Out
-                                </button>
-                        </Link>
-                </div>
+                            </Link>
+                        </table>
+                        <table style={{ paddingTop: '15%', textAlign: 'center', width: '100%' }}>
+                            <tr>
+                                <button className="boxButton" onClick={openShowEdit}>Edit Profile</button>
+                            </tr>
+                            <tr>
+                                <Link to="/restManager">
+                                    <button className="boxButton" onClick={handleCloseFirst}>Manage Rest.</button>
+                                </Link>
+                            </tr>
+                            <tr>
+                                <Link to="/">
+                                    <button className="boxButton" onClick={openlinktoRestManager}>Log Out</button>
+                                </Link>
+                            </tr>
+                        </table>
 
-                <div>
+                    </div>
+                </DialogContent>
+            </Dialog>
 
-                    {showEditProfile &&
-                        <div>
-                            
-                            <div className = "background">
-
-                            <div className = "rectangleE">
-                            <div className = "profPicb">
-                            </div>
-                            <button className = "txt" onClick = {handleClickOpen}>
-                                    Change Profile Photo
-                            </button>
-                            <div className = "rec">
-                            <Formik
-                                initialValues={{ username: "", name:"", password: "" }}
-                                onSubmit={values => {
-                                    onSubmit(values);
-                                }}
-                                >
-                                {({ values, handleChange, handleBlur }) => (
-                                    <Form style={{ color: "white" }}>
-                                        <div className="fieldName">Username </div>
-                                        <div>
-                                        <TextField name="username" style={{ width:"70%" }} onChange={handleChange} onBlur={handleBlur}></TextField>
-                                        </div>
-                                        <div className="fieldName">Name</div>
-                                        <div>
-                                        <TextField name="name" style={{ width:"70%" }} onChange={handleChange} onBlur={handleBlur}></TextField>
-                                        </div>
-                                        <div className="fieldName">Password </div>
-                                        <div>
-                                        <TextField name="password" type="password" style={{ width:"70%" }} onChange={handleChange} onBlur={handleBlur}></TextField>
-                                        </div>
-                                    </Form>
-                                )}
-                                </Formik>
-                                
+            <Dialog open={showEditProfile} onClose={closeShowEdit} aria-labelledby="form-dialog-second">
+                <DialogContent>
+                    <div className="rectangleE">
+                        <table style={{marginLeft:'10%', marginTop:'10%', width:'80%'}}>
+                            <tr>
+                                <td>
+                                    <div className="profPicb"></div>
+                                </td>
+                                <td>
+                                    <button className="txt" onClick={() => { }}>Change Profile Photo</button>
+                                </td>
+                            </tr>
+                        </table>
+                       
+                        <table style={{textAlign:'center', marginLeft:'10%', marginTop:'5%', width:'80%'}}>
+                            <tr>
+                                <div>
+                                    <Formik
+                                        initialValues={{ username: "", name: "", password: "" }}
+                                        onSubmit={values => {
+                                            onSubmit(values);
+                                        }}>
+                                        {({ values, handleChange, handleBlur }) => (
+                                            <Form style={{ color: "white" }}>
+                                                <div className="fieldName">Username </div>
+                                                <div>
+                                                    <TextField name="username" style={{ width: "70%" }} onChange={handleChange} onBlur={handleBlur}></TextField>
+                                                </div>
+                                                <div className="fieldName">Name</div>
+                                                <div>
+                                                    <TextField name="name" style={{ width: "70%" }} onChange={handleChange} onBlur={handleBlur}></TextField>
+                                                </div>
+                                                <div className="fieldName">Password </div>
+                                                <div>
+                                                    <TextField name="password" type="password" style={{ width: "70%" }} onChange={handleChange} onBlur={handleBlur}></TextField>
+                                                </div>
+                                            </Form>
+                                        )}
+                                    </Formik>
                                 </div>
+                            </tr>
+                            <tr>
+                            <button className="saveb" onClick={closeShowEdit}>Save Changes</button>
+                            </tr>
+                        </table>
 
-                            <button className = "saveb" onClick = {closeShowEdit}>
-                                    Save Changes
-                            </button>
-                            <button className = "close" onClick = {closeShowEdit}>
-                            </button>
+
+                        <DialogActions>
                             
-                            </div>
+                            <button className="close" onClick={closeShowEdit}>
+                            </button>
+                        </DialogActions>
                         </div>
-                        </div>
-                    }
+                </DialogContent>
 
-                </div>
-            </div>
-        )
-    }
-    export default Profile;
+            </Dialog>
+        </div>
+    )
+}
+export default Profile;

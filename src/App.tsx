@@ -13,12 +13,13 @@ import {Profile} from './components/ProfilePopUp/ProfilePopup';
 
 
 function App() {
+
   return (
       <Router>
         <div className="navbar">
           <Link className="title" to="/" style={{ textDecoration: 'inherit' }}>Find &amp; Eat</Link>
           <Link className="explore" to="/explore" />
-          <Link className="profile" to="/profpop" />
+          <Profile/>
         </div>
 
         <Switch>
@@ -30,7 +31,6 @@ function App() {
           <Route exact path="/login" component={Login}/>
           <Route exact path="/restaurant/:name" component={Restaurant}/>
           <Route exact path="/restManager" component={RestManager}/>
-          <Route exact path = "/profpop" component = {Profile}/>
 
         </Switch>
       </Router>
