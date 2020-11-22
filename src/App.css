@@ -13,7 +13,7 @@
 
 .title {
     position: absolute;
-    width: 194px;
+    width: 200px;
     height: 56px;
     left: 44px;
     top: 10px;
@@ -29,9 +29,10 @@
 
 .explore {
     position: relative;
-    width: 60px;
-    height: 60px;
+    width: 70px;
+    height: 70px;
     float: right;
+    top: 10%;
     /* right: 5%;
     top: 3px; */
 
@@ -43,9 +44,10 @@
 
 .profile {
     position: relative;
-    width: 60px;
-    height: 60px;
+    width: 70px;
+    height: 70px;
     float: right;
+    top: 10%;
     /* right: 0.5%;
     top: 3px; */
 

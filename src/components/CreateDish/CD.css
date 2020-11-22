@@ -14,8 +14,8 @@
     
 
     padding: 0;
-border: none;
-outline: none;
+    border: none;
+    outline: none;
     
 
     font-family: Roboto;
@@ -41,8 +41,8 @@ outline: none;
     border-radius: 5px;
 
     padding: 0;
-border: none;
-outline: none;
+    border: none;
+    outline: none;
     
 /* font */
     font-family: Roboto;
@@ -59,13 +59,13 @@ outline: none;
 
   .foto{
     object-fit: cover;
-      width:200px;
-      height: 200px;
-      outline: none;
-border-radius: 50%;
-padding: 0;
-border: none;
-outline: none;
+    width:200px;
+    height: 200px;
+    outline: none;
+    border-radius: 50%;
+    padding: 0;
+    border: none;
+    outline: none;
 /* background-size:cover; */
 /* background-position:center; */
   }

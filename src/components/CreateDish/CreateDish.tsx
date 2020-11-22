@@ -108,7 +108,7 @@ export const CreateDish = (props: CreateDishProps) => {
           <table>
             <tr>
               <td  >
-                <DialogTitle id="form-dialog-title">New Dish</DialogTitle>
+                <DialogTitle id="form-dialog-title" >New Dish</DialogTitle>
               </td>
               <td className="celda">
 

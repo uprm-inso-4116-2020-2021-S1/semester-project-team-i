@@ -129,7 +129,7 @@ export default class RestManager extends React.Component<RestManagerProps, RestM
     render() {
         return (
             // <div className="container">
-                <div style={{ marginLeft: "5%" }}>
+                <div style={{ marginLeft: "10%", marginTop:"7%" }}>
                     <div style={{ marginBottom: "100px" }} />
                     <div style={{ display: 'table-row' }}>
                         <div className="managerTitle" style={{ display: 'table-cell' }}>Restaurant Manager</div>
@@ -137,11 +137,10 @@ export default class RestManager extends React.Component<RestManagerProps, RestM
                             <CreateDish establishmentId={1}></CreateDish>
                         </div>
                     </div>
-
                     <link
                         rel="stylesheet"
                         href="https://fonts.googleapis.com/icon?family=Material+Icons"></link>
-                    <div style={{ width: "90%", marginBottom: "50px", marginTop: "30px" }}>
+                    <div style={{ width: "90%", marginBottom: "50px", marginTop: "75px", marginLeft: "20px"}}>
                         {this.getTable([...this.state.data])}
                     </div>
                 </div>

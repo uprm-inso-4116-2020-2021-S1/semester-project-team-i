@@ -9,6 +9,8 @@ import Register from './components/Register/Register';
 import Login from './components/Login/Login';
 import Restaurant from './components/Restaurant/Restaurant';
 import RestManager from './components/RestManager/RestManager';
+import {Profile} from './components/ProfilePopUp/ProfilePopup';
+
 
 function App() {
   return (
@@ -16,9 +18,8 @@ function App() {
         <div className="navbar">
           <Link className="title" to="/" style={{ textDecoration: 'inherit' }}>Find &amp; Eat</Link>
           <Link className="explore" to="/explore" />
-          <Link className="profile" to="/restManager" />
+          <Link className="profile" to="/profpop" />
         </div>
-
 
         <Switch>
           <Route exact path="/" component={Login} />
@@ -29,6 +30,8 @@ function App() {
           <Route exact path="/login" component={Login}/>
           <Route exact path="/restaurant/:name" component={Restaurant}/>
           <Route exact path="/restManager" component={RestManager}/>
+          <Route exact path = "/profpop" component = {Profile}/>
+
         </Switch>
       </Router>
 

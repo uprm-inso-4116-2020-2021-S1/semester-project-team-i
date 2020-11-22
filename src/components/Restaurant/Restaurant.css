@@ -2,7 +2,8 @@
 
 
 .white {
-    height: 50%;
+    
+    height: 25%;
     background: white;
     text-align: center;
 }
@@ -10,6 +11,7 @@
     width: 50px;
 }
 .orange {
+    
     height: 50%;
     background: rgb(255, 153, 0);
     text-align: center;
@@ -17,7 +19,7 @@
 
 .restPic {
     position: relative;
-    top: 50px;
+    top: 20px;
     left: 200px;
     width: 350px;
     height: 350px;
@@ -68,3 +70,6 @@
     background-color: white;
     width: 100%;
 }
+
+
+
