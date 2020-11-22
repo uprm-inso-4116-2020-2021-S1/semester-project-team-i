@@ -3,9 +3,9 @@
 .rectangleRegister{
     position: absolute;
     width: 505px;
-    height: 620px;
+    height: 550px;
     left: 60%;
-    top: 210px;
+    top: 180px;
 
     text-align: center;
     vertical-align: middle;
@@ -25,13 +25,13 @@
 
 .registerText {
     width: 207px;
-    height: 43px;
+    height: 63px;
 
     font-family: Roboto;
     font-style: normal;
     font-weight: bold;
     font-size: 48px;
-    line-height: 140px;
+    line-height: 170px;
     text-align: center;
 
     color: #FFFFFF;
