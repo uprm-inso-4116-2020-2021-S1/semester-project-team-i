@@ -3,24 +3,23 @@ from flask import request, jsonify
 from config import app
 from modules.dish.dish_controller import DishController
 from modules.establishment.establishment_controller import EstablishmentController
-from modules.menu.menu_controller import MenuController
 from modules.user.user_controller import UserController
 from modules.category.category_controller import CategoryController
 
 
 @app.route('/')
-def hello_world():
-    return 'Hello World!'
+def index():
+    return 'Welcome to Find & Eat API'
 
 
-@app.route('/login', methods='POST')
+@app.route('/login', methods=['POST'])
 def login():
     if request.method == 'POST':
         return UserController.login(request.json)
     return jsonify(message="Method not allowed."), 405
 
 
-@app.route('/logout', methods='GET')
+@app.route('/logout', methods=['GET'])
 def logout():
     if request.method == 'GET':
         return UserController.logout()
@@ -95,8 +94,13 @@ def get_put_or_delete_establishment(id):
 
 @app.route('/dishes', methods=['GET', 'POST'])
 def get_all_or_create_dishes():
+    '''
+    top rated dishes: /dishes?topRated=true&limit=5     (default limit = 100)
+    top rated dishes by establishment: /dishes?eid=4    (default limit = 3)
+    :return: list of dishes
+    '''
     if request.method == 'GET':
-        return DishController.get_all_dishes()
+        return DishController.get_all_dishes() if not request.args else DishController.get_all_dishes(request.args)
     elif request.method == 'POST':
         return DishController.create_dish(request.json)
     else:
@@ -115,24 +119,24 @@ def get_update_or_delete_dish(id):
         return jsonify(message="Method not allowed."), 405
 
 
-@app.route('/categories', methods=['GET', 'POST'])
+@app.route('/categories', methods=['GET'])  # , 'POST'])
 def get_all_or_create_menus():
     if request.method == 'GET':
         return CategoryController.get_all_categories()
-    elif request.method == 'POST':
-        return CategoryController.create_category(request.json)
+    # elif request.method == 'POST':
+    #     return CategoryController.create_category(request.json)
     else:
         return jsonify(message="Method not allowed."), 405
 
 
-@app.route('/categories/<int:id>', methods=['GET', 'PUT', 'DELETE'])
+@app.route('/categories/<int:id>', methods=['GET'])     # , 'PUT', 'DELETE'])
 def get_update_or_delete_menu(id):
     if request.method == 'GET':
         return CategoryController.get_category_by_id(id)
-    elif request.method == 'PUT':
-        return CategoryController.update_category(id, request.json)
-    elif request.method == 'DELETE':
-        return CategoryController.delete_category(id)
+    # elif request.method == 'PUT':
+    #     return CategoryController.update_category(id, request.json)
+    # elif request.method == 'DELETE':
+    #     return CategoryController.delete_category(id)
     else:
         return jsonify(message="Method not allowed."), 405
 
