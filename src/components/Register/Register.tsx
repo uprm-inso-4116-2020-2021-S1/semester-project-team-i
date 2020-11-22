@@ -10,6 +10,7 @@ interface RegisterData {
   firstName: string;
   lastName: string;
   email: string;
+  username: string;
   password: string;
 }
 
@@ -20,8 +21,8 @@ let history;
 
 const onSubmit = (values: RegisterData) => {
 
- const newUser: User = {
-    username: values.email,
+  const newUser: User = {
+    username: values.username,
     password: values.password,
     email: values.email,
     firstName: values.firstName,
@@ -31,10 +32,10 @@ const onSubmit = (values: RegisterData) => {
   UserService.createUser(newUser);
 }
 
-export const setLoggedInUser = (uid: number) => {
+export const setRegisterLoggedInUser = (uid: number) => {
   localStorage.setItem('loggedInUser', uid.toString());
   console.log(uid);
-  if(uid !== -1){
+  if (uid !== -1) {
     history.push('/explore');
   }
 }
@@ -47,31 +48,30 @@ export const Register: React.FC = () => {
     <div className="pancakePic">
       <div className="rectangleRegister">
         <span className="registerText">Register</span>
-        <div style={{width:"80%", marginLeft:"10%", marginTop:"-20px", marginBottom:"20px"}}><hr></hr></div>
+        <div style={{ width: "80%", marginLeft: "10%", marginTop: "-20px", marginBottom: "20px" }}><hr></hr></div>
         <Formik
-          initialValues={{ firstName: "", lastName: "", email: "", password: "" }}
+          initialValues={{ firstName: "", lastName: "", email: "", username: "", password: "" }}
           onSubmit={values => {
             onSubmit(values);
           }}
         >
           {({ values, handleChange, handleBlur }) => (
             <Form style={{ color: "white" }}>
-                <div className="fieldName">First Name </div>
-                <div>
-                  <TextField name="firstName" style={{ width:"70%" }} onChange={handleChange} onBlur={handleBlur}></TextField>
-                </div>
-                <div className="fieldName">Last Name </div>
-                <div>
-                  <TextField name="lastName" style={{ width:"70%" }} onChange={handleChange} onBlur={handleBlur}></TextField>
+              <div>
+                <TextField name="firstName" label="First Name" style={{ width: "70%" }} onChange={handleChange} onBlur={handleBlur}></TextField>
               </div>
-                <div className="fieldName">Email </div>
-                <div>
-                  <TextField name="email" style={{ width:"70%" }} onChange={handleChange} onBlur={handleBlur}></TextField>
-                </div>
-                <div className="fieldName">Password </div>
-                <div>
-                  <TextField name="password" type="password" style={{ width:"70%" }} onChange={handleChange} onBlur={handleBlur}></TextField>
-                </div>
+              <div>
+                <TextField name="lastName" label="Last Name" style={{ width: "70%" }} onChange={handleChange} onBlur={handleBlur}></TextField>
+              </div>
+              <div>
+                <TextField name="email" label="Email" style={{ width: "70%" }} onChange={handleChange} onBlur={handleBlur}></TextField>
+              </div>
+              <div>
+                <TextField name="username" label="Username" style={{ width: "70%" }} onChange={handleChange} onBlur={handleBlur}></TextField>
+              </div>
+              <div>
+                <TextField name="password" label="Password" type="password" style={{ width: "70%" }} onChange={handleChange} onBlur={handleBlur}></TextField>
+              </div>
               <Button type="submit" className="submitButton"> Create Account!</Button>
               {/* <pre>{JSON.stringify(values, null, 2)}</pre> */}
             </Form>
@@ -80,7 +80,7 @@ export const Register: React.FC = () => {
         <div className="returningUser">
           <span>Already have an account?&nbsp;</span>
           <Link to="/login">Sign In</Link>
-          </div>
+        </div>
       </div>
     </div>
 

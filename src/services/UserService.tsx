@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { setLoggedInUser } from '../components/Register/Register';
+import { setLoggedInUser } from '../components/Login/Login';
+import { setRegisterLoggedInUser } from '../components/Register/Register';
 
 export const server = 'http://127.0.0.1:5000/';
 
@@ -15,6 +16,15 @@ export interface User {
 
 export class UserService {
 
+    static login(credentials: {username: string, password: string}) {
+        axios.post(`http://127.0.0.1:5000/login`, credentials)
+        .then(res => {
+                const uid = res.data.user_id as number;
+                console.log(res);
+                setLoggedInUser(uid);
+            });
+    }
+
     static createUser(user: User) {
         let uid = -1;
         axios.post(`http://127.0.0.1:5000/users`, user)
@@ -22,7 +32,7 @@ export class UserService {
                 const newUser = res.data.user;
                 uid = newUser.uid as number;
                 console.log(res);
-                setLoggedInUser(uid);
+                setRegisterLoggedInUser(uid);
             });
     }
 

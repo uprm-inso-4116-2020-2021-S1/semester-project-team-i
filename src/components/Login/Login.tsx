@@ -2,18 +2,28 @@ import React from 'react';
 import './Login.css';
 import { Button, TextField } from '@material-ui/core';
 import { Form, Formik } from 'formik';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import { UserService } from '../../services/UserService';
 
-interface LoginData {
-  email: string;
-  password: string;
+let history;
+
+const onSubmit = (values: {username: string, password: string}) => {
+ 
+   UserService.login(values);
+ }
+
+ export const setLoggedInUser = (uid: number) => {
+  localStorage.setItem('loggedInUser', uid.toString());
+  console.log(uid);
+  if (uid !== -1) {
+    history.push('/explore');
+  }
 }
 
-interface LoginProps {
-  onSubmit: (values: LoginData) => void;
-}
 
-export const Login: React.FC<LoginProps> = ({ onSubmit }) => {
+export const Login: React.FC = () => {
+
+  history = useHistory();
 
   return (
     <div className="pancakePic">
@@ -21,23 +31,22 @@ export const Login: React.FC<LoginProps> = ({ onSubmit }) => {
         <span className="registerText">Login</span>
         <div style={{width:"80%", marginLeft:"10%", marginTop:"-20px", marginBottom:"20px"}}><hr></hr></div>
         <Formik
-          initialValues={{ email: "", password: "" }}
+          initialValues={{ username: "", password: "" }}
           onSubmit={values => {
             onSubmit(values);
           }}
         >
           {({ values, handleChange, handleBlur }) => (
             <Form style={{ color: "white" }}>
-                <div className="fieldName">Email </div>
+                <div className="fieldName">Username </div>
                 <div>
-                  <TextField name="email" style={{ width:"70%" }} onChange={handleChange} onBlur={handleBlur}></TextField>
+                  <TextField name="username" style={{ width:"70%" }} onChange={handleChange} onBlur={handleBlur}></TextField>
                 </div>
                 <div className="fieldName">Password </div>
                 <div>
                   <TextField name="password" type="password" style={{ width:"70%" }} onChange={handleChange} onBlur={handleBlur}></TextField>
                 </div>
               <Button type="submit" className="submitButton"> Sign In!</Button>
-              {/* <pre>{JSON.stringify(values, null, 2)}</pre> */}
             </Form>
           )}
         </Formik>
