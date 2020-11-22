@@ -48,15 +48,15 @@ const ThePost = (props: SuggestedPosts) => {
         <div className = "thePostConatainer">
             <table>
                 <tr>
-                    <td><button id = "profileBTN"><a href="#"><img id = "profilePhoto" src={props.imgProfile} alt={props.alt}  /></a></button></td>
-                    <td style = {{height: '30px'}}><h4>{props.username}</h4></td>
+                    <td id = "profileBTN"><button ><a href="#"><img id = "profilePhoto" src={props.imgProfile} alt={props.alt}  /></a></button></td>
+                    <td id = "username"><h4>{props.username}</h4></td>
                 </tr>
                 <tr>
                     <td id="photoTD"><button id="sizingPostBTN" ></button></td>
                 </tr>
                 <tr>
-                    <td><button  id = "upvoteBTN"><img  id = "upvotePhoto" src={props.imgUpvote} alt={props.alt}/></button></td>
-                    <td id = "count"><h4>{props.upvoteCount}</h4></td>
+                    <td id = "upvoteBTN"><button  ><img  id = "upvotePhoto" src={props.imgUpvote} alt={props.alt}/></button></td>
+                    <td id="countTD"><h4  id = "count">{props.upvoteCount}</h4></td>
                 </tr>
             </table>
         </div>
@@ -87,8 +87,8 @@ export const ExplorePage = () => {
         <div className="trendingBox">
             <span className="font">Trending Places</span>
             <hr></hr>
-            <div style={{ height: '10px' }}></div>
-            <div style={{ display: "flex", flexDirection: "column", textAlign: "center" }}>
+            <div>
+             
                 <TrendingItem
                     imgSrc={firstPlace}
                     alt="firstPlace"
@@ -103,10 +103,57 @@ export const ExplorePage = () => {
                     placeHandle={place3} />
             </div>
         </div>
-        <div className = "ContainerWholeTrend"> 
+        <div className = "containerWholeTrend"> 
+
+        <div className = "containerWholeTrend"> 
+       <div className="suggested">
+
+       <table>
+             <tr>
+        <td id = "bigTDL" >
+            <ThePost
+            imgProfile = {profilePic}
+            username = {place1}
+            imgProduct = {foodPhoto}
+            imgUpvote = {upvotePhoto}
+            upvoteCount = {upvoteCountTemp}
+            alt = "Not Found" />
+             <ThePost
+            imgProfile = {profilePic}
+            username = {place1}
+            imgProduct = {foodPhoto}
+            imgUpvote = {upvotePhoto}
+            upvoteCount = {upvoteCountTemp}
+            alt = "Not Found" />
+            </td>
+        <td id = "bigTDR">
+            <ThePost
+            imgProfile = {profilePic}
+            username = {place1}
+            imgProduct = {foodPhoto}
+            imgUpvote = {upvotePhoto}
+            upvoteCount = {upvoteCountTemp}
+            alt = "Not Found" />
+             <ThePost
+            imgProfile = {profilePic}
+            username = {place1}
+            imgProduct = {foodPhoto}
+            imgUpvote = {upvotePhoto}
+            upvoteCount = {upvoteCountTemp}
+            alt = "Not Found" />
+        </td>
+                    </tr>
+                </table>
+            </div>
+            
+        </div>
+
+        
+        </div>
+
 
 <div className = "filterTable">
-        <table  cellPadding = "0">
+        <table>
         <tr>
             <td>
             <button className="filters">
@@ -133,42 +180,6 @@ export const ExplorePage = () => {
 </div>
 
 
-<div className = "containerWholeTrend"> 
-       <div className="suggested">
-           <ThePost
-            imgProfile = {profilePic}
-            username = {place1}
-            imgProduct = {foodPhoto}
-            imgUpvote = {upvotePhoto}
-            upvoteCount = {upvoteCountTemp}
-            alt = "Not Found" />
-            <ThePost
-            imgProfile = {profilePic}
-            username = {place1}
-            imgProduct = {foodPhoto}
-            imgUpvote = {upvotePhoto}
-            upvoteCount = {upvoteCountTemp}
-            alt = "Not Found" />
-            <ThePost
-            imgProfile = {profilePic}
-            username = {place1}
-            imgProduct = {foodPhoto}
-            imgUpvote = {upvotePhoto}
-            upvoteCount = {upvoteCountTemp}
-            alt = "Not Found" />
-            <ThePost
-            imgProfile = {profilePic}
-            username = {place1}
-            imgProduct = {foodPhoto}
-            imgUpvote = {upvotePhoto}
-            upvoteCount = {upvoteCountTemp}
-            alt = "Not Found" />
-            </div>
-            
-        </div>
-
-        
-        </div>
 
 
     )
