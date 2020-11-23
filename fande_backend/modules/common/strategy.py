@@ -4,30 +4,25 @@ from helpers.decorator import error_validation
 
 
 class BaseAPIStrategy(ABC):
-    @staticmethod
     @abstractmethod
     @error_validation(method=['GET'])
-    def get_all():
+    def get_all(self):
         raise NotImplementedError('Must provide implementation in subclass.')
 
-    @staticmethod
     @abstractmethod
-    def get_by_id(oid):
+    def get_by_id(self, oid):
         raise NotImplementedError('Must provide implementation in subclass.')
 
-    @staticmethod
     @abstractmethod
-    def create(params):
+    def create(self, params):
         raise NotImplementedError('Must provide implementation in subclass.')
 
-    @staticmethod
     @abstractmethod
-    def update(oid, params):
+    def update(self, oid, params):
         raise NotImplementedError('Must provide implementation in subclass.')
 
-    @staticmethod
     @abstractmethod
-    def delete(oid):
+    def delete(self, oid):
         raise NotImplementedError('Must provide implementation in subclass.')
 
 
