@@ -7,6 +7,9 @@ from modules.user.user_controller import UserController
 from modules.category.category_controller import CategoryController
 
 
+user_controller = UserController()
+
+
 @app.route('/')
 def index():
     return 'Welcome to Find & Eat API'
@@ -15,23 +18,23 @@ def index():
 @app.route('/login', methods=['POST'])
 def login():
     if request.method == 'POST':
-        return UserController.login(request.json)
+        return user_controller.login(request.json)
     return jsonify(message="Method not allowed."), 405
 
 
 @app.route('/logout', methods=['GET'])
 def logout():
     if request.method == 'GET':
-        return UserController.logout()
+        return user_controller.logout()
     return jsonify(message="Method not allowed."), 405
 
 
 @app.route('/users', methods=['GET', 'POST'])
 def get_all_or_create_users():
     if request.method == 'GET':
-        return UserController.get_all_users()
+        return user_controller.get_all()
     elif request.method == 'POST':
-        return UserController.create_user(request.json)
+        return user_controller.create(request.json)
     else:
         return jsonify(message="Method not allowed."), 405
 
@@ -39,11 +42,11 @@ def get_all_or_create_users():
 @app.route('/users/<int:id>', methods=['GET', 'PUT', 'DELETE'])
 def get_update_or_delete_user(id):
     if request.method == 'GET':
-        return UserController.get_user_by_id(id)
+        return user_controller.get_by_id(id)
     elif request.method == 'PUT':
-        return UserController.update_user(id, request.json)
+        return user_controller.update(id, request.json)
     elif request.method == 'DELETE':
-        return UserController.delete_user(id)
+        return user_controller.delete(id)
     else:
         return jsonify(message="Method not allowed."), 405
 
