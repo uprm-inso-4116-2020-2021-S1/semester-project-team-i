@@ -54,7 +54,11 @@ export default function ReactFirebaseFileUpload() {
         <tr>
           <td className="centro" >
 
+<<<<<<< HEAD
+            <img className="foto" alt="firebase" src={url || "https://upload.wikimedia.org/wikipedia/commons/4/42/Photo-camera-in-circular-outlined-interface-button.svg"} />
+=======
             <img className="foto" src={url || "https://upload.wikimedia.org/wikipedia/commons/4/42/Photo-camera-in-circular-outlined-interface-button.svg"} alt="firebase-image" />
+>>>>>>> 19f97352e8b42dcc984caded9dff6b43c689215d
 
           </td>
           <td className="tamano">
