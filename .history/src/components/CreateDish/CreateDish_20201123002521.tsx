@@ -10,8 +10,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import ReactFirebaseFileUpload from './CD.js';
 
-import { Dish, DishService } from '../../services/DishService';
-import { Form, Formik } from 'formik';
+import { Dish, DisshService } from '../../services/DishService';
 
 
 interface CreateDishProps {
@@ -54,7 +53,7 @@ const onSubmit = (values: DishData) => {
     menu_id: values.menu_id
   }
 
-  DishService.createDish(newDish);
+  UserService.createUser(newUser);
 }
 
 
@@ -167,18 +166,10 @@ export const CreateDish = (props: CreateDishProps) => {
           <ReactFirebaseFileUpload />
 
           <DialogContent>
-          <Formik
-          initialValues={{ description: "", price: 0, rating: 0, image_url: "", category: "", 
-        name: "", type: "", menu_id: 0}}
-          onSubmit={values => {
-            onSubmit(values);
-          }}
-        >
-          {({ values, handleChange, handleBlur }) => (
-            <Form style={{ color: "white" }}>
+            <form className={classes.root} noValidate autoComplete="off">
 
               <table className="tabla">
-                <tr>
+                <tr >
 
 
                   <TextField
@@ -189,8 +180,6 @@ export const CreateDish = (props: CreateDishProps) => {
                     type="email"
 
                     style={{ width: "100%" }}
-                    onChange={handleChange} 
-                    onBlur={handleBlur}
                   />
 
                 </tr>
@@ -203,8 +192,6 @@ export const CreateDish = (props: CreateDishProps) => {
                     type="email"
 
                     style={{ width: "100%" }}
-                    onChange={handleChange} 
-                    onBlur={handleBlur}
                   />
                 </tr>
                 <tr>
@@ -215,10 +202,9 @@ export const CreateDish = (props: CreateDishProps) => {
                     label="Select"
                     value={type}
                     onChange={changeType}
-                    onBlur={handleBlur}
-                    // onChange={handleChange} 
                     helperText="Select type of dish"
-                    style={{ width: "100%" }}               
+                    style={{ width: "100%" }}
+
                   >
                     {types.map((option) => (
                       <MenuItem key={option.value} value={option.value}>
@@ -235,8 +221,6 @@ export const CreateDish = (props: CreateDishProps) => {
                     label="Select"
                     value={category}
                     onChange={changeCategory}
-                    // onChange={handleChange} 
-                    onBlur={handleBlur}
                     helperText="Select category of dish"
                     style={{ width: "100%" }}
                   >
@@ -256,26 +240,20 @@ export const CreateDish = (props: CreateDishProps) => {
                     label="Description"
                     type="email"
                     style={{ width: "100%" }}
-                    onChange={handleChange} 
-                    onBlur={handleBlur}
                   />
                 </tr>
               </table>
 
-              </Form>
-          )}
-        </Formik>
+            </form>
           </DialogContent>
 
           <DialogActions>
 
 
 
-            <button type="submit" className="botonDone" onClick={handleClose} color="primary">
+            <button className="botonDone" onClick={handleClose} color="primary">
               Done
           </button>
-
-          
 
           </DialogActions>
         </Dialog>

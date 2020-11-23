@@ -271,11 +271,9 @@ export const CreateDish = (props: CreateDishProps) => {
 
 
 
-            <button type="submit" className="botonDone" onClick={handleClose} color="primary">
+            <button className="botonDone" onClick={handleClose} color="primary">
               Done
           </button>
-
-          
 
           </DialogActions>
         </Dialog>

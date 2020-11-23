@@ -47,7 +47,7 @@ const onSubmit = (values: RestaurantData) => {
   //   menu_id: number;
   //   user_id: number;
 
-
+  let history;
 
   const newEstablishment: Establishment = {
     name: values.name,
@@ -342,7 +342,7 @@ export const CreateRestaurant = (props: CreateDishProps) => {
 
 
 
-          <button type="submit" onClick={handleClose} className="botonDone">Done</button>
+          <button type="submit" className="botonDone">Done</button>
 
           </DialogActions>
         </Dialog>

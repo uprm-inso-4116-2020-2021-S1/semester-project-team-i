@@ -67,20 +67,20 @@
 }
 
 .perfil {
-  /* background-position: center !important;
+  background-position: center !important;
   background-repeat: no-repeat !important;
-  background-size: cover !important; */
+  background-size: cover !important;
   object-fit: cover;
-  border-radius: 50%;
-  width: 100px !important;
-  height: 100px !important;
-  /* min-width: 70px;
-  min-height: 70px; */
+  border-radius: 50px;
+  width: 10%;
+  height: 10%;
+  min-width: 75px;
+  min-height: 75px;
 
 }
 
 .size {
-  /* width: 10%; */
+  width: 10%;
   vertical-align: middle;
 }
 

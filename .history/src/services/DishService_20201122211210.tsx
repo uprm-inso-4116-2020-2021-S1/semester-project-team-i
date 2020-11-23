@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export interface Dish {
+interface Dish {
     did?: number;
     description: string;
     price: number;

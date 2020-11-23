@@ -47,7 +47,7 @@ const onSubmit = (values: RestaurantData) => {
   //   menu_id: number;
   //   user_id: number;
 
-
+  let history;
 
   const newEstablishment: Establishment = {
     name: values.name,
@@ -209,7 +209,7 @@ export const CreateRestaurant = (props: CreateDishProps) => {
         >
           {({ values, handleChange, handleBlur }) => (
  <Form style={{ color: "white" }}>
-              <table className="tabla" >
+              <table className="tabla">
                 <tr>
                     <TextField
                       autoFocus
@@ -217,8 +217,8 @@ export const CreateRestaurant = (props: CreateDishProps) => {
                       id="name"
                       label="Name"
                       type="email"
+
                       style={{ width: "100%" }}
-                      onChange={handleChange} onBlur={handleBlur}
                     />
                
                 </tr>
@@ -231,7 +231,6 @@ export const CreateRestaurant = (props: CreateDishProps) => {
                     type="email"
 
                     style={{ width: "100%" }}
-                    onChange={handleChange} onBlur={handleBlur}
                   />
                 </tr>
                 <tr>
@@ -244,7 +243,6 @@ export const CreateRestaurant = (props: CreateDishProps) => {
                     type="email"
 
                     style={{ width: "100%" }}
-                    onChange={handleChange} onBlur={handleBlur}
                   />
                 </tr>
               </table>
@@ -259,7 +257,6 @@ export const CreateRestaurant = (props: CreateDishProps) => {
                       type="time"
 
                       style={{ width: "100%" }}
-                      onChange={handleChange} onBlur={handleBlur}
                     />
                   </td>
                   <td>
@@ -271,7 +268,6 @@ export const CreateRestaurant = (props: CreateDishProps) => {
                       type="time"
 
                       style={{ width: "100%" }}
-                      onChange={handleChange} onBlur={handleBlur}
                     />
                   </td>
                 </tr>
@@ -283,8 +279,6 @@ export const CreateRestaurant = (props: CreateDishProps) => {
                       label="Select"
                       value={fromDay}
                       onChange={changeFromDay}
-                      // onChange={handleChange}
-                       onBlur={handleBlur}
                       helperText="Open from..."
                       style={{ width: "100%" }}
                     >
@@ -303,8 +297,6 @@ export const CreateRestaurant = (props: CreateDishProps) => {
                       label="Select"
                       value={toDay}
                       onChange={changeToDay}
-                      // onChange={handleChange}
-                       onBlur={handleBlur}
                       helperText="Open to..."
                       style={{ width: "100%" }}
 
@@ -327,8 +319,6 @@ export const CreateRestaurant = (props: CreateDishProps) => {
                     label="Description"
                     type="email"
                     style={{ width: "100%" }}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
                   />
                 </tr>
               </table>
@@ -342,7 +332,7 @@ export const CreateRestaurant = (props: CreateDishProps) => {
 
 
 
-          <button type="submit" onClick={handleClose} className="botonDone">Done</button>
+          <button type="submit" className="botonDone">Done</button>
 
           </DialogActions>
         </Dialog>

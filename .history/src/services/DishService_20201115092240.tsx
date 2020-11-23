@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export interface Dish {
+interface Dish {
     did?: number;
     description: string;
     price: number;
@@ -55,13 +55,5 @@ export class DishService {
             .then(res => {
                 console.log(res);
             });
-    }
-    static getTop4Dishes(dishes: Dish[]) {
-        axios.get(`http://127.0.0.1:5000/dishes?topRated=true&limit=4`)
-        .then(res => {
-            const ans = res.data.dishes;
-            dishes = ans;
-            console.log(res);
-        });
     }
 }

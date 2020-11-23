@@ -140,24 +140,14 @@ export default class Restaurant extends React.Component<RestaurantProps, Restaur
                     </table>
                 </div>
                 <div>
-                  
                     {!this.state.showMenuList &&
                         <div className="orange">
-                          <table>
-                              <tr>
-                                  <td>
+                            <Link to="/">
                             <Item imgSrc={plate1} name={this.props.match.params.name} description="Wafflera vende waffles."></Item>
-                            </td>
-                            <td>
-                            <Item imgSrc={plate2} name={this.props.match.params.name} description="Wafflera vende waffles."></Item>
-                            </td>
-                            <td>
-                            <Item imgSrc={plate3} name={this.props.match.params.name} description="Wafflera vende waffles."></Item>
-                            </td>
-                            </tr>
-                    
 
-                        </table>
+                            </Link>
+                            <img alt="plate2" style={{ margin: "50px" }} src={plate2}></img>
+                            <img alt="plate3" style={{ margin: "50px" }} src={plate3}></img>
                         </div>}
                     {this.state.showMenuList &&
                         <div className="divider">

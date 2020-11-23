@@ -11,7 +11,6 @@ import twitter from "../../assets/twitter.png";
 import { Link } from 'react-router-dom';
 import Menu from '../Menu/Menu';
 import img1 from '../../assets/plate1.png';
-import { Item } from '../Item/Item';
 
 
 interface RestaurantProps extends RouteComponentProps<{ 
@@ -140,24 +139,14 @@ export default class Restaurant extends React.Component<RestaurantProps, Restaur
                     </table>
                 </div>
                 <div>
-                  
                     {!this.state.showMenuList &&
                         <div className="orange">
-                          <table>
-                              <tr>
-                                  <td>
-                            <Item imgSrc={plate1} name={this.props.match.params.name} description="Wafflera vende waffles."></Item>
-                            </td>
-                            <td>
-                            <Item imgSrc={plate2} name={this.props.match.params.name} description="Wafflera vende waffles."></Item>
-                            </td>
-                            <td>
-                            <Item imgSrc={plate3} name={this.props.match.params.name} description="Wafflera vende waffles."></Item>
-                            </td>
-                            </tr>
-                    
 
-                        </table>
+                            <Link to="/item">
+                                <img alt="plate1" style={{ margin: "50px" }} src={plate1}></img>
+                            </Link>
+                            <img alt="plate2" style={{ margin: "50px" }} src={plate2}></img>
+                            <img alt="plate3" style={{ margin: "50px" }} src={plate3}></img>
                         </div>}
                     {this.state.showMenuList &&
                         <div className="divider">

@@ -47,7 +47,7 @@ const onSubmit = (values: RestaurantData) => {
   //   menu_id: number;
   //   user_id: number;
 
-
+  let history;
 
   const newEstablishment: Establishment = {
     name: values.name,
@@ -169,6 +169,8 @@ export const CreateRestaurant = (props: CreateDishProps) => {
   };
 
   // cajitas de select
+
+  history = useHistory();
 
   return (
     <div className="container">

@@ -24,10 +24,9 @@
 }
 
 .contenedor {
-  width: 500px !important;
+  width: 100%;
   /* para ocupar toda la pantalla */
   height: 500px;
-/* background-color: transparent; */
 }
 
 .first {
@@ -53,7 +52,7 @@
 
 .pic {
   width: 100%;
-  height: 100%;
+  height: 200px;
   background-position: center !important;
   background-repeat: no-repeat !important;
   background-size: cover !important;
@@ -67,20 +66,17 @@
 }
 
 .perfil {
-  /* background-position: center !important;
-  background-repeat: no-repeat !important;
-  background-size: cover !important; */
+  background-size: cover;
+  background-position: center;
+  border-radius: 100%;
+  width: 10%;
+  height: 10%;
+  min-width: 110px;
   object-fit: cover;
-  border-radius: 50%;
-  width: 100px !important;
-  height: 100px !important;
-  /* min-width: 70px;
-  min-height: 70px; */
-
 }
 
 .size {
-  /* width: 10%; */
+  width: 10%;
   vertical-align: middle;
 }
 

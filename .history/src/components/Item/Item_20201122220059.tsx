@@ -42,10 +42,12 @@ export const Item = (props: ItemProps) => {
                                             <div >
 
                                                 <table className="otro">
-                                                    <tr>
+                                                    <tr className="otro">
                                                     <td className="perfil" style={{
                                             background: `url(${props.imgSrc})`
                                         }}>
+                                            <p>hola</p>
+
                                         </td>
                                                         <td className="size">
                                                             <h1 className="size">{props.name}</h1>

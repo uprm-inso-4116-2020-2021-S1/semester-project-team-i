@@ -6,6 +6,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import { useHistory } from "react-router-dom";
 
 import './CreateRestaurant.css';
 import cam from '../../assets/camara.png'; // gives image path
@@ -47,7 +48,7 @@ const onSubmit = (values: RestaurantData) => {
   //   menu_id: number;
   //   user_id: number;
 
-
+  let history;
 
   const newEstablishment: Establishment = {
     name: values.name,
@@ -169,6 +170,8 @@ export const CreateRestaurant = (props: CreateDishProps) => {
   };
 
   // cajitas de select
+
+  history = useHistory();
 
   return (
     <div className="container">

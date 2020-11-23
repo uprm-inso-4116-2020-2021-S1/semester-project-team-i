@@ -26,7 +26,7 @@ export const Item = (props: ItemProps) => {
 
         <div>
 
-            <img style={{ margin: "50px" }} src={props.imgSrc} alt="foto" onClick={handleClickOpen}></img>
+            <img src={props.imgSrc} alt="foto" onClick={handleClickOpen}></img>
 
             <Dialog className="" open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
 
@@ -42,11 +42,12 @@ export const Item = (props: ItemProps) => {
                                             <div >
 
                                                 <table className="otro">
-                                                    <tr>
-                                                    <td className="perfil" style={{
-                                            background: `url(${props.imgSrc})`
-                                        }}>
-                                        </td>
+                                                    <tr className="otro">
+                                                        <td >
+                                                            {/* aqui va la foto circular */}
+                                                            <img src={props.imgSrc} className="perfil" alt="" />
+
+                                                        </td>
                                                         <td className="size">
                                                             <h1 className="size">{props.name}</h1>
                                                         </td>

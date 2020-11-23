@@ -11,7 +11,6 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import ReactFirebaseFileUpload from './CD.js';
 
 import { Dish, DishService } from '../../services/DishService';
-import { Form, Formik } from 'formik';
 
 
 interface CreateDishProps {
@@ -168,8 +167,7 @@ export const CreateDish = (props: CreateDishProps) => {
 
           <DialogContent>
           <Formik
-          initialValues={{ description: "", price: 0, rating: 0, image_url: "", category: "", 
-        name: "", type: "", menu_id: 0}}
+          initialValues={{ firstName: "", lastName: "", email: "", username: "", password: "" }}
           onSubmit={values => {
             onSubmit(values);
           }}
@@ -189,8 +187,6 @@ export const CreateDish = (props: CreateDishProps) => {
                     type="email"
 
                     style={{ width: "100%" }}
-                    onChange={handleChange} 
-                    onBlur={handleBlur}
                   />
 
                 </tr>
@@ -203,8 +199,6 @@ export const CreateDish = (props: CreateDishProps) => {
                     type="email"
 
                     style={{ width: "100%" }}
-                    onChange={handleChange} 
-                    onBlur={handleBlur}
                   />
                 </tr>
                 <tr>
@@ -215,10 +209,9 @@ export const CreateDish = (props: CreateDishProps) => {
                     label="Select"
                     value={type}
                     onChange={changeType}
-                    onBlur={handleBlur}
-                    // onChange={handleChange} 
                     helperText="Select type of dish"
-                    style={{ width: "100%" }}               
+                    style={{ width: "100%" }}
+
                   >
                     {types.map((option) => (
                       <MenuItem key={option.value} value={option.value}>
@@ -235,8 +228,6 @@ export const CreateDish = (props: CreateDishProps) => {
                     label="Select"
                     value={category}
                     onChange={changeCategory}
-                    // onChange={handleChange} 
-                    onBlur={handleBlur}
                     helperText="Select category of dish"
                     style={{ width: "100%" }}
                   >
@@ -256,8 +247,6 @@ export const CreateDish = (props: CreateDishProps) => {
                     label="Description"
                     type="email"
                     style={{ width: "100%" }}
-                    onChange={handleChange} 
-                    onBlur={handleBlur}
                   />
                 </tr>
               </table>
@@ -271,11 +260,9 @@ export const CreateDish = (props: CreateDishProps) => {
 
 
 
-            <button type="submit" className="botonDone" onClick={handleClose} color="primary">
+            <button className="botonDone" onClick={handleClose} color="primary">
               Done
           </button>
-
-          
 
           </DialogActions>
         </Dialog>

@@ -12,8 +12,7 @@ import cam from '../../assets/camara.png'; // gives image path
 import MenuItem from '@material-ui/core/MenuItem';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import ReactFirebaseFileUpload from './CR.js';
-import { Establishment, EstablishmentService } from '../../services/EstablishmentService';
-import { Form, Formik } from 'formik';
+import { Establishment, EstablishmentServices } from '../../services/EstablishmentService';
 
 
 interface CreateDishProps {
@@ -28,10 +27,6 @@ interface RestaurantData {
   openFrom: string;
   openTo: string;
   description: string;
-
-  menuid: number;
-  userid: number;
-
 }
 const onSubmit = (values: RestaurantData) => {
 
@@ -47,7 +42,7 @@ const onSubmit = (values: RestaurantData) => {
   //   menu_id: number;
   //   user_id: number;
 
-
+  let history;
 
   const newEstablishment: Establishment = {
     name: values.name,
@@ -57,14 +52,10 @@ const onSubmit = (values: RestaurantData) => {
     closeTime: values.closingTime,
     openFromDay: values.openFrom,
     openToDay: values.openTo,
-    description: values.description,
-
-    menu_id: values.menuid,
-    user_id: values.userid
-
+    description: values.description
   }
 
-  EstablishmentService.createEstablishment(newEstablishment);
+  EstablishmentServices.creaEstablishment(newEstablishment);
 }
 
 export const CreateRestaurant = (props: CreateDishProps) => {
@@ -200,16 +191,9 @@ export const CreateRestaurant = (props: CreateDishProps) => {
           <ReactFirebaseFileUpload />
 
           <DialogContent>
-          <Formik
-          initialValues={{ name: "", phone: "", email: "", location: "", openingTime: "", closingTime:"",
-        openFrom:"", openTo:"", description:"", menuid:0, userid:0 }}
-          onSubmit={values => {
-            onSubmit(values);
-          }}
-        >
-          {({ values, handleChange, handleBlur }) => (
- <Form style={{ color: "white" }}>
-              <table className="tabla" >
+            <form className={classes.root} noValidate autoComplete="off">
+
+              <table className="tabla">
                 <tr>
                     <TextField
                       autoFocus
@@ -217,8 +201,8 @@ export const CreateRestaurant = (props: CreateDishProps) => {
                       id="name"
                       label="Name"
                       type="email"
+
                       style={{ width: "100%" }}
-                      onChange={handleChange} onBlur={handleBlur}
                     />
                
                 </tr>
@@ -231,7 +215,6 @@ export const CreateRestaurant = (props: CreateDishProps) => {
                     type="email"
 
                     style={{ width: "100%" }}
-                    onChange={handleChange} onBlur={handleBlur}
                   />
                 </tr>
                 <tr>
@@ -244,7 +227,6 @@ export const CreateRestaurant = (props: CreateDishProps) => {
                     type="email"
 
                     style={{ width: "100%" }}
-                    onChange={handleChange} onBlur={handleBlur}
                   />
                 </tr>
               </table>
@@ -259,7 +241,6 @@ export const CreateRestaurant = (props: CreateDishProps) => {
                       type="time"
 
                       style={{ width: "100%" }}
-                      onChange={handleChange} onBlur={handleBlur}
                     />
                   </td>
                   <td>
@@ -271,7 +252,6 @@ export const CreateRestaurant = (props: CreateDishProps) => {
                       type="time"
 
                       style={{ width: "100%" }}
-                      onChange={handleChange} onBlur={handleBlur}
                     />
                   </td>
                 </tr>
@@ -283,8 +263,6 @@ export const CreateRestaurant = (props: CreateDishProps) => {
                       label="Select"
                       value={fromDay}
                       onChange={changeFromDay}
-                      // onChange={handleChange}
-                       onBlur={handleBlur}
                       helperText="Open from..."
                       style={{ width: "100%" }}
                     >
@@ -303,8 +281,6 @@ export const CreateRestaurant = (props: CreateDishProps) => {
                       label="Select"
                       value={toDay}
                       onChange={changeToDay}
-                      // onChange={handleChange}
-                       onBlur={handleBlur}
                       helperText="Open to..."
                       style={{ width: "100%" }}
 
@@ -327,22 +303,20 @@ export const CreateRestaurant = (props: CreateDishProps) => {
                     label="Description"
                     type="email"
                     style={{ width: "100%" }}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
                   />
                 </tr>
               </table>
-              
-               </Form>
-               )}
-              </Formik>
+
+            </form>
           </DialogContent>
 
           <DialogActions>
 
 
 
-          <button type="submit" onClick={handleClose} className="botonDone">Done</button>
+            <button className="botonDone" onClick={handleClose} color="primary">
+              Done
+          </button>
 
           </DialogActions>
         </Dialog>
