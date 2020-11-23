@@ -140,6 +140,7 @@ export const CreateRestaurant = () => {
 
    const setMyImageUrl = (url: string) => {
     myImgUrl = url;
+    console.log(myImgUrl);
   }
 
   const [toDay, setToDay] = React.useState('EUR');
@@ -159,11 +160,11 @@ export const CreateRestaurant = () => {
   // cajitas de select
 
   return (
-    <div className="container">
-      <div className="child">
+    <div >
+      <div>
 
         <button className="boton" onClick={handleClickOpen}>
-          + Add Restaurant
+          Add Restaurant
       </button>
 
         <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">

@@ -22,6 +22,7 @@ export interface Establishment {
 export class EstablishmentService {
 
     static createEstablishment(establishment: Establishment) {
+        console.log(establishment);
         axios.post(`http://127.0.0.1:5000/establishments`, establishment)
             .then(res => {
                 const ans = res.data.establishment;

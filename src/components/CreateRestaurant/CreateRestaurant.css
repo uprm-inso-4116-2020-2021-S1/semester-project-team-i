@@ -88,22 +88,22 @@ top: 1%;
 
 
 .boton{
-  background-color: orange;
-  width: 200px;
-  height: 70px;
-  border-radius: 5px;
+  position: relative;
+  width: 246px;
+  height: 50px;
+  top: 20%;
 
-  padding: 0;
-  border: none;
-  outline: none;
-/* background: none; */
-    
-/* font */
+
+  margin: 10px;
   font-family: Roboto;
-  font-style: bold;
-  font-weight: 900;
-  font-size: 25px;
-  color: white;
+  font-style: normal !important;
+  font-size: 32px;
+  font-weight: bold ;
+  text-align: center;
+  color: #FFFFFF !important;
+
+  background: #F1821B !important;
+  border-radius: 10px;
     
 }
 

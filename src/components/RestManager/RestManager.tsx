@@ -23,48 +23,48 @@ export default class RestManager extends React.Component<RestManagerProps, RestM
             data: [
                 {
                     name: 'pancakes',
-                    price: 10,
-                    description: 'helloooo',
+                    price: '$10',
+                    description: 'with fruits and whipped cream',
+                    category: 'breakfast',
+                    imageUrl: img1,
+                    rating: 123,
+                    type: 'entree'
+                },
+                {
+                    name: 'french toast',
+                    price: '$11',
+                    description: "chef's special",
+                    category: 'breakfast',
+                    imageUrl: img1,
+                    rating: 87,
+                    type: 'entree'
+                },
+                {
+                    name: 'fruit salad',
+                    price: '$6',
+                    description: 'fruits of the day',
+                    category: 'snacks',
+                    imageUrl: img1,
+                    rating: 100,
+                    type: 'snacks'
+                },
+                {
+                    name: 'açai',
+                    price: '$12',
+                    description: 'vegan',
+                    category: 'snacks',
+                    imageUrl: img1,
+                    rating: 138,
+                    type: 'entree'
+                },
+                {
+                    name: 'turkey sandwich',
+                    price: '$9',
+                    description: 'sandwich',
                     category: 'breakfast',
                     imageUrl: img1,
                     rating: 200,
                     type: 'entree'
-                },
-                {
-                    name: 'pancakes',
-                    price: 10,
-                    description: 'helloooo',
-                    category: 'breakfast',
-                    imageUrl: img1,
-                    rating: 200,
-                    type: 'entree'
-                },
-                {
-                    name: 'pancakes',
-                    price: 10,
-                    description: 'helloooo',
-                    category: 'breakfast',
-                    imageUrl: img1,
-                    rating: 200,
-                    type: 'drinks'
-                },
-                {
-                    name: 'pancakes',
-                    price: 10,
-                    description: 'helloooo',
-                    category: 'breakfast',
-                    imageUrl: img1,
-                    rating: 200,
-                    type: 'entree'
-                },
-                {
-                    name: 'pancakes',
-                    price: 10,
-                    description: 'helloooo',
-                    category: 'breakfast',
-                    imageUrl: img1,
-                    rating: 200,
-                    type: 'dessert'
                 }
             ],
         }

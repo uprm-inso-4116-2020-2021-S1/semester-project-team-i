@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { Dialog, DialogActions, DialogContent, TextField } from '@material-ui/core';
 import { Form, Formik } from 'formik';
 import { User, UserService } from '../../services/UserService';
+import { CreateRestaurant } from '../CreateRestaurant/CreateRestaurant';
 
 
 interface ProfData {
@@ -30,7 +31,7 @@ const onSubmit = (values: ProfData) => {
         email: ''
     }
 
-    UserService.getUserById(loggedInUID as unknown as number, editedUser);
+    // UserService.getUserById(loggedInUID as unknown as number, editedUser);
 
     editedUser.username = values.username;
     editedUser.firstName = values.name;
@@ -41,8 +42,35 @@ const onSubmit = (values: ProfData) => {
     UserService.editUserById(uid, editedUser);
 }
 
+let currentUser : User = {
+    uid: localStorage.getItem('loggedInUser') as unknown as number,
+    firstName: '',
+    lastName: '',
+    password: '',
+    email: ''
+}
+let isRestaurantOwner = false;
+
+export const setIsRestaurantOwner = (bool: boolean) =>{
+   isRestaurantOwner = true;
+    
+}
+
 
 export const Profile: React.FC = () => {
+
+    const loggedInUID = localStorage.getItem('loggedInUser');
+    let dummyUser: User = {
+        uid: loggedInUID as unknown as number,
+        firstName: '',
+        lastName: '',
+        password: '',
+        email: '',
+        establishments: []
+    }
+    
+    UserService.getUserById(loggedInUID as unknown as number, dummyUser);
+    
 
     const [openFirst, setOpenFirst] = React.useState(false);
     const [showEditProfile, setShowEditProfile] = React.useState(false);
@@ -88,9 +116,12 @@ export const Profile: React.FC = () => {
                                 <button className="boxButton" onClick={openShowEdit}>Edit Profile</button>
                             </tr>
                             <tr>
-                                <Link to="/restManager">
+                                {isRestaurantOwner && <Link to="/restManager">
                                     <button className="boxButton" onClick={handleCloseFirst}>Manage Rest.</button>
-                                </Link>
+                                </Link>}
+                                {!isRestaurantOwner
+                                && <CreateRestaurant></CreateRestaurant>
+                                }
                             </tr>
                             <tr>
                                 <Link to="/">
