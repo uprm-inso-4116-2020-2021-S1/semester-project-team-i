@@ -16,6 +16,7 @@ export interface Establishment {
     user_id?: number;
     dishes?: Dish[];
     user?: User;
+    image_url: string; 
 }
 
 export class EstablishmentService {

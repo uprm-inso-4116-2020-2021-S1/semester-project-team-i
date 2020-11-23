@@ -47,7 +47,8 @@ export default class Restaurant extends React.Component<RestaurantProps, Restaur
         openTime: '',
         closeTime: '',
         openFromDay: '',
-        openToDay: ''
+        openToDay: '',
+        image_url: ''
     }
 
     private facebookHandle = "";
@@ -125,11 +126,11 @@ export default class Restaurant extends React.Component<RestaurantProps, Restaur
                 <div className="white">
                     <table>
                         <tr >
-                            <td style={{ width: "38%" }}>
-                                <div className="restPic">
+                            <td style={{ width: "48%" }}>
+                                <div className="restPic" style={{background: `url(${this.establishment.image_url})`}}>
                                 </div>
                             </td>
-                            <td style={{ textAlign: "center", width: "50%" }}>
+                            <td style={{ textAlign: "center"}}>
                                 <div className="handle">{this.establishment.name}</div>
                                 <div className="details">
                                     Open: {this.establishment.openFromDay} through {this.establishment.openToDay}<br />

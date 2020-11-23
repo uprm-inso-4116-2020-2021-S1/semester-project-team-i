@@ -13,6 +13,7 @@ import { Form, Formik } from 'formik';
 import { useHistory } from 'react-router';
 
 let history;
+let myImgUrl = "https://upload.wikimedia.org/wikipedia/commons/4/42/Photo-camera-in-circular-outlined-interface-button.svg";
 
 interface RestaurantData {
   name: string;
@@ -23,6 +24,7 @@ interface RestaurantData {
   openFromDay: string;
   openToDay: string;
   description: string;
+  image_url: string;
 }
 
 const onSubmit = (values: RestaurantData) => {
@@ -36,7 +38,8 @@ const onSubmit = (values: RestaurantData) => {
     openFromDay: values.openFromDay,
     openToDay: values.openToDay,
     description: values.description,
-    user_id: (localStorage.getItem('loggedInUser') as unknown as number)
+    user_id: (localStorage.getItem('loggedInUser') as unknown as number),
+    image_url: myImgUrl
   }
 
   EstablishmentService.createEstablishment(newEstablishment);
@@ -135,6 +138,10 @@ export const CreateRestaurant = () => {
   //   }),
   // );
 
+   const setMyImageUrl = (url: string) => {
+    myImgUrl = url;
+  }
+
   const [toDay, setToDay] = React.useState('EUR');
 
 
@@ -173,13 +180,13 @@ export const CreateRestaurant = () => {
             </tr>
           </table>
 
-          <ReactFirebaseFileUpload />
+          <ReactFirebaseFileUpload setMyImageUrl={setMyImageUrl} />
 
           <DialogContent>
             <Formik
               initialValues={{
                 name: "", phone: "", location: "", openTime: "", closeTime: "",
-                openFromDay: "Saturday", openToDay: "Sunday", description: ""
+                openFromDay: "Saturday", openToDay: "Sunday", description: "", image_url: myImgUrl
               }}
               onSubmit={values => {
                 onSubmit(values);

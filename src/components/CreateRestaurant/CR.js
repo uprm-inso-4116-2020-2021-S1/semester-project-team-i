@@ -5,7 +5,7 @@ import { storage } from "../firebase";
 import cam from '../../assets/camara.png'; // gives image path
 import './CR.css';
 
-export default function ReactFirebaseFileUpload() {
+export default function ReactFirebaseFileUpload(props) {
   const [image, setImage] = useState(null);
   const [url, setUrl] = useState("");
   const [progress, setProgress] = useState(0);
@@ -38,6 +38,7 @@ export default function ReactFirebaseFileUpload() {
             .getDownloadURL()
             .then(url => {
               setUrl(url);
+              props.setMyImageUrl(url);
             });
         }
       );
