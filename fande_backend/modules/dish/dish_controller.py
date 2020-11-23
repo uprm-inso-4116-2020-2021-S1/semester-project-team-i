@@ -7,8 +7,16 @@ from modules.dish.dish_dao import Dish
 class DishController:
     @staticmethod
     @error_validation(method='GET')
-    def get_all_dishes():
+    def get_all_dishes(params=None):
         dishes = Dish.get_all_dishes()
+        if params:
+            establishment_id = params.get('eid', None)
+            limit = params.get('limit', None)
+            top_rated = params.get('topRated', None)
+            if establishment_id and limit:
+                dishes = Dish.get_top_dishes_by_establishment(int(establishment_id), int(limit))
+            elif top_rated and limit:
+                dishes = Dish.get_top_dishes(int(limit))
         result_list = [dish.to_dict() for dish in dishes]
         result = {
             'message': 'Success!',
@@ -25,7 +33,7 @@ class DishController:
                     return jsonify(message='Dish Not Found!'), 404
                 result = {
                     'message': 'Success!',
-                    'menu': dish.to_dict(),
+                    'dish': dish.to_dict(),
                 }
                 return jsonify(result), 200
             except Exception as err:
@@ -42,7 +50,7 @@ class DishController:
                 created_dish = new_dish.create()
                 result = {
                     'message': 'Success!',
-                    'menu': created_dish.to_dict(),
+                    'dish': created_dish.to_dict(),
                 }
                 return jsonify(result), 201
             except Exception as err:
@@ -61,7 +69,7 @@ class DishController:
                 dish_to_update.update()
                 result = {
                     "message": "Success!",
-                    "menu": dish_to_update.to_dict()
+                    "dish": dish_to_update.to_dict()
                 }
                 return jsonify(result), 200
             except Exception as err:

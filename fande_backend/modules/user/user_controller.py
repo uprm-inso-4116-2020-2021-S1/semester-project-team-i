@@ -1,11 +1,39 @@
 import bcrypt
-from flask import jsonify
+from flask import jsonify, session
 
 from modules.user.user_dao import User
 from helpers.decorator import verify_params, error_validation
 
 
 class UserController:
+    @staticmethod
+    @error_validation(method='POST')
+    def login(json):
+        valid_params = verify_params(json, User.USER_LOGIN_REQUIRED_PARAMS)
+        if not valid_params:
+            return jsonify(message="Bad Request!"), 400
+        user = User.get_user_by_username(valid_params['username'])
+        if user:
+            password = valid_params['password']
+            if bcrypt.checkpw(password.encode('utf-8'), user.password.encode('utf-8')):
+                session['logged_in'] = True
+                status = True
+                result = {
+                    "status": status,
+                    "user_id": user.uid
+                }
+                return jsonify(result), 200
+            else:
+                return jsonify(message="Username or password is wrong."), 400
+        else:
+            return jsonify(message="Username Not Found!"), 404
+
+    @staticmethod
+    @error_validation(method='GET')
+    def logout():
+        session['logged_in'] = False
+        return jsonify(status='Success!'), 200
+
     @staticmethod
     @error_validation(method='GET')
     def get_all_users():
