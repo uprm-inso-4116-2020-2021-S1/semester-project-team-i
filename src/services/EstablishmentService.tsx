@@ -1,4 +1,7 @@
 import axios from 'axios';
+import { goToNewRestaurant } from '../components/CreateRestaurant/CreateRestaurant';
+import { Dish } from './DishService';
+import { User } from './UserService';
 
 export interface Establishment {
     eid?: number;
@@ -10,8 +13,9 @@ export interface Establishment {
     closeTime: string;
     openFromDay: string;
     openToDay: string;
-    menu_id: number;
-    user_id: number;
+    user_id?: number;
+    dishes?: Dish[];
+    user?: User;
 }
 
 export class EstablishmentService {
@@ -19,9 +23,11 @@ export class EstablishmentService {
     static createEstablishment(establishment: Establishment) {
         axios.post(`http://127.0.0.1:5000/establishments`, establishment)
             .then(res => {
-                const ans = res.data.users;
+                const ans = res.data.establishment;
                 establishment = ans;
                 console.log(res);
+                console.log(establishment);
+                goToNewRestaurant(establishment);
             });
     }
 
@@ -34,11 +40,11 @@ export class EstablishmentService {
             });
     }
 
-    static getEstablishmentById(eid: number, e: Establishment) {
-        axios.get(`http://127.0.0.1:5000/establishments/${eid}`)
+    static async getEstablishmentById(eid: number, setEstablishment: (e: Establishment) => void) {
+        await axios.get(`http://127.0.0.1:5000/establishments/${eid}`)
             .then(res => {
                 const ans = res.data.establishment;
-                e = ans;
+                setEstablishment(ans);
                 console.log(res);
             });
     }

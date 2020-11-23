@@ -11,7 +11,6 @@
     width: 50px;
 }
 .orange {
-    
     height: 50%;
     background: rgb(255, 153, 0);
     text-align: center;
@@ -32,7 +31,7 @@
 }
 
 .handle {
-    width: 619px;
+    /* width: 619px; */
     height: 113px;
     margin-top: 120px;
     text-align: left;

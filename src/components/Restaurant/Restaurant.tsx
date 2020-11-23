@@ -8,14 +8,15 @@ import menuIcon from "../../assets/menuIcon.png";
 import facebook from "../../assets/facebook.png";
 import instagram from "../../assets/instagram.png";
 import twitter from "../../assets/twitter.png";
-import { Link } from 'react-router-dom';
 import Menu from '../Menu/Menu';
 import img1 from '../../assets/plate1.png';
 import { Item } from '../Item/Item';
+import { Establishment, EstablishmentService } from '../../services/EstablishmentService';
 
 
-interface RestaurantProps extends RouteComponentProps<{ 
-    name: string }> {
+interface RestaurantProps extends RouteComponentProps<{
+    eid: string
+}> {
 
 }
 
@@ -36,9 +37,19 @@ export interface Dish {
 
 export default class Restaurant extends React.Component<RestaurantProps, RestaurantStates> {
 
-    private daysOpen = "Monday thru Friday";
-    private hours = "8:00 am - 10:00 pm";
-    private address = "Calle Bosque";
+
+    private eid = this.props.match.params.eid as unknown as number;
+    private establishment: Establishment = {
+        name: '',
+        description: '',
+        phone: '',
+        location: '',
+        openTime: '',
+        closeTime: '',
+        openFromDay: '',
+        openToDay: ''
+    }
+
     private facebookHandle = "";
     private instagramHandle = "";
     private twitterHandle = "";
@@ -96,9 +107,17 @@ export default class Restaurant extends React.Component<RestaurantProps, Restaur
         this.state = {
             showMenuList: false
         }
-
     }
 
+    setEstablishment(e: Establishment) {
+        this.establishment = e;
+        console.log(this.establishment);
+        this.forceUpdate();
+    }
+    componentDidMount() {
+        EstablishmentService.getEstablishmentById(this.eid, this.setEstablishment.bind(this));
+        console.log(this.eid);
+    }
 
     render() {
         return (
@@ -106,16 +125,16 @@ export default class Restaurant extends React.Component<RestaurantProps, Restaur
                 <div className="white">
                     <table>
                         <tr >
-                            <td style={{ width: "50%" }}>
+                            <td style={{ width: "38%" }}>
                                 <div className="restPic">
                                 </div>
                             </td>
-                            <td style={{ textAlign: "center" }}>
-                                <div className="handle">{this.props.match.params.name}</div>
+                            <td style={{ textAlign: "center", width: "50%" }}>
+                                <div className="handle">{this.establishment.name}</div>
                                 <div className="details">
-                                    Open: {this.daysOpen}<br />
-                                    Hours: {this.hours}<br />
-                                    Address: {this.address}<br />
+                                    Open: {this.establishment.openFromDay} through {this.establishment.openToDay}<br />
+                                    Hours: {this.establishment.openTime} to {this.establishment.closeTime}<br />
+                                    Address: {this.establishment.location}<br />
                                 </div>
                                 <div style={{ marginTop: "20px", textAlign: "left" }} onClick={() => {
                                     this.setState({
@@ -129,10 +148,10 @@ export default class Restaurant extends React.Component<RestaurantProps, Restaur
                                 <div style={{ marginBottom: "20px", marginTop: "40px", marginLeft: "100px" }}>
                                     <img alt="facebook" src={facebook}></img>
                                 </div>
-                                <div style={{ marginBottom: "20px",  marginLeft: "100px"  }}>
+                                <div style={{ marginBottom: "20px", marginLeft: "100px" }}>
                                     <img alt="instagram" src={instagram}></img>
                                 </div>
-                                <div style={{ marginBottom: "20px",  marginLeft: "100px"  }}>
+                                <div style={{ marginBottom: "20px", marginLeft: "100px" }}>
                                     <img alt="twitter" src={twitter}></img>
                                 </div>
                             </td>
@@ -140,24 +159,24 @@ export default class Restaurant extends React.Component<RestaurantProps, Restaur
                     </table>
                 </div>
                 <div>
-                  
+
                     {!this.state.showMenuList &&
                         <div className="orange">
-                          <table>
-                              <tr>
-                                  <td>
-                            <Item imgSrc={plate1} name={this.props.match.params.name} description="Wafflera vende waffles."></Item>
-                            </td>
-                            <td>
-                            <Item imgSrc={plate2} name={this.props.match.params.name} description="Wafflera vende waffles."></Item>
-                            </td>
-                            <td>
-                            <Item imgSrc={plate3} name={this.props.match.params.name} description="Wafflera vende waffles."></Item>
-                            </td>
-                            </tr>
-                    
+                            <table style={{width:"80%", marginLeft:"10%", marginRight:"10%"}}>
+                                <tr>
+                                    <td>
+                                        <Item imgSrc={plate1} name={this.establishment.name} description="Wafflera vende waffles."></Item>
+                                    </td>
+                                    <td>
+                                        <Item imgSrc={plate2} name={this.establishment.name} description="Wafflera vende waffles."></Item>
+                                    </td>
+                                    <td>
+                                        <Item imgSrc={plate3} name={this.establishment.name} description="Wafflera vende waffles."></Item>
+                                    </td>
+                                </tr>
 
-                        </table>
+
+                            </table>
                         </div>}
                     {this.state.showMenuList &&
                         <div className="divider">
