@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
+
+.rectangle{
+    position: absolute;
+    width: 505px;
+    height: 460px;
+    left: 60%;
+    top: 210px;
+
+    text-align: center;
+    vertical-align: middle;
+
+    background: rgba(43, 43, 43, 0.94);
+    border-radius: 20px;
+}
+
+.userIcon {
+    width: 166px;
+    height: 158px;
+    text-align: center;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background: url(../../assets/profileIMG.png);
+}
+
+.registerText {
+    width: 207px;
+    height: 43px;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 48px;
+    line-height: 140px;
+    text-align: center;
+
+    color: #FFFFFF;
+}
+
+.pancakePic {
+    position: absolute;
+
+    z-index: -1;
+    width: 100% !important;
+    height: 100% !important;
+
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+
+    background: url(../../assets/pancakes.png);
+    
+}
+
+.fieldName {
+    width: 191px;
+    height: 44px;
+    margin-left: 15%;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 42px;
+    text-align: left;
+
+    color: #FFFFFF;
+}
+
+.submitButton {
+    width: 172px;
+    height: 57px;
+    margin: 20px !important;
+    font-family: Roboto !important;
+    font-style: normal !important;
+    font-weight: bold !important;
+    color: #FFFFFF !important;
+
+    background: #F1821B !important;
+    border-radius: 5px;
+}
+
+.returningUser {
+    color: #FFFFFF !important;
+    font-style: italic;
+
+}
+
+
