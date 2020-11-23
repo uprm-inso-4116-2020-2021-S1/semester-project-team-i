@@ -20,6 +20,7 @@ class Establishment(DaoOperations, OutputMixin, db.Model):
     # menu = db.relationship('Menu', backref='establishments', lazy=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.uid'), nullable=False)
     user = db.relationship('User', backref='establishments', lazy=True)
+    image_url = db.Column(db.String(250), default='')
 
     def __init__(self, **kwargs):
         super(Establishment, self).__init__(**kwargs)
@@ -32,6 +33,7 @@ class Establishment(DaoOperations, OutputMixin, db.Model):
         self.user_id = kwargs['user_id']
         self.openFromDay = kwargs['openFromDay']
         self.openToDay = kwargs['openToDay']
+        self.image_url = kwargs.get('image_url', None)
 
     @staticmethod
     def get_all_establishments():
