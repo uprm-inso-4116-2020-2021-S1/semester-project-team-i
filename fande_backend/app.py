@@ -101,6 +101,7 @@ def get_all_or_create_dishes():
     '''
     top rated dishes: /dishes?topRated=true&limit=5     (default limit = 100)
     top rated dishes by establishment: /dishes?eid=4    (default limit = 3)
+    random dishes: /dishes?featured=true&limit=4        (default limit = 5)
     :return: list of dishes
     '''
     if request.method == 'GET':
