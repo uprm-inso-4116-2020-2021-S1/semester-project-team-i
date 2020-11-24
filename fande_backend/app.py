@@ -5,12 +5,14 @@ from modules.dish.dish_controller import DishController
 from modules.establishment.establishment_controller import EstablishmentController
 from modules.user.user_controller import UserController
 from modules.category.category_controller import CategoryController
+from modules.review.review_controller import ReviewController
 
 
 user_controller = UserController()
 dish_controller = DishController()
 establishment_controller = EstablishmentController()
 category_controller = CategoryController()
+review_controller = ReviewController()
 
 
 @app.route('/')
@@ -144,6 +146,28 @@ def get_update_or_delete_menu(id):
     #     return CategoryController.update_category(id, request.json)
     # elif request.method == 'DELETE':
     #     return CategoryController.delete_category(id)
+    else:
+        return jsonify(message="Method not allowed."), 405
+
+
+@app.route('/reviews', methods=['GET', 'POST'])
+def get_all_or_create_reviews():
+    if request.method == 'GET':
+        return review_controller.get_all()
+    elif request.method == 'POST':
+        return review_controller.create(request.json)
+    else:
+        return jsonify(message="Method not allowed."), 405
+
+
+@app.route('/reviews/<int:id>', methods=['GET', 'PUT', 'DELETE'])
+def get_update_or_delete_review(id):
+    if request.method == 'GET':
+        return review_controller.get_by_id(id)
+    elif request.method == 'PUT':
+        return review_controller.update(id, request.json)
+    elif request.method == 'DELETE':
+        return review_controller.delete(id)
     else:
         return jsonify(message="Method not allowed."), 405
 
