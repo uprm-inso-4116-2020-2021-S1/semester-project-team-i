@@ -8,6 +8,7 @@ from modules.category.category_controller import CategoryController
 
 
 user_controller = UserController()
+dish_controller = DishController()
 
 
 @app.route('/')
@@ -103,9 +104,9 @@ def get_all_or_create_dishes():
     :return: list of dishes
     '''
     if request.method == 'GET':
-        return DishController.get_all_dishes() if not request.args else DishController.get_all_dishes(request.args)
+        return dish_controller.get_all() if not request.args else dish_controller.get_all(request.args)
     elif request.method == 'POST':
-        return DishController.create_dish(request.json)
+        return dish_controller.create(request.json)
     else:
         return jsonify(message="Method not allowed."), 405
 
@@ -113,11 +114,11 @@ def get_all_or_create_dishes():
 @app.route('/dishes/<int:id>', methods=['GET', 'PUT', 'DELETE'])
 def get_update_or_delete_dish(id):
     if request.method == 'GET':
-        return DishController.get_dish_by_id(id)
+        return dish_controller.get_by_id(id)
     elif request.method == 'PUT':
-        return DishController.update_dish(id, request.json)
+        return dish_controller.update(id, request.json)
     elif request.method == 'DELETE':
-        return DishController.delete_dish(id)
+        return dish_controller.delete(id)
     else:
         return jsonify(message="Method not allowed."), 405
 
