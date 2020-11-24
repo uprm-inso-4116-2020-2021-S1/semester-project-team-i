@@ -3,6 +3,7 @@ from flask import jsonify
 from helpers.decorator import error_validation, verify_params
 from modules.common.strategy import BaseAPIStrategy
 from modules.review.review_dao import Review
+from modules.user.user_dao import User
 
 
 class ReviewAPIStrategy(BaseAPIStrategy):
@@ -36,6 +37,9 @@ class ReviewAPIStrategy(BaseAPIStrategy):
         valid_params = verify_params(params, Review.REVIEW_REQUIRED_PARAMS)
         if valid_params:
             try:
+                user = User.get_user_by_id(valid_params.get('user_id', None))
+                if not user or not user.isVerified:
+                    return jsonify(message='User does not exist or is not verified'), 400
                 new_review = Review(**valid_params)
                 created_review = new_review.create()
                 result = {
