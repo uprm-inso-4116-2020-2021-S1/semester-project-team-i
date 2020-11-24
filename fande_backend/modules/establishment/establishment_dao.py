@@ -16,8 +16,6 @@ class Establishment(DaoOperations, OutputMixin, db.Model):
     closeTime = db.Column(db.String(10), nullable=False)
     openFromDay = db.Column(db.String(10), nullable=False)
     openToDay = db.Column(db.String(10), nullable=False)
-    # menu_id = db.Column(db.Integer, db.ForeignKey('menu.mid'), nullable=False)
-    # menu = db.relationship('Menu', backref='establishments', lazy=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.uid'), nullable=False)
     user = db.relationship('User', backref='establishments', lazy=True)
 

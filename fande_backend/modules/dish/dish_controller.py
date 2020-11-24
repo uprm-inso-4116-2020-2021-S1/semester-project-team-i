@@ -13,10 +13,13 @@ class DishController:
             establishment_id = params.get('eid', None)
             limit = params.get('limit', None)
             top_rated = params.get('topRated', None)
+            featured = params.get('featured', None)
             if establishment_id and limit:
                 dishes = Dish.get_top_dishes_by_establishment(int(establishment_id), int(limit))
             elif top_rated and limit:
                 dishes = Dish.get_top_dishes(int(limit))
+            elif featured and limit:
+                dishes = Dish.get_random_dishes(int(limit))
         result_list = [dish.to_dict() for dish in dishes]
         result = {
             'message': 'Success!',

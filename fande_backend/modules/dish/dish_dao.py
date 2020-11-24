@@ -1,4 +1,5 @@
 # import enum
+from sqlalchemy.sql.expression import func
 
 from config import db
 from helpers.mixin import DaoOperations, OutputMixin
@@ -72,3 +73,7 @@ class Dish(DaoOperations, OutputMixin, db.Model):
     @staticmethod
     def get_top_dishes(n=100):
         return Dish.query.order_by(Dish.rating.desc()).limit(n)
+
+    @staticmethod
+    def get_random_dishes(n=10):
+        return Dish.query.order_by(func.random()).limit(n)
