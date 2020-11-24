@@ -10,6 +10,7 @@ from modules.category.category_controller import CategoryController
 user_controller = UserController()
 dish_controller = DishController()
 establishment_controller = EstablishmentController()
+category_controller = CategoryController()
 
 
 @app.route('/')
@@ -128,7 +129,7 @@ def get_update_or_delete_dish(id):
 @app.route('/categories', methods=['GET'])  # , 'POST'])
 def get_all_or_create_menus():
     if request.method == 'GET':
-        return CategoryController.get_all_categories()
+        return category_controller.get_all()
     # elif request.method == 'POST':
     #     return CategoryController.create_category(request.json)
     else:
@@ -138,7 +139,7 @@ def get_all_or_create_menus():
 @app.route('/categories/<int:id>', methods=['GET'])     # , 'PUT', 'DELETE'])
 def get_update_or_delete_menu(id):
     if request.method == 'GET':
-        return CategoryController.get_category_by_id(id)
+        return category_controller.get_by_id(id)
     # elif request.method == 'PUT':
     #     return CategoryController.update_category(id, request.json)
     # elif request.method == 'DELETE':
