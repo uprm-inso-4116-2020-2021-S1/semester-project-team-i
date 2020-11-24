@@ -32,3 +32,7 @@ class UpVote(DaoOperations, OutputMixin, db.Model):
     @staticmethod
     def get_all_dish_upvotes(did):
         return UpVote.query.filter_by(dish_id=did)
+
+    @staticmethod
+    def get_upvote_by_id(oid):
+        return UpVote.query.filter_by(vid=oid).first()

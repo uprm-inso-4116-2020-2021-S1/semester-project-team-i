@@ -64,6 +64,8 @@ class DishAPIStrategy(BaseAPIStrategy):
         if oid and valid_params:
             try:
                 dish_to_update = Dish.get_dish_by_id(oid)
+                if not dish_to_update:
+                    return jsonify(message='Dish Not Found!'), 404
                 for key, value in valid_params.items():
                     setattr(dish_to_update, key, value)
                 dish_to_update.update()

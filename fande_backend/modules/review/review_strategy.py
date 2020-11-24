@@ -53,6 +53,8 @@ class ReviewAPIStrategy(BaseAPIStrategy):
         if oid and valid_params:
             try:
                 review_to_update = Review.get_review_by_id(oid)
+                if not review_to_update:
+                    return jsonify(message='Review Not Found!'), 404
                 for key, value in valid_params.item():
                     setattr(review_to_update, key, value)
                 review_to_update.update()

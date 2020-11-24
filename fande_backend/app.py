@@ -6,6 +6,7 @@ from modules.establishment.establishment_controller import EstablishmentControll
 from modules.user.user_controller import UserController
 from modules.category.category_controller import CategoryController
 from modules.review.review_controller import ReviewController
+from modules.upvote.upvote_controller import UpVoteController
 
 
 user_controller = UserController()
@@ -13,6 +14,7 @@ dish_controller = DishController()
 establishment_controller = EstablishmentController()
 category_controller = CategoryController()
 review_controller = ReviewController()
+upvote_controller = UpVoteController()
 
 
 @app.route('/')
@@ -168,6 +170,28 @@ def get_update_or_delete_review(id):
         return review_controller.update(id, request.json)
     elif request.method == 'DELETE':
         return review_controller.delete(id)
+    else:
+        return jsonify(message="Method not allowed."), 405
+
+
+@app.route('/upvotes', methods=['GET', 'POST'])
+def get_all_or_create_upvotes():
+    if request.method == 'GET':
+        return upvote_controller.get_all()
+    elif request.method == 'POST':
+        return upvote_controller.create(request.json)
+    else:
+        return jsonify(message="Method not allowed."), 405
+
+
+@app.route('/upvotes/<int:id>', methods=['GET', 'PUT', 'DELETE'])
+def get_update_or_delete_upvotes(id):
+    if request.method == 'GET':
+        return upvote_controller.get_by_id(id)
+    elif request.method == 'PUT':
+        return upvote_controller.update(id, request.json)
+    elif request.method == 'DELETE':
+        return upvote_controller.delete(id)
     else:
         return jsonify(message="Method not allowed."), 405
 
