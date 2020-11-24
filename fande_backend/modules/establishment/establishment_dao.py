@@ -18,7 +18,7 @@ class Establishment(DaoOperations, OutputMixin, db.Model):
     openToDay = db.Column(db.String(10), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.uid'), nullable=False)
     user = db.relationship('User', backref='establishments', lazy=True)
-    image_url = db.Column(db.String(250), default='')
+    image_url = db.Column(db.String(550), default='')
 
     def __init__(self, **kwargs):
         super(Establishment, self).__init__(**kwargs)

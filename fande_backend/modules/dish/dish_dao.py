@@ -21,7 +21,7 @@ class Dish(DaoOperations, OutputMixin, db.Model):
     description = db.Column(db.String(100), nullable=False)
     price = db.Column(db.Float(precision=2), nullable=False)
     rating = db.Column(db.Integer, default=0)
-    image_url = db.Column(db.String(250), default='')
+    image_url = db.Column(db.String(550), default='')
     category_id = db.Column(db.Integer, db.ForeignKey('category.cid'), nullable=False)
     category = db.relationship('Category', backref='dishes', lazy=True)     # int? | Category table
     name = db.Column(db.String(50), nullable=False)
