@@ -12,7 +12,7 @@ class Review(DaoOperations, OutputMixin, db.Model):
     timestamp = db.Column(db.String(50), nullable=False) 
     description = db.Column(db.String(100), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.uid'), nullable=False)
-    user = db.relationship('User', backref='establishments', lazy=True)
+    user = db.relationship('User', backref='reviews', lazy=True)
     dish_id = db.Column(db.Integer, db.ForeignKey('dish.did'), nullable=False)
     dish = db.relationship('Dish', backref='reviews', lazy=True)
 
