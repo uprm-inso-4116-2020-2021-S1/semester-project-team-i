@@ -25,7 +25,7 @@ export default class Menu extends React.Component<MenuProps> {
             },
             {
                 title: "Category",
-                field: "category",
+                field: "category_id",
             },
             {
                 title: "Type",

@@ -25,12 +25,19 @@ interface RestaurantStates {
 
 }
 
+interface Category {
+    cid: number;
+    name: string;
+}
+
 export interface Dish {
+    did?: number;
+    category_id: number;
+    establishment_id: number;
     name: string;
     price: string;
     description: string;
-    category: string;
-    imageUrl: string;
+    image_url: string;
     rating: number;
     type: string;
 }
@@ -110,10 +117,10 @@ export default class Restaurant extends React.Component<RestaurantProps, Restaur
         }
     }
 
-    setEstablishment(e: Establishment) {
+    async setEstablishment(e: Establishment) {
         this.establishment = e;
         console.log(this.establishment);
-        axios.get(`http://127.0.0.1:5000/dishes?eid=${e.eid}`)
+        await axios.get(`http://127.0.0.1:5000/dishes?eid=${e.eid}`)
         .then(res => {
             const ans = res.data.dishes;
             this.menu = ans;

@@ -24,15 +24,7 @@ export default class RestManager extends React.Component<RestManagerProps, RestM
         this.state = {
             data: []
         }
-        
-        axios.get(`http://127.0.0.1:5000/dishes?eid=${this.establishmentID}`)
-        .then(res => {
-            const ans = res.data.dishes;
-            this.state = {
-                data: ans
-            }
-            console.log(res);
-        });
+        this.populateTable();
         // this.state = {
         //     data: [
         //         {
@@ -84,6 +76,19 @@ export default class RestManager extends React.Component<RestManagerProps, RestM
         // }
     }
 
+    async populateTable() {
+        await axios.get(`http://127.0.0.1:5000/dishes?eid=${this.establishmentID}`)
+        .then(res => {
+            const ans = res.data.dishes;
+            let myArr: Dish[] = ans;
+            this.setState({
+                data: JSON.parse(JSON.stringify(ans))
+            })
+            console.log(ans);
+        });
+        // this.forceUpdate();
+    }
+
     getTable(data: Dish[]) {
         const columns = [
             {
@@ -96,7 +101,7 @@ export default class RestManager extends React.Component<RestManagerProps, RestM
             },
             {
                 title: "Category",
-                field: "category",
+                field: "category_id",
             },
             {
                 title: "Type",
@@ -141,6 +146,8 @@ export default class RestManager extends React.Component<RestManagerProps, RestM
 
 
     render() {
+        console.log("CURR STATE");
+        console.log(this.state.data);
         return (
             // <div className="container">
                 <div style={{ marginLeft: "10%", marginTop:"7%" }}>

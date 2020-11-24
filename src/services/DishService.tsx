@@ -2,14 +2,14 @@ import axios from 'axios';
 
 export interface Dish {
     did?: number;
-    description: string;
-    price: number;
-    rating: number;
-    image_url?: string;
     category_id: number;
-    name: string;
-    type: string;
     establishment_id: number;
+    name: string;
+    price: number;
+    description: string;
+    image_url: string;
+    rating: number;
+    type: string;
 }
 
 export class DishService {
