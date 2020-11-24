@@ -9,6 +9,7 @@ from modules.category.category_controller import CategoryController
 
 user_controller = UserController()
 dish_controller = DishController()
+establishment_controller = EstablishmentController()
 
 
 @app.route('/')
@@ -55,9 +56,9 @@ def get_update_or_delete_user(id):
 @app.route('/establishments', methods=['GET', 'POST'])
 def get_all_or_create_establishments():
     if request.method == 'GET':
-        return EstablishmentController.get_all_establishments()
+        return establishment_controller.get_all()
     elif request.method == 'POST':
-        return EstablishmentController.create_establishment(request.json)
+        return establishment_controller.create(request.json)
     else:
         return jsonify(message="Method not allowed."), 405
 
@@ -65,11 +66,11 @@ def get_all_or_create_establishments():
 @app.route('/establishments/<int:id>', methods=['GET', 'PUT', 'DELETE'])
 def get_put_or_delete_establishment(id):
     if request.method == 'GET':
-        return EstablishmentController.get_establishment_by_id(id)
+        return establishment_controller.get_by_id(id)
     elif request.method == 'PUT':
-        return EstablishmentController.update_establishment(id, request.json)
+        return establishment_controller.update(id, request.json)
     elif request.method == 'DELETE':
-        return EstablishmentController.delete_establishment(id)
+        return establishment_controller.delete(id)
     else:
         return jsonify(message="Method not allowed."), 405
 
