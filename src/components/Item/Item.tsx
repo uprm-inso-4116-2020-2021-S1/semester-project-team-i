@@ -2,7 +2,6 @@
 import React from 'react';
 import './Item.css';
 import Dialog from '@material-ui/core/Dialog';
-import waffles from '../../assets/waffles.jpg';
 
 interface ItemProps {
     imgSrc: string;

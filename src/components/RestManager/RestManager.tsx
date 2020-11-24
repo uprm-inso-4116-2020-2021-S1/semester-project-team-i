@@ -2,12 +2,12 @@ import MaterialTable from 'material-table';
 import React from 'react';
 import { Dish } from '../Restaurant/Restaurant';
 import './RestManager.css';
-import img1 from '../../assets/plate1.png';
 import { CreateDish } from '../CreateDish/CreateDish';
 import { RouteComponentProps } from 'react-router';
+import axios from 'axios';
 
 
-interface RestManagerProps extends RouteComponentProps<{ establishmentId: string }> {
+interface RestManagerProps extends RouteComponentProps<{ eid: string }> {
 
 }
 
@@ -19,55 +19,67 @@ export default class RestManager extends React.Component<RestManagerProps, RestM
 
     public constructor(props: RestManagerProps) {
         super(props);
+        console.log(props.match.params.eid);
         this.state = {
-            data: [
-                {
-                    name: 'pancakes',
-                    price: '$10',
-                    description: 'with fruits and whipped cream',
-                    category: 'breakfast',
-                    imageUrl: img1,
-                    rating: 123,
-                    type: 'entree'
-                },
-                {
-                    name: 'french toast',
-                    price: '$11',
-                    description: "chef's special",
-                    category: 'breakfast',
-                    imageUrl: img1,
-                    rating: 87,
-                    type: 'entree'
-                },
-                {
-                    name: 'fruit salad',
-                    price: '$6',
-                    description: 'fruits of the day',
-                    category: 'snacks',
-                    imageUrl: img1,
-                    rating: 100,
-                    type: 'snacks'
-                },
-                {
-                    name: 'açai',
-                    price: '$12',
-                    description: 'vegan',
-                    category: 'snacks',
-                    imageUrl: img1,
-                    rating: 138,
-                    type: 'entree'
-                },
-                {
-                    name: 'turkey sandwich',
-                    price: '$9',
-                    description: 'sandwich',
-                    category: 'breakfast',
-                    imageUrl: img1,
-                    rating: 200,
-                    type: 'entree'
-                }
-            ],
+            data: []
         }
+        axios.get(`http://127.0.0.1:5000/dishes?eid=${props.match.params.eid}`)
+        .then(res => {
+            const ans = res.data.dishes;
+            this.state = {
+                data: ans
+            }
+            console.log(res);
+        });
+        // this.state = {
+        //     data: [
+        //         {
+        //             name: 'pancakes',
+        //             price: '$10',
+        //             description: 'with fruits and whipped cream',
+        //             category: 'breakfast',
+        //             imageUrl: img1,
+        //             rating: 123,
+        //             type: 'entree'
+        //         },
+        //         {
+        //             name: 'french toast',
+        //             price: '$11',
+        //             description: "chef's special",
+        //             category: 'breakfast',
+        //             imageUrl: img1,
+        //             rating: 87,
+        //             type: 'entree'
+        //         },
+        //         {
+        //             name: 'fruit salad',
+        //             price: '$6',
+        //             description: 'fruits of the day',
+        //             category: 'snacks',
+        //             imageUrl: img1,
+        //             rating: 100,
+        //             type: 'snacks'
+        //         },
+        //         {
+        //             name: 'açai',
+        //             price: '$12',
+        //             description: 'vegan',
+        //             category: 'snacks',
+        //             imageUrl: img1,
+        //             rating: 138,
+        //             type: 'entree'
+        //         },
+        //         {
+        //             name: 'turkey sandwich',
+        //             price: '$9',
+        //             description: 'sandwich',
+        //             category: 'breakfast',
+        //             imageUrl: img1,
+        //             rating: 200,
+        //             type: 'entree'
+        //         }
+        //     ],
+        // }
     }
 
     getTable(data: Dish[]) {

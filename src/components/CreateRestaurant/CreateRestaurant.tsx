@@ -5,7 +5,6 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
 import './CreateRestaurant.css';
-import cam from '../../assets/camara.png'; // gives image path
 import MenuItem from '@material-ui/core/MenuItem';
 import ReactFirebaseFileUpload from './CR.js';
 import { Establishment, EstablishmentService } from '../../services/EstablishmentService';

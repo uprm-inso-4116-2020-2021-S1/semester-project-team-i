@@ -1,5 +1,5 @@
 import React from 'react';
-
+import axios from 'axios';
 import './ProfilePopup.css';
 import { Link } from 'react-router-dom';
 import { Dialog, DialogActions, DialogContent, TextField } from '@material-ui/core';
@@ -14,12 +14,6 @@ interface ProfData {
     password: string;
 }
 
-// interface ProfPopup {
-//     onSubmit: (values: ProfData) => void;
-//     showEditProfile: boolean;
-//     linktoRestManager: boolean;
-// }
-
 const onSubmit = (values: ProfData) => {
 
     const loggedInUID = localStorage.getItem('loggedInUser');
@@ -31,8 +25,6 @@ const onSubmit = (values: ProfData) => {
         email: ''
     }
 
-    // UserService.getUserById(loggedInUID as unknown as number, editedUser);
-
     editedUser.username = values.username;
     editedUser.firstName = values.name;
     editedUser.password = values.password;
@@ -41,24 +33,11 @@ const onSubmit = (values: ProfData) => {
 
     UserService.editUserById(uid, editedUser);
 }
-
-let currentUser : User = {
-    uid: localStorage.getItem('loggedInUser') as unknown as number,
-    firstName: '',
-    lastName: '',
-    password: '',
-    email: ''
-}
 let isRestaurantOwner = false;
-
-export const setIsRestaurantOwner = (bool: boolean) =>{
-   isRestaurantOwner = true;
-    
-}
-
+let userEID = -1;
 
 export const Profile: React.FC = () => {
-
+   
     const loggedInUID = localStorage.getItem('loggedInUser');
     let dummyUser: User = {
         uid: loggedInUID as unknown as number,
@@ -69,8 +48,16 @@ export const Profile: React.FC = () => {
         establishments: []
     }
     
-    UserService.getUserById(loggedInUID as unknown as number, dummyUser);
-    
+    axios.get(`http://127.0.0.1:5000/users/${loggedInUID as unknown as number}`).then(res => {
+        dummyUser = res.data.user;
+        if(dummyUser.establishments?.length && dummyUser.establishments?.length > 0) {
+            isRestaurantOwner = true;
+            userEID = dummyUser.establishments[0].eid as unknown as number;
+            console.log(userEID);
+        }
+        console.log(res);
+        
+    });
 
     const [openFirst, setOpenFirst] = React.useState(false);
     const [showEditProfile, setShowEditProfile] = React.useState(false);
@@ -107,7 +94,7 @@ export const Profile: React.FC = () => {
                             <Link to="/restaurant/@Wafflerapr">
                                 <button className="profPic" onClick={() => { }}>
                                 </button>
-                                <div className="text"> @Wafflerapr
+                                <div className="text"> User Menu
                                     </div>
                             </Link>
                         </table>
@@ -116,7 +103,7 @@ export const Profile: React.FC = () => {
                                 <button className="boxButton" onClick={openShowEdit}>Edit Profile</button>
                             </tr>
                             <tr>
-                                {isRestaurantOwner && <Link to="/restManager">
+                                {isRestaurantOwner && <Link to={`/restaurantManager/${userEID}`}>
                                     <button className="boxButton" onClick={handleCloseFirst}>Manage Rest.</button>
                                 </Link>}
                                 {!isRestaurantOwner
@@ -125,7 +112,13 @@ export const Profile: React.FC = () => {
                             </tr>
                             <tr>
                                 <Link to="/">
-                                    <button className="boxButton" onClick={openlinktoRestManager}>Log Out</button>
+                                    <button className="boxButton" onClick={() => {
+                                        axios.get(`http://127.0.0.1:5000/logout`)
+                                        .then(res => {
+                                            console.log(res);
+                                            openlinktoRestManager();
+                                        });
+                                    }}>Log Out</button>
                                 </Link>
                             </tr>
                         </table>
