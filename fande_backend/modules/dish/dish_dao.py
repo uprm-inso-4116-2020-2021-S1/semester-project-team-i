@@ -25,12 +25,8 @@ class Dish(DaoOperations, OutputMixin, db.Model):
     category = db.relationship('Category', backref='dishes', lazy=True)     # int? | Category table
     name = db.Column(db.String(50), nullable=False)
     type = db.Column(db.String(20), nullable=False)
-    # menu_id = db.Column(db.Integer, db.ForeignKey('menu.mid'), nullable=False)
-    # menu = db.relationship('Menu', backref='dishes', lazy=True)
     establishment_id = db.Column(db.Integer, db.ForeignKey('establishment.eid'), nullable=False)
     establishment = db.relationship('Establishment', backref='dishes', lazy=True)
-    # upVotes = db.relationship('UpVote', backref=db.backref('dish', lazy='subquery'), lazy=True)
-    # reviews = db.relationship('Review', backref=db.backref('dish', lazy='subquery'), lazy=True)
 
     def __init__(self, **kwargs):
         super(Dish, self).__init__(**kwargs)
