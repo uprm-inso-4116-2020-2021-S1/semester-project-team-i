@@ -19,7 +19,6 @@ export class DishService {
             .then(res => {
                 const ans = res.data.dish;
                 dish = ans;
-                console.log("estoy en res")
                 console.log(res);
             });
     }

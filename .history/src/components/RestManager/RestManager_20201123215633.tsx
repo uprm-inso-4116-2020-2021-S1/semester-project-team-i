@@ -16,16 +16,14 @@ interface RestManagerStates {
 }
 
 export default class RestManager extends React.Component<RestManagerProps, RestManagerStates> {
-    private establishmentID = this.props.match.params.eid as unknown as number;
-    
+
     public constructor(props: RestManagerProps) {
         super(props);
         console.log(props.match.params.eid);
         this.state = {
             data: []
         }
-        
-        axios.get(`http://127.0.0.1:5000/dishes?eid=${this.establishmentID}`)
+        axios.get(`http://127.0.0.1:5000/dishes?eid=${props.match.params.eid}`)
         .then(res => {
             const ans = res.data.dishes;
             this.state = {
@@ -148,7 +146,7 @@ export default class RestManager extends React.Component<RestManagerProps, RestM
                     <div style={{ display: 'table-row' }}>
                         <div className="managerTitle" style={{ display: 'table-cell' }}>Restaurant Manager</div>
                         <div style={{ display: 'table-cell' }}>
-                            <CreateDish establishmentId={this.establishmentID}></CreateDish>
+                            <CreateDish establishmentId={1}></CreateDish>
                         </div>
                     </div>
                     <link

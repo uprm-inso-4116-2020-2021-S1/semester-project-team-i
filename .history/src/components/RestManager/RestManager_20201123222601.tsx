@@ -25,7 +25,7 @@ export default class RestManager extends React.Component<RestManagerProps, RestM
             data: []
         }
         
-        axios.get(`http://127.0.0.1:5000/dishes?eid=${this.establishmentID}`)
+        axios.get(`http://127.0.0.1:5000/dishes?eid=${establishmentID}`)
         .then(res => {
             const ans = res.data.dishes;
             this.state = {

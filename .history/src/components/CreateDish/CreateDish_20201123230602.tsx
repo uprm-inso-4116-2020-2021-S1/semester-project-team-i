@@ -176,7 +176,7 @@ export const CreateDish = (props: CreateDishProps) => {
           <DialogContent>
             <Formik
               initialValues={{
-                description: "", price: 0, rating: 0, image_url: myImgUrl, category_id: 1,
+                description: "", price: 0, rating: 0, image_url: myImgUrl, category_id: 0,
                 name: "", type: "", establishment_id: props.establishmentId
               }}
               onSubmit={values => {

@@ -56,7 +56,7 @@ const onSubmit = (values: DishData) => {
     establishment_id: values.establishment_id as number
   }
 
-  console.log(newDish);
+  console.log(values);
   DishService.createDish(newDish);
 }
 
@@ -176,7 +176,7 @@ export const CreateDish = (props: CreateDishProps) => {
           <DialogContent>
             <Formik
               initialValues={{
-                description: "", price: 0, rating: 0, image_url: myImgUrl, category_id: 1,
+                description: "", price: 0, rating: 0, image_url: myImgUrl, category_id: 0,
                 name: "", type: "", establishment_id: props.establishmentId
               }}
               onSubmit={values => {
@@ -221,7 +221,7 @@ export const CreateDish = (props: CreateDishProps) => {
                     <tr>
 
                       <TextField
-                        id="type"
+                        id="dish-type"
                         select
                         label="Select"
                         name="type"

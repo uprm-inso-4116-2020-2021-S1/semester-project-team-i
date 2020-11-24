@@ -25,7 +25,7 @@ interface DishData {
   price: number;
   rating: number;
   image_url: string;
-  category_id: number;
+  category_id: string;
   name: string;
   type: string;
   establishment_id: number;
@@ -47,16 +47,16 @@ const onSubmit = (values: DishData) => {
 
   const newDish: Dish = {
     description: values.description,
-    price: values.price as number,
+    price: values.price,
     rating: values.rating,
     image_url: myImgUrl,
-    category_id: values.category_id as number,
+    category: values.category,
     name: values.name,
     type: values.type,
-    establishment_id: values.establishment_id as number
+    establishment_id: values.establishment_id
   }
 
-  console.log(newDish);
+  console.log(values);
   DishService.createDish(newDish);
 }
 
@@ -83,19 +83,19 @@ export const CreateDish = (props: CreateDishProps) => {
 
   const categories = [
     {
-      value: 0,
+      value: 'Mexican',
       label: 'Mexican',
     },
     {
-      value: 1,
+      value: 'Italian',
       label: 'Italian',
     },
     {
-      value: 2,
+      value: 'Puertorrican',
       label: 'Puertorrican',
     },
     {
-      value: 3,
+      value: 'Breakfast',
       label: 'Breakfast',
     },
   ];
@@ -176,7 +176,7 @@ export const CreateDish = (props: CreateDishProps) => {
           <DialogContent>
             <Formik
               initialValues={{
-                description: "", price: 0, rating: 0, image_url: myImgUrl, category_id: 1,
+                description: "", price: 0, rating: 0, image_url: myImgUrl, category: "",
                 name: "", type: "", establishment_id: props.establishmentId
               }}
               onSubmit={values => {
@@ -221,7 +221,7 @@ export const CreateDish = (props: CreateDishProps) => {
                     <tr>
 
                       <TextField
-                        id="type"
+                        id="dish-type"
                         select
                         label="Select"
                         name="type"

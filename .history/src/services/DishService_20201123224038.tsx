@@ -6,7 +6,7 @@ export interface Dish {
     price: number;
     rating: number;
     image_url?: string;
-    category_id: number;
+    category_id: string;
     name: string;
     type: string;
     establishment_id: number;
@@ -17,9 +17,8 @@ export class DishService {
     static createDish(dish: Dish) {
         axios.post(`http://127.0.0.1:5000/dishes`, dish)
             .then(res => {
-                const ans = res.data.dish;
+                const ans = res.data.menu;
                 dish = ans;
-                console.log("estoy en res")
                 console.log(res);
             });
     }
