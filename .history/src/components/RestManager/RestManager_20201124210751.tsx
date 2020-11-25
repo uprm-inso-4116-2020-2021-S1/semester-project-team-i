@@ -16,7 +16,6 @@ interface RestManagerStates {
 }
 
 export default class RestManager extends React.Component<RestManagerProps, RestManagerStates> {
-    private imgStr = "";
     private establishmentID = this.props.match.params.eid as unknown as number;
 
     public constructor(props: RestManagerProps) {
@@ -25,17 +24,7 @@ export default class RestManager extends React.Component<RestManagerProps, RestM
         this.state = {
             data: []
         }
-        this.setBackImg();
         this.populateTable();
-    }
-
-    async setBackImg() {
-        await axios.get(`http://127.0.0.1:5000/establishments/${this.establishmentID}`)
-            .then(res => {
-                const ans = res.data.establishment;
-                this.imgStr = ans.image_url;
-                console.log(ans);
-            });
     }
 
     async populateTable() {
@@ -109,32 +98,18 @@ export default class RestManager extends React.Component<RestManagerProps, RestM
         console.log("CURR STATE");
         console.log(this.state.data);
         return (
-            <div className="atras" style={{
-                background: `linear-gradient(to top, rgba(255,255,255,1) 5%,
-                rgba(255,255,255,0)), url(${this.imgStr})`
-            }}>
-                <br />
-                <div />
-                <div className="menosEspacio" style={{ display: 'table-row' }}>
-                    <table>
-                        <tr>
-                            <td>
-                                <div className="recuadro">
-                                    <div className="managerTitle" style={{ fontWeight: "bold", width:"100%", }}>Restaurant Manager</div>
-                                </div>
-                            </td>
-                            <td>
-                                <div className="press" style={{ display: 'table-cell' }}>
-                                    <CreateDish establishmentId={this.establishmentID}></CreateDish>
-                                </div>
-                            </td>
-                        </tr>
-                    </table>
+            <div className= "atras" style={{ marginLeft: "10%", marginTop: "7%" }}>
+                <div style={{ marginBottom: "100px" }} />
+                <div style={{ display: 'table-row' }}>
+                    <div className="managerTitle" style={{ display: 'table-cell' }}>Restaurant Manager</div>
+                    <div style={{ display: 'table-cell' }}>
+                        <CreateDish establishmentId={this.establishmentID}></CreateDish>
+                    </div>
                 </div>
                 <link
                     rel="stylesheet"
                     href="https://fonts.googleapis.com/icon?family=Material+Icons"></link>
-                <div className="color" style={{ width: "90%", marginBottom: "50px", marginTop: "75px", marginLeft: "20px" }}>
+                <div style={{ width: "90%", marginBottom: "50px", marginTop: "75px", marginLeft: "20px" }}>
                     {this.getTable([...this.state.data])}
                 </div>
             </div>

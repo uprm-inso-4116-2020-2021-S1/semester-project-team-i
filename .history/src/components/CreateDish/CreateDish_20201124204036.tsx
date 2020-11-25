@@ -16,7 +16,7 @@ import { Form, Formik } from 'formik';
 let myImgUrl = "https://upload.wikimedia.org/wikipedia/commons/4/42/Photo-camera-in-circular-outlined-interface-button.svg";
 let type = '';
 let category_id = 0;
-let catetegory = "";
+let category = "";
 
 interface CreateDishProps {
   establishmentId: number;
@@ -86,7 +86,13 @@ export const CreateDish = (props: CreateDishProps) => {
   const categories = [
     {
       value: 0,
-      label: 'Mexican',
+      _label: 'Mexican',
+      get label() {
+        return this._label;
+      },
+      set label(value) {
+        this._label = value;
+      },
     },
     {
       value: 1,
@@ -130,7 +136,7 @@ export const CreateDish = (props: CreateDishProps) => {
 
   const changeCategory = (event: React.ChangeEvent<HTMLInputElement>) => {
     category_id = (event.target.value) as unknown as number;
-    // category = (event.target.value);
+    category = (event.target.value);
   };
 
  // const [type, setType] = React.useState('EUR');
@@ -249,7 +255,7 @@ export const CreateDish = (props: CreateDishProps) => {
                         select
                         label="Select"
                         name="category"
-                        value={category_id}
+                        value={category}
                         onChange={changeCategory}
                         // onChange={handleChange} 
                         onBlur={handleBlur}
@@ -259,7 +265,6 @@ export const CreateDish = (props: CreateDishProps) => {
                         {categories.map((option) => (
                           <MenuItem key={option.value} value={option.value}>
                             {option.label}
-
                           </MenuItem>
                         ))}
                       </TextField>

@@ -12,7 +12,7 @@
 
 .atras{
 
-display: flex;
+    display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -22,7 +22,7 @@ display: flex;
   /* background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url("../../assets/waffles.jpg"); */
   /* para ocupar toda la pantalla */
-  height: 100% !important;
+  height: 100%;
   margin-top:-1px !important;
 }
 .nose{
@@ -31,20 +31,11 @@ display: flex;
 
 .press{
     /* background-color: red; */
-    padding-left: 0%;
+    padding-left: 5%;
 }
 
 .menosEspacio{
     /* background-color: coral; */
     margin-bottom: -5%;
-}
-
-.recuadro{
-    background-color: rgba(255, 255, 255, 0.25);
-    padding-right: 10px;
-  padding-left: 10px;
-    border-radius: 10px;
-
-
 }
 

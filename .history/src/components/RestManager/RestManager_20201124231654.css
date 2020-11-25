@@ -31,7 +31,7 @@ display: flex;
 
 .press{
     /* background-color: red; */
-    padding-left: 0%;
+    padding-left: 5%;
 }
 
 .menosEspacio{
@@ -40,11 +40,13 @@ display: flex;
 }
 
 .recuadro{
-    background-color: rgba(255, 255, 255, 0.25);
-    padding-right: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* opacity: .5; */
+    padding-top: -10px;
+  padding-right: 10px;
+  padding-bottom: -1000px;
   padding-left: 10px;
     border-radius: 10px;
-
 
 }
 

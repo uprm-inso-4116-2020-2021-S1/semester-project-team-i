@@ -120,7 +120,7 @@ export default class RestManager extends React.Component<RestManagerProps, RestM
                         <tr>
                             <td>
                                 <div className="recuadro">
-                                    <div className="managerTitle" style={{ fontWeight: "bold", width:"100%", }}>Restaurant Manager</div>
+                                    <div className="managerTitle" style={{ fontWeight: "bold", }}>Restaurant Manager</div>
                                 </div>
                             </td>
                             <td>

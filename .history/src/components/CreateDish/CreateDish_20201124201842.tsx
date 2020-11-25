@@ -16,7 +16,6 @@ import { Form, Formik } from 'formik';
 let myImgUrl = "https://upload.wikimedia.org/wikipedia/commons/4/42/Photo-camera-in-circular-outlined-interface-button.svg";
 let type = '';
 let category_id = 0;
-let catetegory = "";
 
 interface CreateDishProps {
   establishmentId: number;
@@ -52,7 +51,7 @@ const onSubmit = (values: DishData) => {
     price: values.price as number,
     rating: values.rating,
     image_url: myImgUrl,
-    category_id: category_id,
+    category_id: category_id as number,
     name: values.name,
     type: type,
     establishment_id: values.establishment_id as number
@@ -125,19 +124,18 @@ export const CreateDish = (props: CreateDishProps) => {
   );
 
   const classes = useStyles();
- // const [category, setCategory] = React.useState('EUR');
+  const [category, setCategory] = React.useState('EUR');
 
 
   const changeCategory = (event: React.ChangeEvent<HTMLInputElement>) => {
-    category_id = (event.target.value) as unknown as number;
-    // category = (event.target.value);
+    setCategory(event.target.value);
   };
 
- // const [type, setType] = React.useState('EUR');
+  const [type, setType] = React.useState('EUR');
 
 
   const changeType = (event: React.ChangeEvent<HTMLInputElement>) => {
-    type = (event.target.value);
+    setType(event.target.value);
   };
 
   // cajitas de select
@@ -249,7 +247,7 @@ export const CreateDish = (props: CreateDishProps) => {
                         select
                         label="Select"
                         name="category"
-                        value={category_id}
+                        value={category}
                         onChange={changeCategory}
                         // onChange={handleChange} 
                         onBlur={handleBlur}
@@ -259,7 +257,6 @@ export const CreateDish = (props: CreateDishProps) => {
                         {categories.map((option) => (
                           <MenuItem key={option.value} value={option.value}>
                             {option.label}
-
                           </MenuItem>
                         ))}
                       </TextField>
