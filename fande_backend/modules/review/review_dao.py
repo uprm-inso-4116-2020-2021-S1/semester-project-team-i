@@ -11,6 +11,7 @@ class Review(DaoOperations, OutputMixin, db.Model):
     rid = db.Column(db.Integer, primary_key=True)
     timestamp = db.Column(db.String(50))
     description = db.Column(db.String(100), nullable=False)
+    experience = db.Column(db.Boolean, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.uid'), nullable=False)
     user = db.relationship('User', backref='reviews', lazy=True)
     dish_id = db.Column(db.Integer, db.ForeignKey('dish.did'), nullable=False)
@@ -19,6 +20,7 @@ class Review(DaoOperations, OutputMixin, db.Model):
     def __init__(self, **kwargs):
         super(Review, self).__init__(**kwargs)
         self.description = kwargs['description']
+        self.experience = kwargs['experience']
         self.timestamp = kwargs.get('timestamp', datetime.utcnow().strftime('%d/%m/%Y %I:%M:%S %p'))
         self.user_id = kwargs['user_id']
         self.dish_id = kwargs['dish_id']
