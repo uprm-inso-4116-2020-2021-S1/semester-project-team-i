@@ -17,7 +17,7 @@ interface RestManagerStates {
 
 export default class RestManager extends React.Component<RestManagerProps, RestManagerStates> {
     private establishmentID = this.props.match.params.eid as unknown as number;
-    
+
     public constructor(props: RestManagerProps) {
         super(props);
         console.log(props.match.params.eid);
@@ -25,68 +25,17 @@ export default class RestManager extends React.Component<RestManagerProps, RestM
             data: []
         }
         this.populateTable();
-        // this.state = {
-        //     data: [
-        //         {
-        //             name: 'pancakes',
-        //             price: '$10',
-        //             description: 'with fruits and whipped cream',
-        //             category: 'breakfast',
-        //             imageUrl: img1,
-        //             rating: 123,
-        //             type: 'entree'
-        //         },
-        //         {
-        //             name: 'french toast',
-        //             price: '$11',
-        //             description: "chef's special",
-        //             category: 'breakfast',
-        //             imageUrl: img1,
-        //             rating: 87,
-        //             type: 'entree'
-        //         },
-        //         {
-        //             name: 'fruit salad',
-        //             price: '$6',
-        //             description: 'fruits of the day',
-        //             category: 'snacks',
-        //             imageUrl: img1,
-        //             rating: 100,
-        //             type: 'snacks'
-        //         },
-        //         {
-        //             name: 'açai',
-        //             price: '$12',
-        //             description: 'vegan',
-        //             category: 'snacks',
-        //             imageUrl: img1,
-        //             rating: 138,
-        //             type: 'entree'
-        //         },
-        //         {
-        //             name: 'turkey sandwich',
-        //             price: '$9',
-        //             description: 'sandwich',
-        //             category: 'breakfast',
-        //             imageUrl: img1,
-        //             rating: 200,
-        //             type: 'entree'
-        //         }
-        //     ],
-        // }
     }
 
     async populateTable() {
         await axios.get(`http://127.0.0.1:5000/dishes?eid=${this.establishmentID}`)
-        .then(res => {
-            const ans = res.data.dishes;
-            let myArr: Dish[] = ans;
-            this.setState({
-                data: JSON.parse(JSON.stringify(ans))
-            })
-            console.log(ans);
-        });
-        // this.forceUpdate();
+            .then(res => {
+                const ans = res.data.dishes;
+                this.setState({
+                    data: JSON.parse(JSON.stringify(ans))
+                })
+                console.log(ans);
+            });
     }
 
     getTable(data: Dish[]) {
@@ -149,23 +98,21 @@ export default class RestManager extends React.Component<RestManagerProps, RestM
         console.log("CURR STATE");
         console.log(this.state.data);
         return (
-            // <div className="container">
-                <div style={{ marginLeft: "10%", marginTop:"7%" }}>
-                    <div style={{ marginBottom: "100px" }} />
-                    <div style={{ display: 'table-row' }}>
-                        <div className="managerTitle" style={{ display: 'table-cell' }}>Restaurant Manager</div>
-                        <div style={{ display: 'table-cell' }}>
-                            <CreateDish establishmentId={this.establishmentID}></CreateDish>
-                        </div>
-                    </div>
-                    <link
-                        rel="stylesheet"
-                        href="https://fonts.googleapis.com/icon?family=Material+Icons"></link>
-                    <div style={{ width: "90%", marginBottom: "50px", marginTop: "75px", marginLeft: "20px"}}>
-                        {this.getTable([...this.state.data])}
+            <div style={{ marginLeft: "10%", marginTop: "7%" }}>
+                <div style={{ marginBottom: "100px" }} />
+                <div style={{ display: 'table-row' }}>
+                    <div className="managerTitle" style={{ display: 'table-cell' }}>Restaurant Manager</div>
+                    <div style={{ display: 'table-cell' }}>
+                        <CreateDish establishmentId={this.establishmentID}></CreateDish>
                     </div>
                 </div>
-            // </div>
+                <link
+                    rel="stylesheet"
+                    href="https://fonts.googleapis.com/icon?family=Material+Icons"></link>
+                <div style={{ width: "90%", marginBottom: "50px", marginTop: "75px", marginLeft: "20px" }}>
+                    {this.getTable([...this.state.data])}
+                </div>
+            </div>
         )
     }
 

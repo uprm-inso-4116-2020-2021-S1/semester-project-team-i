@@ -91,12 +91,12 @@ export const Profile: React.FC = () => {
                 <DialogContent>
                     <div className="rectanglePopup">
                         <table className="ppButton">
-                            <Link to="/restaurant/@Wafflerapr">
+                            {/* <Link to="/restaurant/@Wafflerapr">
                                 <button className="profPic" onClick={() => { }}>
-                                </button>
+                                </button> */}
                                 <div className="text"> User Menu
                                     </div>
-                            </Link>
+                            {/* </Link> */}
                         </table>
                         <table style={{ paddingTop: '15%', textAlign: 'center', width: '100%' }}>
                             <tr>

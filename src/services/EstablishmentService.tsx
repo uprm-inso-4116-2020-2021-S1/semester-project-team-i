@@ -14,8 +14,6 @@ export interface Establishment {
     openFromDay: string;
     openToDay: string;
     user_id?: number;
-    dishes?: Dish[];
-    user?: User;
     image_url: string; 
 }
 
