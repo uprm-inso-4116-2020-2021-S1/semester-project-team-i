@@ -16,10 +16,9 @@ class Establishment(DaoOperations, OutputMixin, db.Model):
     closeTime = db.Column(db.String(10), nullable=False)
     openFromDay = db.Column(db.String(10), nullable=False)
     openToDay = db.Column(db.String(10), nullable=False)
-    menu_id = db.Column(db.Integer, db.ForeignKey('menu.mid'), nullable=False)
-    menu = db.relationship('Menu', backref='establishments', lazy=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.uid'), nullable=False)
     user = db.relationship('User', backref='establishments', lazy=True)
+    image_url = db.Column(db.String(550), default='')
 
     def __init__(self, **kwargs):
         super(Establishment, self).__init__(**kwargs)
@@ -30,9 +29,9 @@ class Establishment(DaoOperations, OutputMixin, db.Model):
         self.openTime = kwargs['openTime']
         self.closeTime = kwargs['closeTime']
         self.user_id = kwargs['user_id']
-        self.menu_id = kwargs['menu_id']
         self.openFromDay = kwargs['openFromDay']
         self.openToDay = kwargs['openToDay']
+        self.image_url = kwargs.get('image_url', None)
 
     @staticmethod
     def get_all_establishments():
@@ -41,6 +40,10 @@ class Establishment(DaoOperations, OutputMixin, db.Model):
     @staticmethod
     def get_establishment_by_id(e_id):
         return Establishment.query.filter_by(eid=e_id).first()
+
+    @staticmethod
+    def get_establishment_by_user_id(uid):
+        return Establishment.query.filter_by(user_id=uid)
 
     # @staticmethod
     # def get_establishments_by_location(e_location):

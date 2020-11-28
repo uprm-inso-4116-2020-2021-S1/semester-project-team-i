@@ -10,6 +10,7 @@ class User(DaoOperations, OutputMixin, db.Model):
 
     RELATIONSHIPS_TO_DICT = True
     USER_REQUIRED_PARAMETERS = ['username', 'password', 'firstName', 'lastName', 'isVerified', 'email', ]
+    USER_LOGIN_REQUIRED_PARAMS = ['username', 'password', ]
 
     uid = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(30), unique=True, nullable=False)
@@ -18,7 +19,6 @@ class User(DaoOperations, OutputMixin, db.Model):
     isVerified = db.Column(db.Boolean, default=False)
     firstName = db.Column(db.String(20), nullable=False)
     lastName = db.Column(db.String(20), nullable=False)
-    # establishments = db.relationship('Establishment', backref='user', lazy=True)
     # up_votes = db.relationship('UpVote', backref=db.backref('user', lazy='subquery'), lazy=True)
     # reviews = db.relationship('Review', backref=db.backref('user', lazy='subquery'), lazy=True)
 
@@ -30,6 +30,10 @@ class User(DaoOperations, OutputMixin, db.Model):
         self.firstName = kwargs['firstName']
         self.lastName = kwargs['lastName']
         self.email = kwargs['email']
+
+    @staticmethod
+    def get_user_by_username(un):
+        return User.query.filter_by(username=un).first()
 
     @staticmethod
     def get_all_users():

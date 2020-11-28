@@ -11,6 +11,8 @@ flask_cors = "*"
 flask-sqlalchemy = "*"
 bcrypt = "*"
 psycopg2-binary = "*"
+gunicorn = "*"
+sqlalchemy = "*"
 
 
 [requires]
