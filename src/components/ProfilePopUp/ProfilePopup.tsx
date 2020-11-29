@@ -5,7 +5,9 @@ import { Link } from 'react-router-dom';
 import { Dialog, DialogActions, DialogContent, TextField } from '@material-ui/core';
 import { Form, Formik } from 'formik';
 import { User, UserService } from '../../services/UserService';
+import {Establishment, EstablishmentService} from '../../services/EstablishmentService';
 import { CreateRestaurant } from '../CreateRestaurant/CreateRestaurant';
+
 
 
 interface ProfData {
@@ -30,8 +32,6 @@ const onSubmit = (values: ProfData) => {
     editedUser.password = values.password;
 
     const uid = editedUser.uid as number;
-
-    UserService.editUserById(uid, editedUser);
 }
 let isRestaurantOwner = false;
 let userEID = -1;
@@ -87,17 +87,20 @@ export const Profile: React.FC = () => {
         <div>
             <button className="profile" onClick={handleClickOpenFirst}>
             </button>
-            <Dialog open={openFirst} onClose={handleCloseFirst} aria-labelledby="form-dialog-title">
-                <DialogContent>
+            <Dialog open={openFirst} onClose={handleCloseFirst} aria-labelledby="form-dialog-title" 
+            PaperProps={{
+                style: {
+                backgroundColor: 'transparent',
+                boxShadow: 'none',
+                },
+            }}>
+                <DialogContent >
+
                     <div className="rectanglePopup">
-                        <table className="ppButton">
-                            {/* <Link to="/restaurant/@Wafflerapr">
-                                <button className="profPic" onClick={() => { }}>
-                                </button> */}
-                                <div className="text"> User Menu
-                                    </div>
-                            {/* </Link> */}
+
+                        <table className="ppButton" style={{textAlign: 'center'}}> User Menu
                         </table>
+
                         <table style={{ paddingTop: '15%', textAlign: 'center', width: '100%' }}>
                             <tr>
                                 <button className="boxButton" onClick={openShowEdit}>Edit Profile</button>
@@ -132,9 +135,6 @@ export const Profile: React.FC = () => {
                     <div className="rectangleE">
                         <table style={{marginLeft:'10%', marginTop:'10%', width:'80%'}}>
                             <tr>
-                                <td>
-                                    <div className="profPicb"></div>
-                                </td>
                                 <td>
                                     <button className="txt" onClick={() => { }}>Change Profile Photo</button>
                                 </td>
