@@ -5,6 +5,7 @@ import './RestManager.css';
 import { CreateDish } from '../CreateDish/CreateDish';
 import { RouteComponentProps } from 'react-router';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 
 interface RestManagerProps extends RouteComponentProps<{ eid: string }> {
@@ -120,7 +121,12 @@ export default class RestManager extends React.Component<RestManagerProps, RestM
                         <tr>
                             <td>
                                 <div className="recuadro">
-                                    <div className="managerTitle" style={{ fontWeight: "bold", width:"100%", }}>Restaurant Manager</div>
+                                    <div className="managerTitle" style={{ fontWeight: "bold", width: "100%", }}>Restaurant Manager</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div className="boton" style={{}}>
+                                    <Link to={`/restaurant/${this.establishmentID}`} style={{ textDecoration: "inherit", color: "white" }}>Restaurant</Link>
                                 </div>
                             </td>
                             <td>
