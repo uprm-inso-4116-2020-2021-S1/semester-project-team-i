@@ -16,11 +16,9 @@ class Establishment(DaoOperations, OutputMixin, db.Model):
     closeTime = db.Column(db.String(10), nullable=False)
     openFromDay = db.Column(db.String(10), nullable=False)
     openToDay = db.Column(db.String(10), nullable=False)
-    # menu_id = db.Column(db.Integer, db.ForeignKey('menu.mid'), nullable=False)
-    # menu = db.relationship('Menu', backref='establishments', lazy=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.uid'), nullable=False)
     user = db.relationship('User', backref='establishments', lazy=True)
-    image_url = db.Column(db.String(250), default='')
+    image_url = db.Column(db.String(550), default='')
 
     def __init__(self, **kwargs):
         super(Establishment, self).__init__(**kwargs)

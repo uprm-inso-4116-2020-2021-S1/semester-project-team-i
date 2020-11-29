@@ -1,4 +1,5 @@
 # import enum
+from sqlalchemy.sql.expression import func
 
 from config import db
 from helpers.mixin import DaoOperations, OutputMixin
@@ -20,7 +21,7 @@ class Dish(DaoOperations, OutputMixin, db.Model):
     description = db.Column(db.String(100), nullable=False)
     price = db.Column(db.Float(precision=2), nullable=False)
     rating = db.Column(db.Integer, default=0)
-    image_url = db.Column(db.String(250), default='')
+    image_url = db.Column(db.String(550), default='')
     category_id = db.Column(db.Integer, db.ForeignKey('category.cid'), nullable=False)
     category = db.relationship('Category', backref='dishes', lazy=True)     # int? | Category table
     name = db.Column(db.String(50), nullable=False)
@@ -72,3 +73,7 @@ class Dish(DaoOperations, OutputMixin, db.Model):
     @staticmethod
     def get_top_dishes(n=100):
         return Dish.query.order_by(Dish.rating.desc()).limit(n)
+
+    @staticmethod
+    def get_random_dishes(n=10):
+        return Dish.query.order_by(func.random()).limit(n)

@@ -19,7 +19,6 @@ class User(DaoOperations, OutputMixin, db.Model):
     isVerified = db.Column(db.Boolean, default=False)
     firstName = db.Column(db.String(20), nullable=False)
     lastName = db.Column(db.String(20), nullable=False)
-    # establishments = db.relationship('Establishment', backref='user', lazy=True)
     # up_votes = db.relationship('UpVote', backref=db.backref('user', lazy='subquery'), lazy=True)
     # reviews = db.relationship('Review', backref=db.backref('user', lazy='subquery'), lazy=True)
 
