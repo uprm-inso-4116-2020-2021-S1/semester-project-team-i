@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import { RouteComponentProps } from 'react-router';
 import './Restaurant.css';
 import plate1 from "../../assets/plate1.png";
@@ -9,7 +10,6 @@ import facebook from "../../assets/facebook.png";
 import instagram from "../../assets/instagram.png";
 import twitter from "../../assets/twitter.png";
 import Menu from '../Menu/Menu';
-import img1 from '../../assets/plate1.png';
 import { Item } from '../Item/Item';
 import { Establishment, EstablishmentService } from '../../services/EstablishmentService';
 
@@ -25,12 +25,19 @@ interface RestaurantStates {
 
 }
 
+interface Category {
+    cid: number;
+    name: string;
+}
+
 export interface Dish {
+    did?: number;
+    category_id: number;
+    establishment_id: number;
     name: string;
     price: string;
     description: string;
-    category: string;
-    imageUrl: string;
+    image_url: string;
     rating: number;
     type: string;
 }
@@ -55,51 +62,51 @@ export default class Restaurant extends React.Component<RestaurantProps, Restaur
     private instagramHandle = "";
     private twitterHandle = "";
     private menu: Dish[] = [
-        {
-            name: 'pancakes',
-            price: '$10',
-            description: 'with fruits and whipped cream',
-            category: 'breakfast',
-            imageUrl: img1,
-            rating: 123,
-            type: 'entree'
-        },
-        {
-            name: 'french toast',
-            price: '$11',
-            description: "chef's special",
-            category: 'breakfast',
-            imageUrl: img1,
-            rating: 87,
-            type: 'entree'
-        },
-        {
-            name: 'fruit salad',
-            price: '$6',
-            description: 'fruits of the day',
-            category: 'snacks',
-            imageUrl: img1,
-            rating: 100,
-            type: 'snacks'
-        },
-        {
-            name: 'açai',
-            price: '$12',
-            description: 'vegan',
-            category: 'snacks',
-            imageUrl: img1,
-            rating: 138,
-            type: 'entree'
-        },
-        {
-            name: 'turkey sandwich',
-            price: '$9',
-            description: 'sandwich',
-            category: 'breakfast',
-            imageUrl: img1,
-            rating: 200,
-            type: 'entree'
-        }
+        // {
+        //     name: 'pancakes',
+        //     price: '$10',
+        //     description: 'with fruits and whipped cream',
+        //     category: 'breakfast',
+        //     imageUrl: img1,
+        //     rating: 123,
+        //     type: 'entree'
+        // },
+        // {
+        //     name: 'french toast',
+        //     price: '$11',
+        //     description: "chef's special",
+        //     category: 'breakfast',
+        //     imageUrl: img1,
+        //     rating: 87,
+        //     type: 'entree'
+        // },
+        // {
+        //     name: 'fruit salad',
+        //     price: '$6',
+        //     description: 'fruits of the day',
+        //     category: 'snacks',
+        //     imageUrl: img1,
+        //     rating: 100,
+        //     type: 'snacks'
+        // },
+        // {
+        //     name: 'açai',
+        //     price: '$12',
+        //     description: 'vegan',
+        //     category: 'snacks',
+        //     imageUrl: img1,
+        //     rating: 138,
+        //     type: 'entree'
+        // },
+        // {
+        //     name: 'turkey sandwich',
+        //     price: '$9',
+        //     description: 'sandwich',
+        //     category: 'breakfast',
+        //     imageUrl: img1,
+        //     rating: 200,
+        //     type: 'entree'
+        // }
     ];
 
     constructor(props: RestaurantProps) {
@@ -110,9 +117,16 @@ export default class Restaurant extends React.Component<RestaurantProps, Restaur
         }
     }
 
-    setEstablishment(e: Establishment) {
+    async setEstablishment(e: Establishment) {
         this.establishment = e;
         console.log(this.establishment);
+        await axios.get(`http://127.0.0.1:5000/dishes?eid=${e.eid}`)
+        .then(res => {
+            const ans = res.data.dishes;
+            this.menu = ans;
+            console.log(res);
+        });
+        
         this.forceUpdate();
     }
     componentDidMount() {

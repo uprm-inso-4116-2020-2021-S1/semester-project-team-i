@@ -2,14 +2,14 @@ import axios from 'axios';
 
 export interface Dish {
     did?: number;
-    description: string;
-    price: number;
-    rating: number;
-    image_url?: string;
-    category: string;
+    category_id: number;
+    establishment_id: number;
     name: string;
+    price: number;
+    description: string;
+    image_url: string;
+    rating: number;
     type: string;
-    menu_id: number;
 }
 
 export class DishService {
@@ -17,8 +17,9 @@ export class DishService {
     static createDish(dish: Dish) {
         axios.post(`http://127.0.0.1:5000/dishes`, dish)
             .then(res => {
-                const ans = res.data.menu;
+                const ans = res.data.dish;
                 dish = ans;
+                console.log("estoy en res")
                 console.log(res);
             });
     }

@@ -7,21 +7,6 @@ interface MenuProps {
     myMenu: Dish[];
 }
 
-// const MenuItem = (props: { dish: Dish }): JSX.Element => {
-//     return <div className="dishRect">
-//         <span>
-//             <img alt="pic" className="dishImage" src={props.dish.imageUrl}></img>
-//         </span>
-//         <span className="dishName">
-//             {props.dish.name}
-//         </span>
-//         <span className="dishPrice">
-//             ${props.dish.price}
-//         </span>
-
-//     </div>
-// }
-
 export default class Menu extends React.Component<MenuProps> {
 
     public constructor(props: MenuProps) {
@@ -40,7 +25,7 @@ export default class Menu extends React.Component<MenuProps> {
             },
             {
                 title: "Category",
-                field: "category",
+                field: "category_id",
             },
             {
                 title: "Type",
@@ -77,9 +62,6 @@ export default class Menu extends React.Component<MenuProps> {
                     <div style={{width:"80%", marginLeft:"10%", marginBottom:"50px"}}>
                       {this.getTable(this.props.myMenu)}
                     </div>
-                {/* {this.props.myMenu.map((dish: Dish) => {
-                    return <MenuItem dish={dish}></MenuItem>
-                })} */}
 
             </div>
         )

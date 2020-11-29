@@ -32,7 +32,7 @@ function App() {
           <Route exact path="/register" component={Register}/>
           <Route exact path="/login" component={Login}/>
           <Route exact path="/restaurant/:eid" component={Restaurant}/>
-          <Route exact path="/restManager" component={RestManager}/>
+          <Route exact path="/restaurantManager/:eid" component={RestManager}/>
 
         </Switch>
       </Router>

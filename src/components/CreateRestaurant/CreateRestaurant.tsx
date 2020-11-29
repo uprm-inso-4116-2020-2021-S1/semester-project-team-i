@@ -5,7 +5,6 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
 import './CreateRestaurant.css';
-import cam from '../../assets/camara.png'; // gives image path
 import MenuItem from '@material-ui/core/MenuItem';
 import ReactFirebaseFileUpload from './CR.js';
 import { Establishment, EstablishmentService } from '../../services/EstablishmentService';
@@ -14,6 +13,8 @@ import { useHistory } from 'react-router';
 
 let history;
 let myImgUrl = "https://upload.wikimedia.org/wikipedia/commons/4/42/Photo-camera-in-circular-outlined-interface-button.svg";
+let fromDay = '';
+let toDay = '';
 
 interface RestaurantData {
   name: string;
@@ -35,8 +36,8 @@ const onSubmit = (values: RestaurantData) => {
     location: values.location,
     openTime: values.openTime,
     closeTime: values.closeTime,
-    openFromDay: values.openFromDay,
-    openToDay: values.openToDay,
+    openFromDay: fromDay,
+    openToDay: toDay,
     description: values.description,
     user_id: (localStorage.getItem('loggedInUser') as unknown as number),
     image_url: myImgUrl
@@ -143,18 +144,18 @@ export const CreateRestaurant = () => {
     console.log(myImgUrl);
   }
 
-  const [toDay, setToDay] = React.useState('EUR');
+  // const [toDay, setToDay] = React.useState('EUR');
 
 
   const changeToDay = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setToDay(event.target.value);
+    toDay = (event.target.value);
   };
 
-  const [fromDay, setFromDay] = React.useState('EUR');
+  // const [fromDay, setFromDay] = React.useState('EUR');
 
 
   const changeFromDay = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setFromDay(event.target.value);
+    fromDay = (event.target.value);
   };
 
   // cajitas de select
@@ -187,7 +188,7 @@ export const CreateRestaurant = () => {
             <Formik
               initialValues={{
                 name: "", phone: "", location: "", openTime: "", closeTime: "",
-                openFromDay: "Saturday", openToDay: "Sunday", description: "", image_url: myImgUrl
+                openFromDay: "", openToDay: "", description: "", image_url: myImgUrl
               }}
               onSubmit={values => {
                 onSubmit(values);
