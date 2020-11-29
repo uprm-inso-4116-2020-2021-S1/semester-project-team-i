@@ -115,7 +115,7 @@ const ThePost = (props: {post: SuggestedPosts}) => {
         <div className="thePostConatainer">
             <table>
                 <tr>
-                    <td id="profileBTN"><button ><a href="#"><img id="profilePhoto" src={props.post.imgProfile} alt={props.post.alt} /></a></button></td>
+                    <td><div id="profilePhoto" style={{background: `url(${props.post.imgProfile})`}}></div></td>
                     <td id="username"><h4>{props.post.username}</h4></td>
                 </tr>
                 <tr>
