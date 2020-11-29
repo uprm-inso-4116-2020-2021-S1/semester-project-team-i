@@ -1,27 +1,16 @@
 import React from 'react';
 import './ExplorePage.css';
-
 import categoryBTN from '../../assets/categoryBTN.png';
 import regionBTN from '../../assets/regionBTN.png';
 import topRankedBTN from '../../assets/topRankedBTN.png';
-
-import profilePic from '../../assets/profileIMG.png';
-import foodPhoto from '../../assets/photo-singlePost.jpg';
 import upvotePhoto from '../../assets/upvotePhoto.png';
-
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import { Select } from '@material-ui/core';
-import { height } from '@material-ui/system';
-
-
-import List from '@material-ui/core/List';
-import ListItem, { ListItemProps } from '@material-ui/core/ListItem';
+import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-
 import LooksOneIcon from '@material-ui/icons/LooksOne';
 import LooksTwoIcon from '@material-ui/icons/LooksTwo';
 import Looks3Icon from '@material-ui/icons/Looks3';
@@ -31,21 +20,13 @@ import axios from 'axios';
 import { Dish } from '../Restaurant/Restaurant';
 
 
-
-
 interface SuggestedPosts {
-    imgProfile: string;
-    username: string;
+    imgProfile?: string;
+    username?: string;
     imgProduct: string;
     imgUpvote: string;
-    upvoteCount: string;
+    upvoteCount: number;
     alt: string;
-}
-
-interface TrendingItemProps {
-    imgSrc: string;
-    alt: string;
-    placeHandle: string;
 }
 
 const pueblos = [
@@ -127,49 +108,27 @@ const pueblos = [
     'Villalba',
     'Yabucoa',
     'Yauco',];
-// export const SuggestPostsGrid = () => {
-//     imgProfile: profilePic;
-//     username: string;
-//     imgProduct: foodPhoto;
-//     imgUpvote: string;
-//     upvoteCount: string;
 
-
-// }
-
-
-const ThePost = (props: SuggestedPosts) => {
+const ThePost = (props: {post: SuggestedPosts}) => {
+    console.log(props.post);
     return (
         <div className="thePostConatainer">
             <table>
                 <tr>
-                    <td id="profileBTN"><button ><a href="#"><img id="profilePhoto" src={props.imgProfile} alt={props.alt} /></a></button></td>
-                    <td id="username"><h4>{props.username}</h4></td>
+                    <td id="profileBTN"><button ><a href="#"><img id="profilePhoto" src={props.post.imgProfile} alt={props.post.alt} /></a></button></td>
+                    <td id="username"><h4>{props.post.username}</h4></td>
                 </tr>
                 <tr>
-                    <td id="photoTD"><button id="sizingPostBTN" ></button></td>
+                    <td id="photoTD"><button id="sizingPostBTN" ><img src={props.post.imgProduct} alt={props.post.alt}/></button></td>
                 </tr>
                 <tr>
-                    <td id="upvoteBTN"><button  ><img id="upvotePhoto" src={props.imgUpvote} alt={props.alt} /></button></td>
-                    <td id="countTD"><h4 id="count">{props.upvoteCount}</h4></td>
+                    <td id="upvoteBTN"><button  ><img id="upvotePhoto" src={props.post.imgUpvote} alt={props.post.alt} /></button></td>
+                    <td id="countTD"><h4 id="count">{props.post.upvoteCount}</h4></td>
                 </tr>
             </table>
         </div>
     );
 }
-
-// const useStyles = makeStyles((theme: Theme) =>
-//     createStyles({
-//         formControl: {
-//             margin: theme.spacing(1),
-           
-//         },
-//         noLabel: {
-//             marginTop: theme.spacing(3),
-//         },
-//     }),
-// );
-
 
 interface MyCategory {
     cid: number;
@@ -182,8 +141,6 @@ interface ExplorePageStates {
     categoryName: string[];
 }
 
-
-
 export default class ExplorePage extends React.Component<{},ExplorePageStates> {
 
     constructor(props: {}) {
@@ -193,11 +150,34 @@ export default class ExplorePage extends React.Component<{},ExplorePageStates> {
             puebloName: [],
             categoryName: [],
         }
-        this.getCategories();
+        this.getInitialData();
     }
 
     private categoryMap: MyCategory[] = [];
-    getCategories = async () => {
+    private featuredList: SuggestedPosts[] = [];
+    private isLoading: boolean = true;
+
+    getInitialData = async () => {
+
+        await axios.get("http://localhost:5000/dishes?featured=true&limit=4").then(
+            res => {
+                console.log(res);
+                res.data.dishes.map((dish: Dish) => {
+                    const item: SuggestedPosts = {
+                        imgProfile: dish.establishment?.image_url,
+                        username: dish.establishment?.name,
+                        imgProduct: dish.image_url,
+                        imgUpvote: upvotePhoto,
+                        upvoteCount: dish.rating,
+                        alt: dish.name,                
+                    }
+                    this.featuredList.push(item);
+                    console.log(item);
+                    console.log(this.featuredList);
+                })
+                
+            }
+        ).finally(() => this.isLoading = false)
         await axios.get("http://localhost:5000/categories").then(
             res => {
                 this.categoryMap = res.data.categories;
@@ -207,10 +187,9 @@ export default class ExplorePage extends React.Component<{},ExplorePageStates> {
         );
         this.forceUpdate();
     }
+
     render() {
 
-        const place1 = "@ojala";
-        const upvoteCountTemp = "1,000";
         const handleChangeMultiple = (event: React.ChangeEvent<{ value: unknown }>) => {
             const { options } = event.target as HTMLSelectElement;
             const value: string[] = [];
@@ -239,6 +218,8 @@ export default class ExplorePage extends React.Component<{},ExplorePageStates> {
             });
         }
 
+        if(this.isLoading) return <div></div>;
+
         return (
 
             <div className="containerWholeTrend">
@@ -251,35 +232,15 @@ export default class ExplorePage extends React.Component<{},ExplorePageStates> {
                                     <tr>
                                         <td id="bigTDL" >
                                             <ThePost
-                                                imgProfile={profilePic}
-                                                username={place1}
-                                                imgProduct={foodPhoto}
-                                                imgUpvote={upvotePhoto}
-                                                upvoteCount={upvoteCountTemp}
-                                                alt="Not Found" />
+                                               post={this.featuredList[0]}/>
                                             <ThePost
-                                                imgProfile={profilePic}
-                                                username={place1}
-                                                imgProduct={foodPhoto}
-                                                imgUpvote={upvotePhoto}
-                                                upvoteCount={upvoteCountTemp}
-                                                alt="Not Found" />
+                                                post={this.featuredList[1]}/>
                                         </td>
                                         <td id="bigTDR">
                                             <ThePost
-                                                imgProfile={profilePic}
-                                                username={place1}
-                                                imgProduct={foodPhoto}
-                                                imgUpvote={upvotePhoto}
-                                                upvoteCount={upvoteCountTemp}
-                                                alt="Not Found" />
+                                                post={this.featuredList[2]}/>
                                             <ThePost
-                                                imgProfile={profilePic}
-                                                username={place1}
-                                                imgProduct={foodPhoto}
-                                                imgUpvote={upvotePhoto}
-                                                upvoteCount={upvoteCountTemp}
-                                                alt="Not Found" />
+                                                post={this.featuredList[3]}/>
                                         </td>
                                     </tr>
                                 </table>

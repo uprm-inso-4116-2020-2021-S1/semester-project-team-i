@@ -39,9 +39,9 @@ export default class RestManager extends React.Component<RestManagerProps, RestM
     }
 
     async populateTable() {
-        await axios.get(`http://127.0.0.1:5000/dishes?eid=${this.establishmentID}`)
+        await axios.get(`http://127.0.0.1:5000/establishments/${this.establishmentID}`)
             .then(res => {
-                const ans = res.data.dishes;
+                const ans = res.data.establishment.dishes;
                 this.setState({
                     data: JSON.parse(JSON.stringify(ans))
                 })

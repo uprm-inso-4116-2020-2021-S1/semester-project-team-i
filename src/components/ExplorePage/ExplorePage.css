@@ -169,18 +169,6 @@ FormControl{
     height: auto;
     padding-top: 70%;
     
-    background-position: center !important;
-    background-repeat: no-repeat !important;
-    background-size: cover !important;
-    background: url("../../assets/photo-singlePost.jpg");
-    
-}
-
-#exploreTD{
-    background-position: center !important;
-    background-repeat: no-repeat !important;
-    background-size: cover !important;
-    background: url("../../assets/photo-singlePost.jpg"); 
 }
 
 #upvotePhoto {
@@ -193,7 +181,6 @@ FormControl{
     margin-top: 0;
     margin-bottom: 0;
     width: 20%;
-    /* padding-top: 6%; */
     float: left;
     vertical-align: middle;
     

@@ -40,6 +40,7 @@ export interface Dish {
     image_url: string;
     rating: number;
     type: string;
+    establishment?: Establishment;
 }
 
 export default class Restaurant extends React.Component<RestaurantProps, RestaurantStates> {
