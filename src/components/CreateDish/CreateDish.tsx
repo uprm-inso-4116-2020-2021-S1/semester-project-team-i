@@ -33,18 +33,6 @@ interface DishData {
   establishment_id: number;
 }
 
-// interface Dish {
-//   did?: number;
-//   description: string;
-//   price: number;
-//   rating: number;
-//   image_url?: string;
-//   category: string;
-//   name: string;
-//   type: string;
-//   menu_id: number;
-// }
-
 const onSubmit = (values: DishData) => {
 
   const newDish: Dish = {
@@ -174,7 +162,7 @@ export const CreateDish = (props: CreateDishProps) => {
 
           </table>
 
-          <ReactFirebaseFileUpload />
+          <ReactFirebaseFileUpload setMyImageUrl={setMyImageUrl}/>
 
           <DialogContent>
             <Formik

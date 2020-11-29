@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { storage } from "../firebase";
 import './CD.css';
 
-export default function ReactFirebaseFileUpload() {
+export default function ReactFirebaseFileUpload(props) {
   const [image, setImage] = useState(null);
   const [url, setUrl] = useState("");
   const [progress, setProgress] = useState(0);
@@ -35,6 +35,7 @@ export default function ReactFirebaseFileUpload() {
             .getDownloadURL()
             .then(url => {
               setUrl(url);
+              props.setMyImageUrl(url);
             });
         }
       );
