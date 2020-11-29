@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { ExplorePage } from './components/ExplorePage/ExplorePage';
+import ExplorePage from './components/ExplorePage/ExplorePage';
 import { Item } from './components/Item/Item';
 import {CreateDish} from './components/CreateDish/CreateDish'; 
 import {CreateRestaurant} from './components/CreateRestaurant/CreateRestaurant';

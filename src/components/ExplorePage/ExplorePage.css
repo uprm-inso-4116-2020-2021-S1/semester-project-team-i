@@ -8,12 +8,29 @@
 
 }
 
+#photoFilterPhoto{
+    width: 50%;
+}
+
+.searchExplore{
+width: 97.5%;
+position: relative;
+padding-left: 1%;
+}
+
+#searchTD{
+    width: 100%;
+}
+.MuiSelect-select[multiple]{
+    height: 200px;
+}
+
 .trendingBox {
     
     position: relative;
     width: 60%;
     height: auto;
-    /* z-index: 1; */
+     z-index: 1;
 
     padding-top: 2%;
     padding-bottom: 5%;
@@ -23,11 +40,25 @@
     float: left;
     border: 0.5px solid gray;
 
-}
+} 
 
 .trendingBox img{
     width: 50px;
     padding-left: 10px;
+}
+
+.underFilterTable{
+    border: 0.5px solid gray;
+    text-align: center;
+}
+
+FormControl{
+    width: '90%';
+    height: '225px';
+}
+
+.Select{
+    height: 200px;
 }
 
 .font {
@@ -59,7 +90,8 @@
 
 .filters{
     position: relative;
-   padding-top: 15%;
+   padding-top: 5%;
+   width: 100%;
 }
 
 
@@ -80,7 +112,7 @@
 }
 .filterTable td{
     position: relative;
-    width: 22%;
+    width: 33%;
     height: auto;
     float: left;
 }
@@ -88,6 +120,12 @@
 .filterTable td button{
     width: 100%;
     height: 100%;
+}
+
+.underFilterTable{
+    width: 95%;
+    align-items: center;
+    margin: auto;
 }
 
 .suggested {
@@ -136,6 +174,13 @@
     background-size: cover !important;
     background: url("../../assets/photo-singlePost.jpg");
     
+}
+
+#exploreTD{
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    background: url("../../assets/photo-singlePost.jpg"); 
 }
 
 #upvotePhoto {
