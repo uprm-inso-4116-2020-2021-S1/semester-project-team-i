@@ -41,6 +41,7 @@ export interface Dish {
     rating: number;
     type: string;
     establishment?: Establishment;
+    category?: Category;
 }
 
 export default class Restaurant extends React.Component<RestaurantProps, RestaurantStates> {

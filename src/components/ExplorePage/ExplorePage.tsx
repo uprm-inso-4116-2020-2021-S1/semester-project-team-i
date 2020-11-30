@@ -7,7 +7,7 @@ import upvotePhoto from '../../assets/upvotePhoto.png';
 import TextField from '@material-ui/core/TextField';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
-import { Select } from '@material-ui/core';
+import { List, Paper, Select } from '@material-ui/core';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -19,7 +19,6 @@ import Looks5Icon from '@material-ui/icons/Looks5';
 import axios from 'axios';
 import { Dish } from '../Restaurant/Restaurant';
 import { Link } from 'react-router-dom';
-
 
 interface SuggestedPosts {
     imgProfile?: string;
@@ -111,19 +110,19 @@ const pueblos = [
     'Yabucoa',
     'Yauco',];
 
-const ThePost = (props: {post: SuggestedPosts}) => {
+const ThePost = (props: { post: SuggestedPosts }) => {
     console.log(props.post);
     return (
         <div className="thePostConatainer">
             <table>
                 <tr>
                     <Link to={`/restaurant/${props.post.eid}`}>
-                    <td><div id="profilePhoto" style={{background: `url(${props.post.imgProfile})`}}></div></td>
-                    <td id="username"><h4>{props.post.username}</h4></td>
+                        <td><div id="profilePhoto" style={{ background: `url(${props.post.imgProfile})` }}></div></td>
+                        <td id="username"><h4>{props.post.username}</h4></td>
                     </Link>
                 </tr>
                 <tr>
-                    <td><div id="photoTD" style={{background: `url(${props.post.imgProduct})`}}></div></td>
+                    <td><div id="photoTD" style={{ background: `url(${props.post.imgProduct})` }}></div></td>
                 </tr>
                 <tr>
                     <td id="upvoteBTN"><button  ><img id="upvotePhoto" src={props.post.imgUpvote} alt={props.post.alt} /></button></td>
@@ -146,7 +145,7 @@ interface ExplorePageStates {
     searchInput: string;
 }
 
-export default class ExplorePage extends React.Component<{},ExplorePageStates> {
+export default class ExplorePage extends React.Component<{}, ExplorePageStates> {
 
     constructor(props: {}) {
 
@@ -161,6 +160,7 @@ export default class ExplorePage extends React.Component<{},ExplorePageStates> {
 
     private categoryMap: MyCategory[] = [];
     private featuredList: SuggestedPosts[] = [];
+    private topResults: Dish[] = [];
     private isLoading: boolean = true;
 
     getInitialData = async () => {
@@ -176,13 +176,13 @@ export default class ExplorePage extends React.Component<{},ExplorePageStates> {
                         imgUpvote: upvotePhoto,
                         upvoteCount: dish.rating,
                         eid: dish.establishment_id,
-                        alt: dish.name,                
+                        alt: dish.name,
                     }
                     this.featuredList.push(item);
                     console.log(item);
                     console.log(this.featuredList);
                 })
-                
+
             }
         ).finally(() => this.isLoading = false)
         await axios.get("http://localhost:5000/categories").then(
@@ -193,6 +193,22 @@ export default class ExplorePage extends React.Component<{},ExplorePageStates> {
             }
         );
         this.forceUpdate();
+    }
+
+    filterResults = async () => {
+        this.topResults = [];
+        await axios.get("http://localhost:5000/dishes").then(
+            res => {
+                res.data.dishes.map((dish: Dish) => {
+                    if (dish.establishment?.location.includes(this.state.puebloName) && 
+                    dish.category?.name === this.state.categoryName) {
+                        this.topResults.push(dish);
+                    }
+                });
+                console.log(this.topResults);
+            }
+        );
+            this.forceUpdate();
     }
 
     render() {
@@ -224,7 +240,7 @@ export default class ExplorePage extends React.Component<{},ExplorePageStates> {
             });
         }
 
-        if(this.isLoading) return <div></div>;
+        if (this.isLoading) return <div></div>;
 
         return (
 
@@ -238,15 +254,15 @@ export default class ExplorePage extends React.Component<{},ExplorePageStates> {
                                     <tr>
                                         <td id="bigTDL" >
                                             <ThePost
-                                               post={this.featuredList[0]}/>
+                                                post={this.featuredList[0]} />
                                             <ThePost
-                                                post={this.featuredList[1]}/>
+                                                post={this.featuredList[1]} />
                                         </td>
                                         <td id="bigTDR">
                                             <ThePost
-                                                post={this.featuredList[2]}/>
+                                                post={this.featuredList[2]} />
                                             <ThePost
-                                                post={this.featuredList[3]}/>
+                                                post={this.featuredList[3]} />
                                         </td>
                                     </tr>
                                 </table>
@@ -276,22 +292,19 @@ export default class ExplorePage extends React.Component<{},ExplorePageStates> {
                                             <InputLabel shrink htmlFor="select-multiple-native">
                                                 Choose a Region
                                     </InputLabel>
-                                            <Select
-                                        
-                                                native
-                                                value={this.state.puebloName}
-                                                onChange={handleChangeMultiple}
-                                                style={{ height: '250px' }}
-                                                inputProps={{
-                                                    id: 'select-multiple-native',
-                                                }}
-                                            >
-                                                {pueblos.map((pueblos) => (
-                                                    <option key={pueblos} value={pueblos} style={{ height: '30px' }}>
-                                                        {pueblos}
-                                                    </option>
+                                            <List>
+                                                {pueblos.map((pueblo, index) => (
+                                                    <ListItem
+                                                        button
+                                                        key={index}
+                                                        selected={pueblo === this.state.puebloName}
+                                                        style={{ height: '30px', width: '90%' }}
+                                                        onClick={() => { this.setState({ puebloName: pueblo });
+                                                        this.filterResults(); }}>
+                                                        {pueblo}
+                                                    </ListItem>
                                                 ))}
-                                            </Select>
+                                            </List>
                                         </FormControl>
                                     </div>
                                 </td>
@@ -306,24 +319,18 @@ export default class ExplorePage extends React.Component<{},ExplorePageStates> {
                                             <InputLabel shrink htmlFor="select-multiple-native">
                                                 Choose a Category
                                     </InputLabel>
-                                            <Select
-                                                multiple
-                                                native
-                                                value={this.state.categoryName}
-                                                onChange={handleChangeMultipleCAT}
-                                                inputProps={{
-                                                    id: 'select-multiple-native',
-                                                }}
-
-                                                style={{ height: '250px' }}>
-
-                                                {console.log(this.categoryMap)}
-                                                {this.categoryMap.map((pueblos) => (
-                                                        <option key={pueblos.cid} value={pueblos.name} style={{height:'30px', width:'90%'}}>
-                                                        {pueblos.name}
-                                                        </option>
-                                                    ))}
-                                            </Select>
+                                            <List>
+                                                {this.categoryMap.map((categoria) => (
+                                                    <ListItem
+                                                        button
+                                                        key={categoria.cid}
+                                                        selected={categoria.name === this.state.categoryName}
+                                                        style={{ height: '30px', width: '90%' }}
+                                                        onClick={() => { this.setState({ categoryName: categoria.name }) }}>
+                                                        {categoria.name}
+                                                    </ListItem>
+                                                ))}
+                                            </List>
                                         </FormControl>
                                     </div>
                                 </td> <td>
@@ -331,36 +338,36 @@ export default class ExplorePage extends React.Component<{},ExplorePageStates> {
                                         <img src={topRankedBTN} alt="Not Found" />
                                     </button>
                                     <div className="underFilterTable">
-                                        <ListItem button>
+                                        {this.topResults[0] && <ListItem button href={`/restaurant/${this.topResults[0].establishment_id}`}>
                                             <ListItemIcon>
                                                 <LooksOneIcon />
                                             </ListItemIcon>
-                                            <ListItemText primary="@ojala" />
-                                        </ListItem>
-                                        <ListItem button>
+                                            <ListItemText primary={this.topResults[0].name} />
+                                        </ListItem>}
+                                        {this.topResults[1] && <ListItem button href={`/restaurant/${this.topResults[1].establishment_id}`}>
                                             <ListItemIcon>
                                                 <LooksTwoIcon />
                                             </ListItemIcon>
-                                            <ListItemText primary="@queloque" />
-                                        </ListItem>
-                                        <ListItem button>
+                                            <ListItemText primary={this.topResults[1].name} />
+                                        </ListItem>}
+                                        {this.topResults[2] && <ListItem button href={`/restaurant/${this.topResults[2].establishment_id}`}>
                                             <ListItemIcon>
                                                 <Looks3Icon />
                                             </ListItemIcon>
-                                            <ListItemText primary="@wafflera" />
-                                        </ListItem>
-                                        <ListItem button>
+                                            <ListItemText primary={this.topResults[2].name} />
+                                        </ListItem>}
+                                        {this.topResults[3] && <ListItem button href={`/restaurant/${this.topResults[3].establishment_id}`}>
                                             <ListItemIcon>
                                                 <Looks4Icon />
                                             </ListItemIcon>
-                                            <ListItemText primary="@yoyo" />
-                                        </ListItem>
-                                        <ListItem button>
+                                            <ListItemText primary={this.topResults[3].name} />
+                                        </ListItem>}
+                                        {this.topResults[4] && <ListItem button href={`/restaurant/${this.topResults[4].establishment_id}`}>
                                             <ListItemIcon>
                                                 <Looks5Icon />
                                             </ListItemIcon>
-                                            <ListItemText primary="@wepa" />
-                                        </ListItem>
+                                            <ListItemText primary={this.topResults[4].name} />
+                                        </ListItem>}
                                     </div>
                                 </td>
                             </tr>
