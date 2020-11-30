@@ -13,7 +13,6 @@ import ReactFirebaseFileUpload from './CD.js';
 import { Dish, DishService } from '../../services/DishService';
 import { Form, Formik } from 'formik';
 import axios from 'axios';
-import { MyCategory } from '../ExplorePage/ExplorePage';
 
 let myImgUrl = "https://upload.wikimedia.org/wikipedia/commons/4/42/Photo-camera-in-circular-outlined-interface-button.svg";
 let type = '';
@@ -242,8 +241,8 @@ export const CreateDish = (props: CreateDishProps) => {
                         style={{ width: "100%" }}
                       >
                         {categoryMap.map((option) => (
-                         <MenuItem key={option.cid} value={option.cid}>
-                         {option.name}
+                         <MenuItem key={option.value} value={option.value}>
+                         {option.label}
                        </MenuItem>
                          )
                         )}

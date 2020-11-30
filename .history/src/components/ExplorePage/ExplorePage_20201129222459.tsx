@@ -134,7 +134,7 @@ const ThePost = (props: { post: SuggestedPosts }) => {
     );
 }
 
-export interface MyCategory {
+interface MyCategory {
     cid: number;
     dishes?: Dish[];
     name: string;

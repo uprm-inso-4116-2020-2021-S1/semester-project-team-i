@@ -242,8 +242,8 @@ export const CreateDish = (props: CreateDishProps) => {
                         style={{ width: "100%" }}
                       >
                         {categoryMap.map((option) => (
-                         <MenuItem key={option.cid} value={option.cid}>
-                         {option.name}
+                         <MenuItem key={option.value} value={option.value}>
+                         {option.label}
                        </MenuItem>
                          )
                         )}

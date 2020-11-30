@@ -111,6 +111,28 @@ const pueblos = [
     'Yabucoa',
     'Yauco',];
 
+    const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      width: '100%',
+      maxWidth: 360,
+      backgroundColor: theme.palette.background.paper,
+      position: 'relative',
+      overflow: 'auto',
+      maxHeight: 300,
+    },
+    listSection: {
+      backgroundColor: 'inherit',
+    },
+    ul: {
+      backgroundColor: 'inherit',
+      padding: 0,
+    },
+  }),
+);
+
+  const  classes = useStyles();
+
 const ThePost = (props: { post: SuggestedPosts }) => {
     console.log(props.post);
     return (
@@ -134,7 +156,7 @@ const ThePost = (props: { post: SuggestedPosts }) => {
     );
 }
 
-export interface MyCategory {
+interface MyCategory {
     cid: number;
     dishes?: Dish[];
     name: string;
@@ -282,8 +304,7 @@ export default class ExplorePage extends React.Component<{}, ExplorePageStates> 
                                             <InputLabel shrink htmlFor="select-multiple-native">
                                                 Choose a Region
                                     </InputLabel>
-                                    <div>
-                                            <List className="lista">
+                                            <List className={this.classes.root}>
                                                 {pueblos.map((pueblo, index) => (
                                                     <ListItem
                                                         button
@@ -296,7 +317,6 @@ export default class ExplorePage extends React.Component<{}, ExplorePageStates> 
                                                     </ListItem>
                                                 ))}
                                             </List>
-                                            </div>
                                         </FormControl>
                                     </div>
                                 </td>

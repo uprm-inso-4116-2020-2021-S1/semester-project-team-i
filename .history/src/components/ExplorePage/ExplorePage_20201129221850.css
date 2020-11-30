@@ -50,7 +50,6 @@ padding-left: 1%;
 .underFilterTable{
     border: 0.5px solid gray;
     text-align: center;
-    overflow: scroll;
 }
 
 FormControl{
@@ -227,4 +226,19 @@ h4{
     margin-bottom: 0;
 }
 
-
+.lista {
+    width: '100%';
+    max-width:  "360px";
+    background-color: red;
+    position: 'relative';
+    overflow: 'auto';
+    max-height: "300px";
+    height: "300px"
+  }
+  /* listSection: {
+    backgroundColor: 'inherit',
+  },
+  ul: {
+    backgroundColor: 'inherit',
+    padding: 0, */
+  /* } */
