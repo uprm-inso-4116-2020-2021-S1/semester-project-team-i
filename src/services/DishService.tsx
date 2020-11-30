@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { SERVER_STR } from '../components/Login/Login';
 
 export interface Dish {
     did?: number;
@@ -15,7 +16,7 @@ export interface Dish {
 export class DishService {
 
     static createDish(dish: Dish) {
-        axios.post(`http://127.0.0.1:5000/dishes`, dish)
+        axios.post(SERVER_STR+`/dishes`, dish)
             .then(res => {
                 const ans = res.data.dish;
                 dish = ans;
@@ -25,7 +26,7 @@ export class DishService {
     }
 
     static getAllDishes(dishes: Dish[]) {
-        axios.get(`http://127.0.0.1:5000/dishes`)
+        axios.get(SERVER_STR+`/dishes`)
         .then(res => {
             const ans = res.data.dishes;
             dishes = ans;
@@ -34,7 +35,7 @@ export class DishService {
     }
 
     static getDishById(mid: number, d: Dish) {
-        axios.get(`http://127.0.0.1:5000/dishes/${mid}`)
+        axios.get(SERVER_STR+`/dishes/${mid}`)
             .then(res => {
                 const ans = res.data.menu;
                 d = ans;
@@ -43,7 +44,7 @@ export class DishService {
     }
 
     static editDishById(did: number, m: Dish) {
-        axios.put(`http://127.0.0.1:5000/dishes/${did}`, m)
+        axios.put(SERVER_STR+`/dishes/${did}`, m)
             .then(res => {
                 const ans = res.data.menu;
                 m = ans;
@@ -52,13 +53,13 @@ export class DishService {
     }
 
     static deleteDishById(did: number) {
-        axios.delete(`http://127.0.0.1:5000/dishes/${did}`)
+        axios.delete(SERVER_STR+`/dishes/${did}`)
             .then(res => {
                 console.log(res);
             });
     }
     static getTop4Dishes(dishes: Dish[]) {
-        axios.get(`http://127.0.0.1:5000/dishes?topRated=true&limit=4`)
+        axios.get(SERVER_STR+`/dishes?topRated=true&limit=4`)
         .then(res => {
             const ans = res.data.dishes;
             dishes = ans;

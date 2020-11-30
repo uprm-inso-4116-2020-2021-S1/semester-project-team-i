@@ -4,12 +4,10 @@ import categoryBTN from '../../assets/categoryBTN.png';
 import regionBTN from '../../assets/regionBTN.png';
 import topRankedBTN from '../../assets/topRankedBTN.png';
 import upvotePhoto from '../../assets/upvotePhoto.png';
-import upvotePhotoBlue from '../../assets/upvotePhoto-blue.png';
-
 import TextField from '@material-ui/core/TextField';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
-import { List } from '@material-ui/core';
+import { List, Paper, Select } from '@material-ui/core';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -20,8 +18,8 @@ import Looks4Icon from '@material-ui/icons/Looks4';
 import Looks5Icon from '@material-ui/icons/Looks5';
 import axios from 'axios';
 import { Dish } from '../Restaurant/Restaurant';
-import { SERVER_STR } from '../Login/Login';
 import { Link } from 'react-router-dom';
+import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 
 interface SuggestedPosts {
     imgProfile?: string;
@@ -113,6 +111,28 @@ const pueblos = [
     'Yabucoa',
     'Yauco',];
 
+    const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      width: '100%',
+      maxWidth: 360,
+      backgroundColor: theme.palette.background.paper,
+      position: 'relative',
+      overflow: 'auto',
+      maxHeight: 300,
+    },
+    listSection: {
+      backgroundColor: 'inherit',
+    },
+    ul: {
+      backgroundColor: 'inherit',
+      padding: 0,
+    },
+  }),
+);
+
+  const  classes = useStyles();
+
 const ThePost = (props: { post: SuggestedPosts }) => {
     console.log(props.post);
     return (
@@ -128,7 +148,7 @@ const ThePost = (props: { post: SuggestedPosts }) => {
                     <td><div id="photoTD" style={{ background: `url(${props.post.imgProduct})` }}></div></td>
                 </tr>
                 <tr>
-                    <td id="upvoteBTN"><button><img id="upvotePhoto" src={props.post.imgUpvote} alt={props.post.alt} /></button></td>
+                    <td id="upvoteBTN"><button  ><img id="upvotePhoto" src={props.post.imgUpvote} alt={props.post.alt} /></button></td>
                     <td id="countTD"><h4 id="count">{props.post.upvoteCount}</h4></td>
                 </tr>
             </table>
@@ -136,7 +156,7 @@ const ThePost = (props: { post: SuggestedPosts }) => {
     );
 }
 
-export interface MyCategory {
+interface MyCategory {
     cid: number;
     dishes?: Dish[];
     name: string;
@@ -163,9 +183,6 @@ export default class ExplorePage extends React.Component<{}, ExplorePageStates> 
             searchInput: "",
         }
         this.getInitialData();
-        // if(!localStorage.getItem('loggedInUser')){
-        //     this.history.push("/");
-        // }
     }
 
     private categoryMap: MyCategory[] = [];
@@ -175,7 +192,7 @@ export default class ExplorePage extends React.Component<{}, ExplorePageStates> 
 
     getInitialData = async () => {
 
-        await axios.get(SERVER_STR+"/dishes?featured=true&limit=4").then(
+        await axios.get("http://localhost:5000/dishes?featured=true&limit=4").then(
             res => {
                 console.log(res);
                 res.data.dishes.map((dish: Dish) => {
@@ -195,7 +212,7 @@ export default class ExplorePage extends React.Component<{}, ExplorePageStates> 
 
             }
         ).finally(() => this.isLoading = false)
-        await axios.get(SERVER_STR+"/categories").then(
+        await axios.get("http://localhost:5000/categories").then(
             res => {
                 this.categoryMap = res.data.categories;
                 console.log(res);
@@ -205,32 +222,29 @@ export default class ExplorePage extends React.Component<{}, ExplorePageStates> 
         this.forceUpdate();
     }
 
-   
-
     filterResults = async () => {
         this.topResults = [];
-        await axios.get(SERVER_STR+"/dishes").then(
+        await axios.get("http://localhost:5000/dishes").then(
             res => {
                 res.data.dishes.map((dish: Dish) => {
-                    if ((dish.establishment?.location.includes(this.state.puebloName) &&
-                        dish.category?.name === this.state.categoryName)
-                        || (this.state.searchInput != "" && (dish.name.includes(this.state.searchInput)
-                            || dish.description.includes(this.state.searchInput)
-                            || dish.establishment?.name.includes(this.state.searchInput)
-                            || dish.category?.name.includes(this.state.searchInput)
-                            || dish.establishment?.location.includes(this.state.searchInput)))) {
+                    if ((dish.establishment?.location.includes(this.state.puebloName) && 
+                    dish.category?.name === this.state.categoryName) 
+                    || dish.name.includes(this.state.searchInput) 
+                    || dish.description.includes(this.state.searchInput)
+                    || dish.establishment?.name.includes(this.state.searchInput)
+                    || dish.category?.name.includes(this.state.searchInput)
+                    || dish.establishment?.location.includes(this.state.searchInput)) {
                         this.topResults.push(dish);
                     }
                 });
                 console.log(this.topResults);
             }
         );
-        this.forceUpdate();
+            this.forceUpdate();
     }
 
     render() {
 
-        
         if (this.isLoading) return <div></div>;
 
         return (
@@ -267,14 +281,13 @@ export default class ExplorePage extends React.Component<{}, ExplorePageStates> 
                                 <td id="searchTD">
                                     <div className="searchExplore">
                                         <form className="searchBarEX">
-                                            <TextField id="filled-basic" label="Search" variant="filled" fullWidth
-                                                onChange={(event) => {
-                                                    this.setState({
-                                                        searchInput: event.target.value,
-                                                        puebloName: "",
-                                                        categoryName: ""
-                                                    });
-                                                    this.filterResults();
+                                            <TextField id="filled-basic" label="Search" variant="filled" fullWidth 
+                                            onChange={(event)=>{
+                                                this.setState({
+                                                    searchInput: event.target.value,
+                                                    puebloName: "",
+                                                    categoryName: ""
+                                                });
                                                 }} />
                                         </form>
                                     </div>
@@ -282,31 +295,28 @@ export default class ExplorePage extends React.Component<{}, ExplorePageStates> 
                             </tr>
                             <tr>
                                 <td>
+
                                     <button className="filters">
                                         <img src={regionBTN} alt="Not Found" />
                                     </button>
                                     <div className="underFilterTable">
                                         <FormControl>
                                             <InputLabel shrink htmlFor="select-multiple-native">
-                                                Choose One
+                                                Choose a Region
                                     </InputLabel>
-                                    <div>
-                                            <List className="lista">
+                                            <List className={this.classes.root}>
                                                 {pueblos.map((pueblo, index) => (
                                                     <ListItem
                                                         button
                                                         key={index}
                                                         selected={pueblo === this.state.puebloName}
                                                         style={{ height: '30px', width: '90%' }}
-                                                        onClick={() => {
-                                                            this.setState({ puebloName: pueblo });
-                                                            this.filterResults();
-                                                        }}>
+                                                        onClick={() => { this.setState({ puebloName: pueblo });
+                                                        this.filterResults(); }}>
                                                         {pueblo}
                                                     </ListItem>
                                                 ))}
                                             </List>
-                                            </div>
                                         </FormControl>
                                     </div>
                                 </td>
@@ -319,7 +329,7 @@ export default class ExplorePage extends React.Component<{}, ExplorePageStates> 
                                     <div className="underFilterTable">
                                         <FormControl>
                                             <InputLabel shrink htmlFor="select-multiple-native">
-                                                Choose One
+                                                Choose a Category
                                     </InputLabel>
                                             <List>
                                                 {this.categoryMap.map((categoria) => (
@@ -327,7 +337,7 @@ export default class ExplorePage extends React.Component<{}, ExplorePageStates> 
                                                         button
                                                         key={categoria.cid}
                                                         selected={categoria.name === this.state.categoryName}
-                                                        // style={{ height: '30px', width: '98%' }}
+                                                        style={{ height: '30px', width: '90%' }}
                                                         onClick={() => { this.setState({ categoryName: categoria.name }) }}>
                                                         {categoria.name}
                                                     </ListItem>
@@ -380,4 +390,3 @@ export default class ExplorePage extends React.Component<{}, ExplorePageStates> 
         )
     };
 }
-

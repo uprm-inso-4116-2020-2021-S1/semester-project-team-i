@@ -6,6 +6,7 @@ import { CreateDish } from '../CreateDish/CreateDish';
 import { RouteComponentProps } from 'react-router';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { SERVER_STR } from '../Login/Login';
 
 
 interface RestManagerProps extends RouteComponentProps<{ eid: string }> {
@@ -31,7 +32,7 @@ export default class RestManager extends React.Component<RestManagerProps, RestM
     }
 
     async setBackImg() {
-        await axios.get(`http://127.0.0.1:5000/establishments/${this.establishmentID}`)
+        await axios.get(SERVER_STR+`/establishments/${this.establishmentID}`)
             .then(res => {
                 const ans = res.data.establishment;
                 this.imgStr = ans.image_url;
@@ -40,9 +41,12 @@ export default class RestManager extends React.Component<RestManagerProps, RestM
     }
 
     async populateTable() {
-        await axios.get(`http://127.0.0.1:5000/establishments/${this.establishmentID}`)
+        await axios.get(SERVER_STR+`/establishments/${this.establishmentID}`)
             .then(res => {
-                const ans = res.data.establishment.dishes;
+                const ans: Dish[] = res.data.establishment.dishes;
+                ans.map(item => {
+                    item.categorystr = item.category?.name
+                })
                 this.setState({
                     data: JSON.parse(JSON.stringify(ans))
                 })
@@ -62,7 +66,7 @@ export default class RestManager extends React.Component<RestManagerProps, RestM
             },
             {
                 title: "Category",
-                field: "category_id",
+                field: "categorystr",
             },
             {
                 title: "Type",
