@@ -12,6 +12,7 @@ import twitter from "../../assets/twitter.png";
 import Menu from '../Menu/Menu';
 import { Item } from '../Item/Item';
 import { Establishment, EstablishmentService } from '../../services/EstablishmentService';
+import { SERVER_STR } from '../Login/Login';
 
 
 interface RestaurantProps extends RouteComponentProps<{
@@ -42,6 +43,7 @@ export interface Dish {
     type: string;
     establishment?: Establishment;
     category?: Category;
+    categorystr?: string;
 }
 
 export default class Restaurant extends React.Component<RestaurantProps, RestaurantStates> {
@@ -63,53 +65,7 @@ export default class Restaurant extends React.Component<RestaurantProps, Restaur
     private facebookHandle = "";
     private instagramHandle = "";
     private twitterHandle = "";
-    private menu: Dish[] = [
-        // {
-        //     name: 'pancakes',
-        //     price: '$10',
-        //     description: 'with fruits and whipped cream',
-        //     category: 'breakfast',
-        //     imageUrl: img1,
-        //     rating: 123,
-        //     type: 'entree'
-        // },
-        // {
-        //     name: 'french toast',
-        //     price: '$11',
-        //     description: "chef's special",
-        //     category: 'breakfast',
-        //     imageUrl: img1,
-        //     rating: 87,
-        //     type: 'entree'
-        // },
-        // {
-        //     name: 'fruit salad',
-        //     price: '$6',
-        //     description: 'fruits of the day',
-        //     category: 'snacks',
-        //     imageUrl: img1,
-        //     rating: 100,
-        //     type: 'snacks'
-        // },
-        // {
-        //     name: 'açai',
-        //     price: '$12',
-        //     description: 'vegan',
-        //     category: 'snacks',
-        //     imageUrl: img1,
-        //     rating: 138,
-        //     type: 'entree'
-        // },
-        // {
-        //     name: 'turkey sandwich',
-        //     price: '$9',
-        //     description: 'sandwich',
-        //     category: 'breakfast',
-        //     imageUrl: img1,
-        //     rating: 200,
-        //     type: 'entree'
-        // }
-    ];
+    private menu: Dish[] = [];
 
     constructor(props: RestaurantProps) {
 
@@ -122,7 +78,7 @@ export default class Restaurant extends React.Component<RestaurantProps, Restaur
     async setEstablishment(e: Establishment) {
         this.establishment = e;
         console.log(this.establishment);
-        await axios.get(`http://127.0.0.1:5000/dishes?eid=${e.eid}`)
+        await axios.get(SERVER_STR+`/dishes?eid=${e.eid}`)
         .then(res => {
             const ans = res.data.dishes;
             this.menu = ans;

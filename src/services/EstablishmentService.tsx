@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { goToNewRestaurant } from '../components/CreateRestaurant/CreateRestaurant';
+import { SERVER_STR } from '../components/Login/Login';
 import { Dish } from './DishService';
 import { User } from './UserService';
 
@@ -21,7 +22,7 @@ export class EstablishmentService {
 
     static createEstablishment(establishment: Establishment) {
         console.log(establishment);
-        axios.post(`http://127.0.0.1:5000/establishments`, establishment)
+        axios.post(SERVER_STR+`/establishments`, establishment)
             .then(res => {
                 const ans = res.data.establishment;
                 establishment = ans;
@@ -32,7 +33,7 @@ export class EstablishmentService {
     }
 
     static getAllEstablishments(holder: Establishment[]) {
-        axios.get(`http://127.0.0.1:5000/establishments`)
+        axios.get(SERVER_STR+`/establishments`)
             .then(res => {
                 const ans = res.data.users;
                 holder = ans;
@@ -41,7 +42,7 @@ export class EstablishmentService {
     }
 
     static async getEstablishmentById(eid: number, setEstablishment: (e: Establishment) => void) {
-        await axios.get(`http://127.0.0.1:5000/establishments/${eid}`)
+        await axios.get(SERVER_STR+`/establishments/${eid}`)
             .then(res => {
                 const ans = res.data.establishment;
                 setEstablishment(ans);
@@ -50,7 +51,7 @@ export class EstablishmentService {
     }
 
     static editEstablishmentById(eid: number, e: Establishment) {
-        axios.put(`http://127.0.0.1:5000/establishments/${eid}`, e)
+        axios.put(SERVER_STR+`/establishments/${eid}`, e)
             .then(res => {
                 const ans = res.data.users;
                 e = ans;
@@ -59,7 +60,7 @@ export class EstablishmentService {
     }
 
     static deleteEstablishmentById(eid: number) {
-        axios.delete(`http://127.0.0.1:5000/establishments/${eid}`)
+        axios.delete(SERVER_STR+`/establishments/${eid}`)
             .then(res => console.log(res));
     }
 

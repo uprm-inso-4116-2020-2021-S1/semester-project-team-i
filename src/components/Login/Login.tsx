@@ -6,6 +6,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { UserService } from '../../services/UserService';
 
 let history;
+export const SERVER_STR = "https://find-and-eat-server.herokuapp.com/";
 
 const onSubmit = (values: {username: string, password: string}) => {
  

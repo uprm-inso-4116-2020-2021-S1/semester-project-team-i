@@ -7,7 +7,7 @@ import upvotePhoto from '../../assets/upvotePhoto.png';
 import TextField from '@material-ui/core/TextField';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
-import { List, Paper, Select } from '@material-ui/core';
+import { List } from '@material-ui/core';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -18,7 +18,8 @@ import Looks4Icon from '@material-ui/icons/Looks4';
 import Looks5Icon from '@material-ui/icons/Looks5';
 import axios from 'axios';
 import { Dish } from '../Restaurant/Restaurant';
-import { Link } from 'react-router-dom';
+import { Link, useHistory, withRouter } from 'react-router-dom';
+import { SERVER_STR } from '../Login/Login';
 
 interface SuggestedPosts {
     imgProfile?: string;
@@ -145,7 +146,7 @@ interface ExplorePageStates {
     searchInput: string;
 }
 
-export default class ExplorePage extends React.Component<{}, ExplorePageStates> {
+export default class ExplorePage extends React.Component<{}, ExplorePageStates> {    
 
     constructor(props: {}) {
 
@@ -156,6 +157,9 @@ export default class ExplorePage extends React.Component<{}, ExplorePageStates> 
             searchInput: "",
         }
         this.getInitialData();
+        // if(!localStorage.getItem('loggedInUser')){
+        //     this.history.push("/");
+        // }
     }
 
     private categoryMap: MyCategory[] = [];
@@ -165,7 +169,7 @@ export default class ExplorePage extends React.Component<{}, ExplorePageStates> 
 
     getInitialData = async () => {
 
-        await axios.get("http://localhost:5000/dishes?featured=true&limit=4").then(
+        await axios.get(SERVER_STR+"/dishes?featured=true&limit=4").then(
             res => {
                 console.log(res);
                 res.data.dishes.map((dish: Dish) => {
@@ -185,7 +189,7 @@ export default class ExplorePage extends React.Component<{}, ExplorePageStates> 
 
             }
         ).finally(() => this.isLoading = false)
-        await axios.get("http://localhost:5000/categories").then(
+        await axios.get(SERVER_STR+"/categories").then(
             res => {
                 this.categoryMap = res.data.categories;
                 console.log(res);
@@ -197,23 +201,23 @@ export default class ExplorePage extends React.Component<{}, ExplorePageStates> 
 
     filterResults = async () => {
         this.topResults = [];
-        await axios.get("http://localhost:5000/dishes").then(
+        await axios.get(SERVER_STR+"/dishes").then(
             res => {
                 res.data.dishes.map((dish: Dish) => {
-                    if ((dish.establishment?.location.includes(this.state.puebloName) && 
-                    dish.category?.name === this.state.categoryName) 
-                    || (this.state.searchInput != "" && (dish.name.includes(this.state.searchInput) 
-                    || dish.description.includes(this.state.searchInput)
-                    || dish.establishment?.name.includes(this.state.searchInput)
-                    || dish.category?.name.includes(this.state.searchInput)
-                    || dish.establishment?.location.includes(this.state.searchInput)))) {
+                    if ((dish.establishment?.location.includes(this.state.puebloName) &&
+                        dish.category?.name === this.state.categoryName)
+                        || (this.state.searchInput != "" && (dish.name.includes(this.state.searchInput)
+                            || dish.description.includes(this.state.searchInput)
+                            || dish.establishment?.name.includes(this.state.searchInput)
+                            || dish.category?.name.includes(this.state.searchInput)
+                            || dish.establishment?.location.includes(this.state.searchInput)))) {
                         this.topResults.push(dish);
                     }
                 });
                 console.log(this.topResults);
             }
         );
-            this.forceUpdate();
+        this.forceUpdate();
     }
 
     render() {
@@ -254,14 +258,14 @@ export default class ExplorePage extends React.Component<{}, ExplorePageStates> 
                                 <td id="searchTD">
                                     <div className="searchExplore">
                                         <form className="searchBarEX">
-                                            <TextField id="filled-basic" label="Search" variant="filled" fullWidth 
-                                            onChange={(event)=>{
-                                                this.setState({
-                                                    searchInput: event.target.value,
-                                                    puebloName: "",
-                                                    categoryName: ""
-                                                });
-                                                this.filterResults();
+                                            <TextField id="filled-basic" label="Search" variant="filled" fullWidth
+                                                onChange={(event) => {
+                                                    this.setState({
+                                                        searchInput: event.target.value,
+                                                        puebloName: "",
+                                                        categoryName: ""
+                                                    });
+                                                    this.filterResults();
                                                 }} />
                                         </form>
                                     </div>
@@ -269,7 +273,6 @@ export default class ExplorePage extends React.Component<{}, ExplorePageStates> 
                             </tr>
                             <tr>
                                 <td>
-
                                     <button className="filters">
                                         <img src={regionBTN} alt="Not Found" />
                                     </button>
@@ -285,8 +288,10 @@ export default class ExplorePage extends React.Component<{}, ExplorePageStates> 
                                                         key={index}
                                                         selected={pueblo === this.state.puebloName}
                                                         style={{ height: '30px', width: '90%' }}
-                                                        onClick={() => { this.setState({ puebloName: pueblo });
-                                                        this.filterResults(); }}>
+                                                        onClick={() => {
+                                                            this.setState({ puebloName: pueblo });
+                                                            this.filterResults();
+                                                        }}>
                                                         {pueblo}
                                                     </ListItem>
                                                 ))}
@@ -302,9 +307,7 @@ export default class ExplorePage extends React.Component<{}, ExplorePageStates> 
                                     </button>
                                     <div className="underFilterTable">
                                         <FormControl>
-                                            <InputLabel shrink htmlFor="select-multiple-native">
-                                                Choose a Category
-                                    </InputLabel>
+                                            <InputLabel shrink htmlFor="select-multiple-native">Choose a Category</InputLabel>
                                             <List>
                                                 {this.categoryMap.map((categoria) => (
                                                     <ListItem
@@ -364,3 +367,4 @@ export default class ExplorePage extends React.Component<{}, ExplorePageStates> 
         )
     };
 }
+

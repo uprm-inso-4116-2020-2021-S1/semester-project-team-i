@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { setLoggedInUser } from '../components/Login/Login';
+import { SERVER_STR, setLoggedInUser } from '../components/Login/Login';
 import { setRegisterLoggedInUser } from '../components/Register/Register';
 import { Establishment } from './EstablishmentService';
 
@@ -19,7 +19,7 @@ export interface User {
 export class UserService {
 
     static login(credentials: {username: string, password: string}) {
-        axios.post(`http://127.0.0.1:5000/login`, credentials)
+        axios.post(SERVER_STR+`/login`, credentials)
         .then(res => {
                 const uid = res.data.user_id as number;
                 console.log(res);
@@ -29,7 +29,7 @@ export class UserService {
 
     static createUser(user: User) {
         let uid = -1;
-        axios.post(`http://127.0.0.1:5000/users`, user)
+        axios.post(SERVER_STR+`/users`, user)
             .then(res => {
                 const newUser = res.data.user;
                 uid = newUser.uid as number;
@@ -39,7 +39,7 @@ export class UserService {
     }
 
     static getUserById(uid: number, user: User) {
-        axios.get(`http://127.0.0.1:5000/users/${uid}`).then(res => {
+        axios.get(SERVER_STR+`/users/${uid}`).then(res => {
             user = res.data.user;
             console.log(res);
             
@@ -47,14 +47,14 @@ export class UserService {
     }
 
     static deleteUserById(uid: number, user: User) {
-        axios.delete(`http://127.0.0.1:5000/users/${uid}`).then(res => {
+        axios.delete(SERVER_STR+`/users/${uid}`).then(res => {
             console.log(res);
             
         });
     }
 
     static editUserById(uid: number, user: User) {
-        axios.put(`http://127.0.0.1:5000/users/${uid}`, user).then(res => {
+        axios.put(SERVER_STR+`/users/${uid}`, user).then(res => {
             user = res.data.user;
             console.log(res);
             

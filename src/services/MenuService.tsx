@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { SERVER_STR } from '../components/Login/Login';
 
 export interface MenuResp {
     mid?: number;
@@ -8,7 +9,7 @@ export interface MenuResp {
 export class MenuService {
 
     static createMenu(menu: MenuResp) {
-        axios.post(`http://127.0.0.1:5000/menus`, menu)
+        axios.post(SERVER_STR+`/menus`, menu)
             .then(res => {
                 const ans = res.data.menu;
                 menu = ans;
@@ -17,7 +18,7 @@ export class MenuService {
     }
 
     static getAllMenus(menus: MenuResp[]) {
-        axios.get(`http://127.0.0.1:5000/menus`)
+        axios.get(SERVER_STR+`/menus`)
             .then(res => {
                 const ans = res.data.menus;
                 menus = ans;
@@ -26,7 +27,7 @@ export class MenuService {
     }
 
     static getMenuById(mid: number, m: MenuResp) {
-        axios.get(`http://127.0.0.1:5000/menus/${mid}`)
+        axios.get(SERVER_STR+`/menus/${mid}`)
             .then(res => {
                 const ans = res.data.menu;
                 m = ans;
@@ -35,7 +36,7 @@ export class MenuService {
     }
 
     static editMenuById(mid: number, m: MenuResp) {
-        axios.put(`http://127.0.0.1:5000/menus/${mid}`, m)
+        axios.put(SERVER_STR+`/menus/${mid}`, m)
             .then(res => {
                 const ans = res.data.menu;
                 m = ans;
@@ -44,7 +45,7 @@ export class MenuService {
     }
 
     static deleteMenuById(mid: number) {
-        axios.delete(`http://127.0.0.1:5000/menus/${mid}`)
+        axios.delete(SERVER_STR+`/menus/${mid}`)
             .then(res => {
                 console.log(res);
             });
