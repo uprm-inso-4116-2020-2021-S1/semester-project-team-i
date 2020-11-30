@@ -83,7 +83,7 @@ export const Profile = () => {
         handleCloseFirst();
     }
 
-    let showUser = localStorage.getItem('loggedInUser')?true:false;
+    let showUser = true;
 
     return (
         <div>
