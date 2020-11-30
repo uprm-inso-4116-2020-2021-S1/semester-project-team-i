@@ -1,7 +1,6 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
@@ -14,6 +13,7 @@ import { Dish, DishService } from '../../services/DishService';
 import { Form, Formik } from 'formik';
 import axios from 'axios';
 import { MyCategory } from '../ExplorePage/ExplorePage';
+import { SERVER_STR } from '../Login/Login';
 
 let myImgUrl = "https://upload.wikimedia.org/wikipedia/commons/4/42/Photo-camera-in-circular-outlined-interface-button.svg";
 let type = '';
@@ -24,7 +24,7 @@ let categoryMap: MyCategory[] = [];
 
 async function getInitialData (){
 
-  await axios.get("http://localhost:5000/categories").then(
+  await axios.get(SERVER_STR+"/categories").then(
   res => {
     categoryMap = res.data.categories;
     console.log(res);
