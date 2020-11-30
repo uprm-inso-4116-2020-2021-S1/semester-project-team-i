@@ -4,6 +4,8 @@ import categoryBTN from '../../assets/categoryBTN.png';
 import regionBTN from '../../assets/regionBTN.png';
 import topRankedBTN from '../../assets/topRankedBTN.png';
 import upvotePhoto from '../../assets/upvotePhoto.png';
+import upvotePhotoBlue from '../../assets/upvotePhoto-blue.png';
+
 import TextField from '@material-ui/core/TextField';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
@@ -125,7 +127,7 @@ const ThePost = (props: { post: SuggestedPosts }) => {
                     <td><div id="photoTD" style={{ background: `url(${props.post.imgProduct})` }}></div></td>
                 </tr>
                 <tr>
-                    <td id="upvoteBTN"><button  ><img id="upvotePhoto" src={props.post.imgUpvote} alt={props.post.alt} /></button></td>
+                    <td id="upvoteBTN"><button><img id="upvotePhoto" src={props.post.imgUpvote} alt={props.post.alt} /></button></td>
                     <td id="countTD"><h4 id="count">{props.post.upvoteCount}</h4></td>
                 </tr>
             </table>
@@ -195,6 +197,8 @@ export default class ExplorePage extends React.Component<{}, ExplorePageStates> 
         this.forceUpdate();
     }
 
+   
+
     filterResults = async () => {
         this.topResults = [];
         await axios.get("http://localhost:5000/dishes").then(
@@ -218,6 +222,7 @@ export default class ExplorePage extends React.Component<{}, ExplorePageStates> 
 
     render() {
 
+        
         if (this.isLoading) return <div></div>;
 
         return (
@@ -276,7 +281,7 @@ export default class ExplorePage extends React.Component<{}, ExplorePageStates> 
                                     <div className="underFilterTable">
                                         <FormControl>
                                             <InputLabel shrink htmlFor="select-multiple-native">
-                                                Choose a Region
+                                                Choose One
                                     </InputLabel>
                                             <List>
                                                 {pueblos.map((pueblo, index) => (
@@ -284,7 +289,7 @@ export default class ExplorePage extends React.Component<{}, ExplorePageStates> 
                                                         button
                                                         key={index}
                                                         selected={pueblo === this.state.puebloName}
-                                                        style={{ height: '30px', width: '90%' }}
+                                                        // style={{ height: '30px', width: '90%' }}
                                                         onClick={() => { this.setState({ puebloName: pueblo });
                                                         this.filterResults(); }}>
                                                         {pueblo}
@@ -303,7 +308,7 @@ export default class ExplorePage extends React.Component<{}, ExplorePageStates> 
                                     <div className="underFilterTable">
                                         <FormControl>
                                             <InputLabel shrink htmlFor="select-multiple-native">
-                                                Choose a Category
+                                                Choose One
                                     </InputLabel>
                                             <List>
                                                 {this.categoryMap.map((categoria) => (
@@ -311,7 +316,7 @@ export default class ExplorePage extends React.Component<{}, ExplorePageStates> 
                                                         button
                                                         key={categoria.cid}
                                                         selected={categoria.name === this.state.categoryName}
-                                                        style={{ height: '30px', width: '90%' }}
+                                                        // style={{ height: '30px', width: '98%' }}
                                                         onClick={() => { this.setState({ categoryName: categoria.name }) }}>
                                                         {categoria.name}
                                                     </ListItem>
