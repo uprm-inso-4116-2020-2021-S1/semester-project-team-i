@@ -12,29 +12,20 @@ import ReactFirebaseFileUpload from './CD.js';
 
 import { Dish, DishService } from '../../services/DishService';
 import { Form, Formik } from 'formik';
-import axios from 'axios';
-import { MyCategory } from '../ExplorePage/ExplorePage';
 
 let myImgUrl = "https://upload.wikimedia.org/wikipedia/commons/4/42/Photo-camera-in-circular-outlined-interface-button.svg";
 let type = '';
 let category_id = 0;
 let catetegory = "";
 
-let categoryMap: MyCategory[] = []; 
-
-async function getInitialData (){
-
-  await axios.get("http://localhost:5000/categories").then(
-  res => {
-    categoryMap = res.data.categories;
-    console.log(res);
-    console.log(categoryMap);
-}
-);
-}
-
 interface CreateDishProps {
   establishmentId: number;
+}
+
+interface MyCategory {
+  cid: number;
+  dishes?: Dish[];
+  name: string;
 }
 
 interface DishData {
@@ -65,7 +56,22 @@ const onSubmit = (values: DishData) => {
   DishService.createDish(newDish);
 }
 
+getInitialData = async () => {
+
+  await axios.get("http://localhost:5000/categories").then(
+  res => {
+    this.categoryMap = res.data.categories;
+    console.log(res);
+    console.log(this.categoryMap);
+}
+);
+}
+
+
+
 export const CreateDish = (props: CreateDishProps) => {
+
+  const categoryMap: MyCategory[] = [];  
 
   const types = [
     {
@@ -83,6 +89,25 @@ export const CreateDish = (props: CreateDishProps) => {
     {
       value: 'drink',
       label: 'drink',
+    },
+  ];
+
+  const categories = [
+    {
+      value: 0,
+      label: 'Mexican',
+    },
+    {
+      value: 1,
+      label: 'Italian',
+    },
+    {
+      value: 2,
+      label: 'Puertorrican',
+    },
+    {
+      value: 3,
+      label: 'Breakfast',
     },
   ];
 
@@ -124,7 +149,6 @@ export const CreateDish = (props: CreateDishProps) => {
     type = (event.target.value);
   };
 
-  getInitialData();
   // cajitas de select
 
   const setMyImageUrl = (url: string) => {
@@ -216,7 +240,7 @@ export const CreateDish = (props: CreateDishProps) => {
                         value={type}
                         onChange={changeType}
                         onBlur={handleBlur}
-                       
+                        // onChange={handleChange} 
                         helperText="Select type of dish"
                         style={{ width: "100%" }}
                       >
@@ -236,17 +260,17 @@ export const CreateDish = (props: CreateDishProps) => {
                         name="category"
                         value={category_id}
                         onChange={changeCategory}
-              
+                        // onChange={handleChange} 
                         onBlur={handleBlur}
                         helperText="Select category of dish"
                         style={{ width: "100%" }}
                       >
-                        {categoryMap.map((option) => (
-                         <MenuItem key={option.cid} value={option.cid}>
-                         {option.name}
-                       </MenuItem>
-                         )
-                        )}
+                        {categories.map((option) => (
+                          <MenuItem key={option.value} value={option.value}>
+                            {option.label}
+
+                          </MenuItem>
+                        ))}
                       </TextField>
                     </tr>
 
