@@ -18,6 +18,7 @@ import Looks4Icon from '@material-ui/icons/Looks4';
 import Looks5Icon from '@material-ui/icons/Looks5';
 import axios from 'axios';
 import { Dish } from '../Restaurant/Restaurant';
+import { Link } from 'react-router-dom';
 
 
 interface SuggestedPosts {
@@ -26,6 +27,7 @@ interface SuggestedPosts {
     imgProduct: string;
     imgUpvote: string;
     upvoteCount: number;
+    eid: number;
     alt: string;
 }
 
@@ -115,11 +117,13 @@ const ThePost = (props: {post: SuggestedPosts}) => {
         <div className="thePostConatainer">
             <table>
                 <tr>
+                    <Link to={`/restaurant/${props.post.eid}`}>
                     <td><div id="profilePhoto" style={{background: `url(${props.post.imgProfile})`}}></div></td>
                     <td id="username"><h4>{props.post.username}</h4></td>
+                    </Link>
                 </tr>
                 <tr>
-                    <td id="photoTD"><button id="sizingPostBTN" ><img src={props.post.imgProduct} alt={props.post.alt}/></button></td>
+                    <td><div id="photoTD" style={{background: `url(${props.post.imgProduct})`}}></div></td>
                 </tr>
                 <tr>
                     <td id="upvoteBTN"><button  ><img id="upvotePhoto" src={props.post.imgUpvote} alt={props.post.alt} /></button></td>
@@ -137,8 +141,9 @@ interface MyCategory {
 }
 
 interface ExplorePageStates {
-    puebloName: string[];
-    categoryName: string[];
+    puebloName: string;
+    categoryName: string;
+    searchInput: string;
 }
 
 export default class ExplorePage extends React.Component<{},ExplorePageStates> {
@@ -147,8 +152,9 @@ export default class ExplorePage extends React.Component<{},ExplorePageStates> {
 
         super(props);
         this.state = {
-            puebloName: [],
-            categoryName: [],
+            puebloName: "",
+            categoryName: "",
+            searchInput: "",
         }
         this.getInitialData();
     }
@@ -169,6 +175,7 @@ export default class ExplorePage extends React.Component<{},ExplorePageStates> {
                         imgProduct: dish.image_url,
                         imgUpvote: upvotePhoto,
                         upvoteCount: dish.rating,
+                        eid: dish.establishment_id,
                         alt: dish.name,                
                     }
                     this.featuredList.push(item);
@@ -192,10 +199,10 @@ export default class ExplorePage extends React.Component<{},ExplorePageStates> {
 
         const handleChangeMultiple = (event: React.ChangeEvent<{ value: unknown }>) => {
             const { options } = event.target as HTMLSelectElement;
-            const value: string[] = [];
+            let value: string = "";
             for (let i = 0, l = options.length; i < l; i += 1) {
                 if (options[i].selected) {
-                    value.push(options[i].value);
+                    value = options[i].value;
                 }
             }
             this.setState({
@@ -206,11 +213,10 @@ export default class ExplorePage extends React.Component<{},ExplorePageStates> {
 
         const handleChangeMultipleCAT = (event: React.ChangeEvent<{ value: unknown }>) => {
             const { options } = event.target as HTMLSelectElement;
-            const value: string[] = [];
+            let value: string = "";
             for (let i = 0, l = options.length; i < l; i += 1) {
                 if (options[i].selected) {
-                    const x = options[i].value;
-                    value.push(x);
+                    value = options[i].value;
                 }
             }
             this.setState({
@@ -271,11 +277,11 @@ export default class ExplorePage extends React.Component<{},ExplorePageStates> {
                                                 Choose a Region
                                     </InputLabel>
                                             <Select
-                                                multiple
+                                        
                                                 native
                                                 value={this.state.puebloName}
                                                 onChange={handleChangeMultiple}
-                                                style={{ height: '200px' }}
+                                                style={{ height: '250px' }}
                                                 inputProps={{
                                                     id: 'select-multiple-native',
                                                 }}
@@ -309,7 +315,7 @@ export default class ExplorePage extends React.Component<{},ExplorePageStates> {
                                                     id: 'select-multiple-native',
                                                 }}
 
-                                                style={{ height: '200px' }}>
+                                                style={{ height: '250px' }}>
 
                                                 {console.log(this.categoryMap)}
                                                 {this.categoryMap.map((pueblos) => (
