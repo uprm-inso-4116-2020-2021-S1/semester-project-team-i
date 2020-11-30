@@ -202,11 +202,11 @@ export default class ExplorePage extends React.Component<{}, ExplorePageStates> 
                 res.data.dishes.map((dish: Dish) => {
                     if ((dish.establishment?.location.includes(this.state.puebloName) && 
                     dish.category?.name === this.state.categoryName) 
-                    || dish.name.includes(this.state.searchInput) 
+                    || (this.state.searchInput != "" && (dish.name.includes(this.state.searchInput) 
                     || dish.description.includes(this.state.searchInput)
                     || dish.establishment?.name.includes(this.state.searchInput)
                     || dish.category?.name.includes(this.state.searchInput)
-                    || dish.establishment?.location.includes(this.state.searchInput)) {
+                    || dish.establishment?.location.includes(this.state.searchInput)))) {
                         this.topResults.push(dish);
                     }
                 });
@@ -261,6 +261,7 @@ export default class ExplorePage extends React.Component<{}, ExplorePageStates> 
                                                     puebloName: "",
                                                     categoryName: ""
                                                 });
+                                                this.filterResults();
                                                 }} />
                                         </form>
                                     </div>
