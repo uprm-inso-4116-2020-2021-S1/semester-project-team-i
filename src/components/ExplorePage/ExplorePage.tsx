@@ -200,8 +200,13 @@ export default class ExplorePage extends React.Component<{}, ExplorePageStates> 
         await axios.get("http://localhost:5000/dishes").then(
             res => {
                 res.data.dishes.map((dish: Dish) => {
-                    if (dish.establishment?.location.includes(this.state.puebloName) && 
-                    dish.category?.name === this.state.categoryName) {
+                    if ((dish.establishment?.location.includes(this.state.puebloName) && 
+                    dish.category?.name === this.state.categoryName) 
+                    || dish.name.includes(this.state.searchInput) 
+                    || dish.description.includes(this.state.searchInput)
+                    || dish.establishment?.name.includes(this.state.searchInput)
+                    || dish.category?.name.includes(this.state.searchInput)
+                    || dish.establishment?.location.includes(this.state.searchInput)) {
                         this.topResults.push(dish);
                     }
                 });
@@ -212,33 +217,6 @@ export default class ExplorePage extends React.Component<{}, ExplorePageStates> 
     }
 
     render() {
-
-        const handleChangeMultiple = (event: React.ChangeEvent<{ value: unknown }>) => {
-            const { options } = event.target as HTMLSelectElement;
-            let value: string = "";
-            for (let i = 0, l = options.length; i < l; i += 1) {
-                if (options[i].selected) {
-                    value = options[i].value;
-                }
-            }
-            this.setState({
-                puebloName: value
-            });
-
-        }
-
-        const handleChangeMultipleCAT = (event: React.ChangeEvent<{ value: unknown }>) => {
-            const { options } = event.target as HTMLSelectElement;
-            let value: string = "";
-            for (let i = 0, l = options.length; i < l; i += 1) {
-                if (options[i].selected) {
-                    value = options[i].value;
-                }
-            }
-            this.setState({
-                categoryName: value
-            });
-        }
 
         if (this.isLoading) return <div></div>;
 
@@ -253,16 +231,16 @@ export default class ExplorePage extends React.Component<{}, ExplorePageStates> 
                                 <table>
                                     <tr>
                                         <td id="bigTDL" >
-                                            <ThePost
-                                                post={this.featuredList[0]} />
-                                            <ThePost
-                                                post={this.featuredList[1]} />
+                                            {this.featuredList[0] && <ThePost
+                                                post={this.featuredList[0]} />}
+                                            {this.featuredList[1] && <ThePost
+                                                post={this.featuredList[1]} />}
                                         </td>
                                         <td id="bigTDR">
-                                            <ThePost
-                                                post={this.featuredList[2]} />
-                                            <ThePost
-                                                post={this.featuredList[3]} />
+                                            {this.featuredList[2] && <ThePost
+                                                post={this.featuredList[2]} />}
+                                            {this.featuredList[3] && <ThePost
+                                                post={this.featuredList[3]} />}
                                         </td>
                                     </tr>
                                 </table>
@@ -276,7 +254,14 @@ export default class ExplorePage extends React.Component<{}, ExplorePageStates> 
                                 <td id="searchTD">
                                     <div className="searchExplore">
                                         <form className="searchBarEX">
-                                            <TextField id="filled-basic" label="Search" variant="filled" fullWidth />
+                                            <TextField id="filled-basic" label="Search" variant="filled" fullWidth 
+                                            onChange={(event)=>{
+                                                this.setState({
+                                                    searchInput: event.target.value,
+                                                    puebloName: "",
+                                                    categoryName: ""
+                                                });
+                                                }} />
                                         </form>
                                     </div>
                                 </td>
