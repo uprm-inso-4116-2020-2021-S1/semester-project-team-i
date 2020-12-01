@@ -11,11 +11,14 @@ class DishAPIStrategy(BaseAPIStrategy):
         dishes = Dish.get_all_dishes()
         if params:
             establishment_id = params.get('eid', None)
-            limit = params.get('limit', None)
+            limit = params.get('limit', 3)
             top_rated = params.get('topRated', None)
             featured = params.get('featured', None)
             if establishment_id and limit:
-                dishes = Dish.get_top_dishes_by_establishment(int(establishment_id), int(limit))
+                if top_rated:
+                    dishes = Dish.get_top_dishes_by_establishment(int(establishment_id), int(limit))
+                else:
+                    dishes = Dish.get_all_dishes_by_establishment(int(establishment_id))
             elif top_rated and limit:
                 dishes = Dish.get_top_dishes(int(limit))
             elif featured and limit:
