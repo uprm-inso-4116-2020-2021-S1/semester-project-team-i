@@ -23,9 +23,9 @@ export const Item = (props: ItemProps) => {
 
     return (
 
-        <div>
+        <div className="itemPic" style={{ background: `url(${props.imgSrc})` }} onClick={handleClickOpen}>
 
-            <img style={{ margin: "50px" }} src={props.imgSrc} alt="foto" onClick={handleClickOpen}></img>
+            {/* <img style={{ margin: "50px" }} src={props.imgSrc} alt="foto" onClick={handleClickOpen}></img> */}
 
             <Dialog className="" open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
 

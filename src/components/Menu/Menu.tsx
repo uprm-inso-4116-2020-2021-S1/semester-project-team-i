@@ -7,13 +7,22 @@ interface MenuProps {
     myMenu: Dish[];
 }
 
+export interface SampleMenu {
+    name: string;
+    description: string;
+    category: string;
+    type: string;
+    price: string;
+    upvotes: number;
+}
+
 export default class Menu extends React.Component<MenuProps> {
 
     public constructor(props: MenuProps) {
         super(props);
     }
 
-    getTable(data: Dish[]) {
+    getTable(data: SampleMenu[]) {
         const columns = [
             {
                 title: "Name",
@@ -25,7 +34,7 @@ export default class Menu extends React.Component<MenuProps> {
             },
             {
                 title: "Category",
-                field: "category_id",
+                field: "category",
             },
             {
                 title: "Type",
@@ -36,8 +45,8 @@ export default class Menu extends React.Component<MenuProps> {
                 field: "price",
             },
             {
-                title: "Rating",
-                field: "rating",
+                title: "Upvotes",
+                field: "upvotes",
             },
         ];
 
@@ -52,6 +61,20 @@ export default class Menu extends React.Component<MenuProps> {
 
 
     render() {
+        const sMenu: SampleMenu[] = [];
+        this.props.myMenu.forEach(item => {
+            console.log(item);
+            const temp: SampleMenu = {
+                name: item.name,
+                description: item.description,
+                category: item.category?.name as string,
+                type: item.type,
+                price: "$"+item.price,
+                upvotes: item.upvotes?.length ? item.upvotes.length : 0
+            }
+            sMenu.push(temp);
+        })
+
         return (
             <div>
                 <hr style={{border: "2px solid #F1821B"}}></hr>
@@ -60,7 +83,7 @@ export default class Menu extends React.Component<MenuProps> {
                     rel="stylesheet" 
                     href="https://fonts.googleapis.com/icon?family=Material+Icons"></link>
                     <div style={{width:"80%", marginLeft:"10%", marginBottom:"50px"}}>
-                      {this.getTable(this.props.myMenu)}
+                      {this.getTable(sMenu)}
                     </div>
 
             </div>

@@ -13,6 +13,7 @@ import Menu from '../Menu/Menu';
 import { Item } from '../Item/Item';
 import { Establishment, EstablishmentService } from '../../services/EstablishmentService';
 import { SERVER_STR } from '../Login/Login';
+import { Upvote } from '../ExplorePage/ExplorePage';
 
 
 interface RestaurantProps extends RouteComponentProps<{
@@ -44,6 +45,7 @@ export interface Dish {
     establishment?: Establishment;
     category?: Category;
     categorystr?: string;
+    upvotes?: Upvote[];
 }
 
 export default class Restaurant extends React.Component<RestaurantProps, RestaurantStates> {
@@ -78,13 +80,13 @@ export default class Restaurant extends React.Component<RestaurantProps, Restaur
     async setEstablishment(e: Establishment) {
         this.establishment = e;
         console.log(this.establishment);
-        await axios.get(SERVER_STR+`/dishes?eid=${e.eid}`)
-        .then(res => {
-            const ans = res.data.dishes;
-            this.menu = ans;
-            console.log(res);
-        });
-        
+        await axios.get(SERVER_STR + `/dishes?eid=${e.eid}`)
+            .then(res => {
+                const ans = res.data.dishes;
+                this.menu = ans;
+                console.log(ans);
+            });
+
         this.forceUpdate();
     }
     componentDidMount() {
@@ -99,10 +101,10 @@ export default class Restaurant extends React.Component<RestaurantProps, Restaur
                     <table>
                         <tr >
                             <td style={{ width: "48%" }}>
-                                <div className="restPic" style={{background: `url(${this.establishment.image_url})`}}>
+                                <div className="restPic" style={{ background: `url(${this.establishment.image_url})` }}>
                                 </div>
                             </td>
-                            <td style={{ textAlign: "center"}}>
+                            <td style={{ textAlign: "center" }}>
                                 <div className="handle">{this.establishment.name}</div>
                                 <div className="details">
                                     Open: {this.establishment.openFromDay} through {this.establishment.openToDay}<br />
@@ -135,16 +137,22 @@ export default class Restaurant extends React.Component<RestaurantProps, Restaur
 
                     {!this.state.showMenuList &&
                         <div className="orange">
-                            <table style={{width:"80%", marginLeft:"10%", marginRight:"10%"}}>
+                            <table style={{ width: "80%", marginLeft: "10%", marginRight: "10%" }}>
                                 <tr>
                                     <td>
-                                        <Item imgSrc={plate1} name={this.establishment.name} description="Wafflera vende waffles."></Item>
+                                        {this.menu[0] &&
+                                            <Item imgSrc={this.menu[0].image_url} name={this.menu[0].name} description={this.menu[0].description}></Item>
+                                        }
                                     </td>
                                     <td>
-                                        <Item imgSrc={plate2} name={this.establishment.name} description="Wafflera vende waffles."></Item>
+                                        {this.menu[1] &&
+                                            <Item imgSrc={this.menu[1].image_url} name={this.menu[1].name} description={this.menu[1].description}></Item>
+                                        }
                                     </td>
                                     <td>
-                                        <Item imgSrc={plate3} name={this.establishment.name} description="Wafflera vende waffles."></Item>
+                                        {this.menu[2] &&
+                                            <Item imgSrc={this.menu[2].image_url} name={this.menu[2].name} description={this.menu[2].description}></Item>
+                                        }
                                     </td>
                                 </tr>
 

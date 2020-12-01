@@ -30,6 +30,21 @@
 /* background-color: transparent; */
 }
 
+.itemPic {
+  position: relative;
+  width: 350px;
+  height: 350px;
+
+  background-size: cover !important;
+  background-position: right !important;
+  border: 10px solid white;
+  /* border-color: white; */
+  margin-top: 50px;
+  margin-bottom: 50px;
+  /* border-radius: 200px; */
+
+}
+
 .first {
   width: 50%;
   height: 100%;

@@ -129,7 +129,7 @@ FormControl{
 
 .underFilterTable{
     width: 95%;
-    height: 310px;
+    height: 395px;
     align-items: center;
     margin: auto;
 }
@@ -171,8 +171,8 @@ FormControl{
 
 #photoTD{
     object-fit: cover;
-   width: 222px;
-   height: 150px;
+   width: 318px;
+   height: 200px;
     outline: none;
     padding: 0;
     border: none;

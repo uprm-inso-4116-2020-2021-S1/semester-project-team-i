@@ -1,8 +1,7 @@
 import axios from 'axios';
 import { goToNewRestaurant } from '../components/CreateRestaurant/CreateRestaurant';
 import { SERVER_STR } from '../components/Login/Login';
-import { Dish } from './DishService';
-import { User } from './UserService';
+
 
 export interface Establishment {
     eid?: number;

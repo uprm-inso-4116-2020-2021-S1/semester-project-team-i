@@ -7,6 +7,7 @@ import { RouteComponentProps } from 'react-router';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { SERVER_STR } from '../Login/Login';
+import { SampleMenu } from '../Menu/Menu';
 
 
 interface RestManagerProps extends RouteComponentProps<{ eid: string }> {
@@ -14,7 +15,7 @@ interface RestManagerProps extends RouteComponentProps<{ eid: string }> {
 }
 
 interface RestManagerStates {
-    data: Dish[];
+    data: SampleMenu[];
 }
 
 export default class RestManager extends React.Component<RestManagerProps, RestManagerStates> {
@@ -32,7 +33,7 @@ export default class RestManager extends React.Component<RestManagerProps, RestM
     }
 
     async setBackImg() {
-        await axios.get(SERVER_STR+`/establishments/${this.establishmentID}`)
+        await axios.get(SERVER_STR + `/establishments/${this.establishmentID}`)
             .then(res => {
                 const ans = res.data.establishment;
                 this.imgStr = ans.image_url;
@@ -41,20 +42,30 @@ export default class RestManager extends React.Component<RestManagerProps, RestM
     }
 
     async populateTable() {
-        await axios.get(SERVER_STR+`/establishments/${this.establishmentID}`)
+        await axios.get(SERVER_STR + `dishes?eid=${this.establishmentID}`)
             .then(res => {
-                const ans: Dish[] = res.data.establishment.dishes;
-                ans.map(item => {
-                    item.categorystr = item.category?.name
+                const ans: Dish[] = res.data.dishes;       
+                const sMenu: SampleMenu[] = [];
+                ans.forEach(item => {
+                    console.log(item);
+                    const temp: SampleMenu = {
+                        name: item.name,
+                        description: item.description,
+                        category: item.category?.name as string,
+                        type: item.type,
+                        price: "$" + item.price,
+                        upvotes: item.upvotes?.length ? item.upvotes.length : 0
+                    }
+                    sMenu.push(temp);
                 })
                 this.setState({
-                    data: JSON.parse(JSON.stringify(ans))
+                    data: sMenu
                 })
                 console.log(ans);
             });
     }
 
-    getTable(data: Dish[]) {
+    getTable(data: SampleMenu[]) {
         const columns = [
             {
                 title: "Name",
@@ -66,7 +77,7 @@ export default class RestManager extends React.Component<RestManagerProps, RestM
             },
             {
                 title: "Category",
-                field: "categorystr",
+                field: "category",
             },
             {
                 title: "Type",
@@ -77,8 +88,8 @@ export default class RestManager extends React.Component<RestManagerProps, RestM
                 field: "price",
             },
             {
-                title: "Rating",
-                field: "rating",
+                title: "Upvotes",
+                field: "upvotes",
             },
         ];
 
@@ -96,7 +107,7 @@ export default class RestManager extends React.Component<RestManagerProps, RestM
                         setTimeout(() => {
                             {
                                 const data = this.state.data;
-                                const index = data.indexOf(oldData as Dish);
+                                const index = data.indexOf(oldData as SampleMenu);
                                 data[index] = newData;
                                 this.setState({ data }, () => resolve());
                             }

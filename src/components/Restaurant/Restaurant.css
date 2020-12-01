@@ -28,6 +28,15 @@
     border-radius: 200px;
 }
 
+.dishFeat {
+    position: relative;
+    width: 350px;
+    height: 350px;
+  
+    background-size: cover !important;
+    background-position: right !important;
+}
+
 .handle {
     /* width: 619px; */
     height: 113px;

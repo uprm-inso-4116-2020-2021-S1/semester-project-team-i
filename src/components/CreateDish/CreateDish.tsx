@@ -3,12 +3,9 @@ import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
-
 import './CreateDish.css';
 import MenuItem from '@material-ui/core/MenuItem';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import ReactFirebaseFileUpload from './CD.js';
-
 import { Dish, DishService } from '../../services/DishService';
 import { Form, Formik } from 'formik';
 import axios from 'axios';
@@ -18,7 +15,6 @@ import { SERVER_STR } from '../Login/Login';
 let myImgUrl = "https://upload.wikimedia.org/wikipedia/commons/4/42/Photo-camera-in-circular-outlined-interface-button.svg";
 let type = '';
 let category_id = 0;
-let catetegory = "";
 
 let categoryMap: MyCategory[] = []; 
 
@@ -96,36 +92,15 @@ export const CreateDish = (props: CreateDishProps) => {
     setOpen(false);
   };
 
-  // cajitas de select
-  const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-      root: {
-        '& .MuiTextField-root': {
-          margin: theme.spacing(1),
-          width: '25ch',
-        },
-      },
-    }),
-  );
-
-  const classes = useStyles();
- // const [category, setCategory] = React.useState('EUR');
-
-
   const changeCategory = (event: React.ChangeEvent<HTMLInputElement>) => {
     category_id = (event.target.value) as unknown as number;
-    // category = (event.target.value);
   };
-
- // const [type, setType] = React.useState('EUR');
-
 
   const changeType = (event: React.ChangeEvent<HTMLInputElement>) => {
     type = (event.target.value);
   };
 
   getInitialData();
-  // cajitas de select
 
   const setMyImageUrl = (url: string) => {
     myImgUrl = url;
