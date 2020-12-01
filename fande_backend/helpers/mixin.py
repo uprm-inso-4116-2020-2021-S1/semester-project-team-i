@@ -53,3 +53,4 @@ class DaoOperations:
     def delete(self):
         db.session.delete(self)
         db.session.commit()
+

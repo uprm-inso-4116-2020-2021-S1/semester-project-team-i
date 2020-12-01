@@ -1,0 +1,251 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
+
+.rectanglePopup{
+    position: static;
+    width: 450px;
+    height: 550px;
+
+    top: 10%;
+    right: 25px;
+    text-align: center;
+    vertical-align: middle;
+
+    background: #eeeeee96;
+    border-radius: 80px;
+}
+
+.profile {
+    position: relative;
+    width: 70px;
+    height: 70px;
+    float: right;
+    top: 20% !important;
+    /* right: 0.5%;
+    top: 3px; */
+
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    background: url(../../assets/profileIMG.png);
+}
+
+
+.profPic {
+    position: relative;
+    width: 100px;
+    height: 100px;
+
+    background-size: cover !important;
+    background-position: center !important;
+
+    background: url(../../assets/waffles.jpg);
+    border-radius: 200px;
+}
+
+/* edit profile */
+.boxButton {
+    position: relative;
+    width: 246px;
+    height: 50px;
+    top: 20%;
+
+
+    margin: 10px;
+    font-family: Roboto;
+    font-style: normal !important;
+    font-size: 32px;
+    font-weight: bold ;
+    text-align: center;
+    color: #FFFFFF !important;
+
+    background: #F1821B !important;
+    border-radius: 10px;
+}
+.rec{
+    position: absolute;
+    width: 550px;
+    height: 200px;
+    left: 13%;
+    top: 85%;
+}
+.ppButton {
+    position: relative;
+    width: 100%;
+    height: 100px;
+    top: 10%;
+ 
+    background: transparent;
+    font-family: Roboto !important;
+    font-style: normal !important;
+    font-size: 32px;
+    font-weight: bold !important;
+    text-align: center;
+    color: #000000 !important;
+    background-color: tomato;
+}
+
+.text{
+    position: absolute;
+    width: 246px;
+    height: 50px;
+    top: 30%;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 36px;
+    line-height: 42px;
+    text-align: center !important;
+
+    color: #000000;
+}
+
+.background{
+    position: absolute;
+    width: 80%;
+    height: 100%;
+
+    top: 78px;
+    background-position: center !important;
+
+    background: #000000;
+    opacity: 0.90;
+}
+
+.profEdit {
+    position: fixed;
+    width: 1128px !important;
+    height: 740px !important;
+    left: 156px;
+    top: 169px;
+    
+    background: #FFFFFF;
+    border-radius: 80px;
+  }
+  
+
+  .rectangleE{
+    position: fixed;
+    width: 860px;
+    height: 800px;
+    right: 25%;
+    left: 25%;
+    top: 10%;
+    
+
+    
+    text-align: center;
+    vertical-align: middle;
+
+    background: #fffdfd;
+    background-attachment: center;
+    border-radius: 80px;
+    
+
+}
+
+.saveb{
+    /* position: fixed; */
+    width: 500px;
+    height: 60px;
+    /* left:30%;
+    right: 30%; */
+    top: 10%;
+
+    margin: 10px !important;
+    font-family: Roboto;
+    font-style: normal !important;
+    font-size: 36px;
+    font-weight: bold ;
+    text-align: center;
+    color: #ffffff !important;
+
+
+    background: #F1821B;
+    border-radius: 10px;
+
+}
+
+.profPicb {
+    /* position: absolute; */
+    width: 250px;
+    height: 250px;
+    /* left: 35%;
+    top: 2%; */
+
+    background-size: cover !important;
+    background-position: center !important;
+
+    background: url(../../assets/waffles.jpg);
+    border-radius: 200px;
+
+}
+
+.txt{
+    /* position: absolute;
+   
+    left: 30%;
+    top: 35%; */
+    width: 383px;
+    height: 60px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 36px;
+    line-height: 42px;
+
+    color: #000000;
+
+}
+.close{
+    position: absolute;
+    width: 80px;
+    height: 74px;
+    left: 87%;
+    top: 5%;
+
+
+    background-size: cover !important;
+    background-position: center !important;
+
+
+    background: url(../../assets/closeIcon.png);
+}
+
+.editbutton{
+    position: absolute;
+    width: 90px;
+    height: 30px;
+    left: 75%;
+    top: 50%;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 24px;
+    line-height: 42px;
+    background-size: cover !important;
+    background: transparent;
+
+    color: #000000;
+}
+
+.editbutton1{
+    position: absolute;
+    width: 90px;
+    height: 30px;
+    left: 75%;
+    top: 55%;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 24px;
+    line-height: 42px;
+    background-size: cover !important;
+    background: transparent;
+
+    color: #000000;
+
+
+}

@@ -1,0 +1,132 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap");
+
+.child {
+  width: 100%;
+  height: 100%;
+  margin: 5px;
+  text-align: center;
+  border-radius: 50px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-items: center;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("../../assets/waffles.jpg");
+  /* para ocupar toda la pantalla */
+  height: 100vh;
+}
+
+.contenedor {
+  width: 100%;
+  /* para ocupar toda la pantalla */
+  height: 500px;
+/* background-color: transparent; */
+}
+
+.first {
+  width: 50%;
+  height: 100%;
+  float: left; /* add this */
+}
+
+.second {
+  float: right; /* add this */
+  height: 50%;
+  overflow: hidden; /* if you don't want #second to wrap below #first */
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  background: url(../../assets/waffles.jpg);
+}
+
+.celda {
+  width: 900px;
+  height: 100%;
+}
+
+.pic {
+  width: 100%;
+  height: 100%;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  object-fit: cover;
+}
+
+.otro {
+  width: 100%;
+  height: 100%;
+  vertical-align: top;
+}
+
+.perfil {
+  background-size: cover;
+  background-position: center;
+  border-radius: 100%;
+  width: 50px;
+  height: 50px;
+  /* min-width: 110px; */
+  object-fit: cover;
+}
+
+.size {
+  width: 10%;
+  vertical-align: middle;
+}
+
+table.cabeza {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+td.headCell {
+  width: 50%;
+  text-align: center;
+}
+
+.space {
+  padding-top: 10px;
+  padding-left: 10px;
+}
+
+.pad {
+  padding: 10px;
+  text-align: left;
+}
+
+table.bigTable {
+  width: 100%;
+  height: 100%;
+  /* background-color: red; */
+}
+
+.arrow {
+  width: 100%;
+  height: 25%;
+}
+
+.boton {
+  width: 100%;
+  height: 100%;
+}
+
+button {
+  background-color: Transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+}
+
+.color {
+  background-color: greenyellow;
+  width: 100%;
+}

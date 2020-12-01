@@ -1,0 +1,169 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
+
+.child{
+    
+    width: 50%;
+    height: 50%;
+    margin: 5px;
+    text-align: center;  
+    /* background-color: white; */
+    background: none;
+    /* opacity: 0; */
+    border-radius: 50px;
+
+}
+
+.container{
+    /* para centralizar */
+    display: flex;           
+    flex-direction: column;  
+    justify-content: center; 
+    align-items: center;     
+    /* height: 300px; */
+  align-items: center;
+
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../../assets/waffles.jpg");
+  
+
+ /* para ocupar toda la pantalla */
+  height: 100vh;
+}
+
+
+.wrapper {
+    width: 100%;
+    height: 100%;
+    margin: 5px;
+    text-align: center;  
+    background-color: white;
+    border-radius: 50px;
+
+    overflow: hidden; /* will contain if #first is longer than #second */
+}
+
+.profilePic{
+  background-image: url(../../assets/camara.png);
+  background-size:cover;
+  background-position:center;
+    border-radius: 50%;
+    width: 25%;
+    height: 150px;
+    min-width: 85px;
+    padding: 1em;
+  
+}
+
+table.cabeza{
+    width:100%;
+    border-collapse:collapse;
+    
+    
+}
+
+td.headCell{
+    width: 50%;
+    text-align: center;
+    /* border: 1px solid black; */
+}
+
+.space{
+    padding-top: 10px;
+    padding-left: 10px;
+    
+}
+
+.pad{
+    padding: 10px;
+    text-align: left;
+}
+
+.celda{
+  position: relative;
+left : 1%;
+top: 1%;
+}
+
+
+.boton{
+    background-color: orange;
+    width: 25%;
+    height: 100%;
+    border-radius: 5px;
+
+    padding: 0;
+border: none;
+outline: none;
+/* background: none; */
+    
+/* font */
+    font-family: Roboto;
+    font-style: bold;
+    font-weight: 900;
+    font-size: 25px;
+    color: white;
+    
+}
+
+.boton:hover{
+  /* background-color: orangered; */
+  opacity: 0.5;
+}
+
+.camara{
+  width: 25%;
+  height: 25%;
+  
+outline: none;
+border-radius: 50%;
+padding: 0;
+border: none;
+outline: none;
+
+}
+
+.imagen{
+  width: 100%;
+  height: 100%;
+}
+
+.espacio{
+  padding-left: 5%;
+}
+
+.cancelbtn{
+  background-color: orange;
+  width: 40%;
+  height: 100%;
+  border-radius: 5px;
+
+  padding: 0;
+border: none;
+outline: none;
+
+position: relative;
+left : 40%;
+top: 40%;
+/* background: none; */
+  
+/* font */
+  font-family: Roboto;
+  font-style: bold;
+  font-weight: 900;
+  font-size: 25px;
+  color: white;
+}
+
+.cancelbtn:hover{
+  /* background-color: orangered; */
+  opacity: 0.5;
+}
+
+.tabla{
+  width: 98%;
+}
+
+
+

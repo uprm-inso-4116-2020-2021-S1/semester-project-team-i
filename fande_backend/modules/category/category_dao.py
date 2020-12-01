@@ -67,7 +67,6 @@ CATEGORIES = [
 class Category(DaoOperations, OutputMixin, db.Model):
     RELATIONSHIPS_TO_DICT = True
     CATEGORY_REQUIRED_PARAMS = ['name']
-
     cid = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False)
 
