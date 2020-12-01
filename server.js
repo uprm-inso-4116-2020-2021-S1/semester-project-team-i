@@ -1,10 +1,10 @@
 const express = require('express');
 const app = express();
 
-app.use(express.static('./build/find-and-eat'));
+app.use(express.static('./build/'));
 
 app.get('/*', function(req, res) {
-    res.sendFile('index.html', {root: 'build/find-and-eat/'}
+    res.sendFile('index.html', {root: 'build/'}
     );
 });
 
